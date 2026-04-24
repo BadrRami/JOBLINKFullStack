@@ -83,7 +83,7 @@ Actions rapides
 Gérer les utilisateurs
 </a>
 
-<a href='' className="btn btn-primary">
+<a href={route('offresAdmin.index')} className="btn btn-primary">
 Gérer les offres
 </a>
 
@@ -94,6 +94,7 @@ Gérer les offres
 
 <a href='' className="btn btn-warning">
     Gérer les entreprises
+    
 </a>
 
 

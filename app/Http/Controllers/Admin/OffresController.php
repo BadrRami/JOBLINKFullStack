@@ -16,7 +16,7 @@ class OffresController extends Controller
      */
     public function index()
     {
-        $offres = Offre::all(); 
+        $offres = Offre::with(['domaine', 'ville'])->get();
         return Inertia('Admin/Offres/Liste', compact('offres'));
     }
 
@@ -70,6 +70,6 @@ class OffresController extends Controller
     public function destroy(Offre $offre)
     {
         $offre->delete();
-        return redirect()->route('offre.index')->with('success','suppression réussit');
+        return redirect()->route('offresAdmin.index')->with('success','suppression réussit');
     }
 }

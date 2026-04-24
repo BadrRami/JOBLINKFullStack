@@ -10,6 +10,7 @@ use App\Http\Controllers\posts;
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OffresController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -61,7 +62,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class , 'update'])->name('users.update'); 
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');   
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy'); 
+    
+    // CRUD OFFRES ADMIN
+    Route::resource('offresAdmin', OffresController::class)->except(['show']);
 
     
     // CRUD Publications
