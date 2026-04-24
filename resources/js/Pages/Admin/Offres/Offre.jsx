@@ -1,13 +1,20 @@
 import React from 'react';
 import { router } from '@inertiajs/react';
-const Offre = ({key,offre,index}) => {
-    const handleDelete = (id) => {
+
+const Offre = ({ offre, index }) => {
+
+    const handleDelete = (offre) => {
         if (confirm("Supprimer cette offre ?")) {
-            router.delete(`/offresAdmin/${id}`);
+            router.delete(`/offresAdmin/${offre.id}`, {
+                onSuccess: () => {
+                    router.reload({ only: ['offres'] });
+                }
+            });
         }
     }
+
     return (
-        <tr key={offre.id || index}>
+        <tr>
             <td>{index + 1}</td>
             <td>{offre.titre}</td>
             <td>{offre.description}</td>
@@ -18,11 +25,11 @@ const Offre = ({key,offre,index}) => {
             <td>{offre.ville?.nom}</td>
             <td>
                 <a href={route('offresAdmin.edit', offre.id)} className="btn btn-sm btn-warning">
-                    <i class="bi bi-pen-fill"></i>
+                    <i className="bi bi-pen-fill"></i>
                 </a>
 
-                <button className='btn btn-sm btn-danger' onClick={() => handleDelete(offre.id)}>
-                    <i class="bi bi-trash3-fill"></i>
+                <button className='btn btn-sm btn-danger' onClick={() => handleDelete(offre)}>
+                    <i className="bi bi-trash3-fill"></i>
                 </button>
             </td>
         </tr>

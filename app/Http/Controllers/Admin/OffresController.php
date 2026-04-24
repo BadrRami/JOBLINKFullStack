@@ -51,9 +51,18 @@ class OffresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $offre = Offre::findOrFail($id);
+
+        $villes = Villes::all();
+        $domaines = Domaine::all();
+
+        return Inertia('Admin/Offres/Edit', [
+            'offre' => $offre,
+            'villes' => $villes,
+            'domaines' => $domaines
+        ]);
     }
 
     /**
@@ -67,9 +76,12 @@ class OffresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Offre $offre)
-    {
-        $offre->delete();
-        return redirect()->route('offresAdmin.index')->with('success','suppression réussit');
-    }
+    public function destroy($id)
+{
+    $offre = Offre::findOrFail($id);
+    $offre->delete();
+
+    return redirect()->route('offresAdmin.index')
+        ->with('success','suppression réussie');
+}
 }
