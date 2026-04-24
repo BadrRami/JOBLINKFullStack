@@ -24,7 +24,7 @@ const Profile = ({ user }) => {
                         {/* PHOTO */}
                         <div className="col-md-3 text-center">
                             <img
-                                src={user.photo ? `/storage/photos/${user.photo}` : '/images.png'}
+                                src={user.employee.photo ? `/storage/photos/${user.employee.photo}` : '/images.png'}
                                 className="img-fluid rounded-circle border"
                                 width="150"
                                 alt="profil"

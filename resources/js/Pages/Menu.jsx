@@ -37,7 +37,7 @@ const Menu = () => {
                                 </Link>
                             )}
                             {user.role.toLowerCase() === 'recruteur' && (
-                                <Link className="btn btn-outline-success" href="/profile/recruteur">
+                                <Link className="btn btn-outline-success" href={route('profile.recruteur')}>
                                     Mon Profil
                                 </Link>
                             )}

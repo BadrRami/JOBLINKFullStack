@@ -152,8 +152,8 @@ const Modifier = ({ user }) => {
                                 {/* Photo */}
                                 <div className="col-md-12 mb-3 text-center">
                                     <img
-                                        src={user.employee?.photo
-                                            ? `/storage/photos/${user.employee.photo}`
+                                        src={user.recruteur?.photo
+                                            ? `/storage/photos/${user.recruteur.photo}`
                                             : '/images.png'}
                                         className="rounded-circle mb-3"
                                         width="120"

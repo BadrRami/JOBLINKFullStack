@@ -54,7 +54,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
+        $user = User::with(['employee', 'recruteur'])->find($id);
         return Inertia('Admin/Users/Modifier', compact('user'));
     }
 
