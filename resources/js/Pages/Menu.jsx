@@ -1,0 +1,75 @@
+import React from 'react';
+import { Link, router, usePage } from '@inertiajs/react';
+import { route } from 'ziggy-js';
+
+
+const Menu = () => {
+
+    const { auth } = usePage().props;
+    const user = auth?.user;
+
+    const handleLogout = () => {
+        router.post('/logout');
+    };
+
+    return (
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
+
+                <Link className="navbar-brand" href="/">JobLink</Link>
+
+                <div className="collapse navbar-collapse">
+
+                    <ul className="navbar-nav me-auto">
+                        <li><Link className="nav-link" href="/">Accueil</Link></li>
+                        <li><Link className="nav-link" href="/Offres">Offres</Link></li>
+                        <li><Link className="nav-link" href="/entreprises">Entreprises</Link></li>
+                        <li><Link className="nav-link" href={route('posts.index')}>Publications</Link></li>
+                    </ul>
+
+                    <div className="d-flex gap-2">
+
+                        {user ? (
+                            <>
+                            {user.role === 'admin' && (
+                                <Link className="btn btn-outline-primary" href="/admin">
+                                    Admin
+                                </Link>
+                            )}
+                            {user.role.toLowerCase() === 'recruteur' && (
+                                <Link className="btn btn-outline-success" href="/profile/recruteur">
+                                    Mon Profil
+                                </Link>
+                            )}
+                            {user.role.toLowerCase() === 'employée' && (
+                                <Link className="btn btn-outline-info" href="/profile/employee">
+                                    Mon Profil
+                                </Link>
+                            )}
+                            {user.role.toLowerCase() === 'admin' && (
+                                <Link className="btn btn-outline-info" href="/profile/admin">
+                                    Mon Profil
+                                </Link>
+                            )}
+                            <button 
+                                    className="btn btn-outline-danger"
+                                    onClick={handleLogout}
+                                >
+                                    Se déconnecter
+                                </button>
+                            </>
+                        ) : (
+                            <Link className="btn btn-outline-success" href="/login">
+                                Se connecter
+                            </Link>
+                        )}
+
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+export default Menu;
