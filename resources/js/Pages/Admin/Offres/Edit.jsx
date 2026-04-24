@@ -20,10 +20,10 @@ const Edit = ({ offre, domaine, ville, villes, domaines }) => {
             e.preventDefault();
     
             put(route('offresAdmin.update', offre.id), {
-                onSuccess: () => reset(),
-            });
-            console.log(data);
-            console.log(errors);
+    onError: (errors) => {
+        console.log(errors);
+    }
+});
         };
     return (
         <div>

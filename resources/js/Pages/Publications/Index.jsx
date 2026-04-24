@@ -1,6 +1,6 @@
 import React from 'react';
 import Publication from './Publication';
-import Menu from './Menu';
+import Menu from '../Menu';
 
 const Publications = ({ posts }) => {
     return (

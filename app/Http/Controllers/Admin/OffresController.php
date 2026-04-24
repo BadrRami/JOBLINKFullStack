@@ -70,7 +70,34 @@ class OffresController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $offre = Offre::findOrFail($id);
+
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'type' => 'required|string',
+            'localisation' => 'required|string|max:255',
+            'salaire' => 'required|numeric|min:0',
+            'etat' => 'required|in:active,inactive',
+            'domaine_id' => 'required|exists:domaines,id',
+            'ville_id' => 'required|exists:villes,id',
+            // Add other validation rules as needed
+        ]);
+
+        $offre->update([
+            'titre' => $request->titre,
+            'description' => $request->description,
+            'type' => $request->type,
+            'localisation' => $request->localisation,
+            'salaire' => $request->salaire,
+            'etat' => $request->etat,
+            'domaine_id' => $request->domaine_id,
+            'ville_id' => $request->ville_id,
+            // Update other fields as needed
+        ]);
+
+        return redirect()->route('offresAdmin.index')
+                         ->with('success', 'Offre mise à jour avec succès');
     }
 
     /**

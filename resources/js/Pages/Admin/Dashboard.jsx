@@ -87,8 +87,8 @@ Gérer les utilisateurs
 Gérer les offres
 </a>
 
-<a href='' className="btn btn-dark">
-    Gérer les posts
+<a href={route('postsAdmin.index')} className="btn btn-dark">
+    Gérer les publications
 </a>
 
 

@@ -8,9 +8,11 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\posts;
 use App\Http\Controllers\OffreController;
+// Admin Controllers
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OffresController;
+use App\Http\Controllers\Admin\PostsController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -25,8 +27,6 @@ Route::middleware('guest')->group(function (){
 
     Route::get('/register', [InscriptionController::class, 'index'])->name('register');
     Route::post('/register', [InscriptionController::class, 'traiter'])->name('register.traiter');
-
-    Route::get('/posts', [posts::class, 'index'])->name('posts.index');
 });
 Route::middleware('auth')->group(function () {
     // Profile Recruteur routes
@@ -67,6 +67,9 @@ Route::middleware('auth')->group(function () {
     // CRUD OFFRES ADMIN
     Route::resource('offresAdmin', OffresController::class)->except(['show']);
 
+    // CRUD PUBLICATIONS ADMIN
+    Route::resource('postsAdmin', PostsController::class)->except(['show']);
+
     
     // CRUD Publications
     Route::get('/publications', [PostController::class, 'index'])->name('publications.index');
@@ -88,5 +91,5 @@ Route::middleware('auth')->group(function () {
 
 
 });
-
-
+Route::get('/offres', [OffreController::class, 'index'])->name('offres.index');
+Route::get('/posts', [posts::class, 'index'])->name('posts.index');
