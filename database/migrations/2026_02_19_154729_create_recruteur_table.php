@@ -14,12 +14,7 @@ return new class extends Migration
         Schema::create('recruteurs', function (Blueprint $table) {
             $table->id();
              $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('nom')->index()->nullable()->default('');
-            $table->string('prenom')->nullable()->default('');
-            $table->string('email')->unique();
-            $table->string('tel', 10)->nullable();
             $table->string('poste')->nullable();
-            $table->enum('etat', ['profil validé', 'profil en attente'])->default('profil en attente');
             $table->foreignId('entreprise_id')
                     ->nullable()
                     ->constrained()

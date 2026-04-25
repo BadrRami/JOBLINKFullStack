@@ -23,6 +23,9 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
+        'photo',
+        'etat',
+        'tel',
     ];
 
     public function recruteur()

@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('prenom');
             $table->string('email')->unique();
-            $table->enum('role', ['Recruteur','Employée','Admin']);
+            $table->enum('role', ['Recruteur','Employee','Admin']);
+            $table->string('tel', 10)->nullable();
+            $table->string('photo')->nullable();
+            $table->enum('etat', ['profil validé', 'profil en attente'])->default('profil en attente');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

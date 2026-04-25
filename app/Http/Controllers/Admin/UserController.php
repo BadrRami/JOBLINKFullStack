@@ -67,52 +67,53 @@ class UserController extends Controller
 
     if ($user->role === 'Recruteur') {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'   => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'etat' => 'required|in:profil validé,profil en attente',
+            'email'  => 'required|email|unique:users,email,' . $user->id,
+            'etat'   => 'required|in:profil validé,profil en attente',
         ]);
-    } else {
+    } elseif ($user->role === 'Employée') {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name'   => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'etat' => 'required|in:profile validé,en attente de validation',
+            'email'  => 'required|email|unique:users,email,' . $user->id,
+            'etat'   => 'required|in:profil validé,en attente de validation',
         ]);
     }
 
     // Gestion de la photo
-    $nomPhoto = $user->photo ?? null;
+    $nomPhoto = null;
     if ($request->hasFile('photo')) {
-        $nomPhoto = time().'.'.$request->photo->extension();
+        $nomPhoto = time() . '.' . $request->photo->extension();
         $request->photo->storeAs('photos', $nomPhoto, 'public');
     }
 
     // Mise à jour table users
     $user->update([
-        'name' => $request->name,
+        'name'   => $request->name,
         'prenom' => $request->prenom,
-        'email' => $request->email,
+        'email'  => $request->email,
     ]);
 
-    // Mise à jour selon le rôle
+    // Mise à jour Recruteur
     if ($user->role === 'Recruteur' && $user->recruteur) {
         $user->recruteur->update([
-            'tel' => $request->tel,
-            'poste' => $request->poste,
+            'tel'        => $request->tel,
+            'poste'      => $request->poste,
             'entreprise' => $request->entreprise,
-            'photo' => $nomPhoto,
-            'etat' => $request->etat,  
+            'etat'       => $request->etat,
+            'photo'      => $nomPhoto ?? $user->recruteur->photo,
         ]);
     }
 
+    // Mise à jour Employée
     if ($user->role === 'Employée' && $user->employee) {
         $user->employee->update([
-            'tel' => $request->tel,
-            'filiere' => $request->filiere,
+            'tel'          => $request->tel,
+            'filiere'      => $request->filiere,
             'niveau_etude' => $request->niveau_etude,
-            'photo' => $nomPhoto,
-            'etat' => $request->etat,  
+            'etat'         => $request->etat,
+            'photo'        => $nomPhoto ?? $user->employee->photo,
         ]);
     }
 

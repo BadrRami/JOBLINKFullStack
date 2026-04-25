@@ -111,11 +111,11 @@ const EditProfile = ({ user }) => {
                                 />
                             ) : (
                                 <img
-                                    src="/images.png"
-                                    className="rounded-circle mb-3"
-                                    width="120"
-                                    alt="default"
-                                />
+                                src={user.photo ? `/storage/photos/${user.photo}` : '/images.png'}
+                                className="img-fluid rounded-circle border"
+                                width="150"
+                                alt="profil"
+                            />
                             )}
 
                             <br />

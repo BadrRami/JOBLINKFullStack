@@ -21,7 +21,7 @@ class InscriptionController extends Controller
             'nom' => 'required|string|max:255',
             'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:8',
-            'statut' => 'required|in:Recruteur,Employée,Admin'
+            'statut' => 'required|in:Recruteur,Employee,Admin'
         ]);
 
         //  Créer l'utilisateur
@@ -31,30 +31,23 @@ class InscriptionController extends Controller
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
             'role' => $validated['statut'],
+            'etat' => 'profil en attente',
+            'tel' => null,
+            'photo' => null,
         ]);
 
         //  Créer le profil correspondant selon le rôle
         if ($user->role === 'Recruteur') {
             Recruteur::create([
                 'user_id' => $user->id,
-                'nom' => $validated['nom'],        // ou $user->name
-                'prenom' => $validated['prenom'],  // ou $user->prenom
-                'email' => $validated['email'],    // obligatoire
-                'tel' => null,
                 'poste' => null,
                 'entreprise_id' => null,
-                'etat' => 'profil en attente',
             ]);
-        } else { // Employée
+        } else { 
             Employee::create([
                 'user_id' => $user->id,
-                'nom' => $validated['nom'],        // ou $user->name
-                'prenom' => $validated['prenom'],  // ou $user->prenom
-                'email' => $validated['email'],    // obligatoire
-                'tel' => null,
                 'filiere' => null,
                 'niveau_etude' => null,
-                'etat' => 'en attente de validation',
             ]);
         }
 

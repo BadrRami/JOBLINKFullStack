@@ -41,7 +41,7 @@ const Menu = () => {
                                     Mon Profil
                                 </Link>
                             )}
-                            {user.role.toLowerCase() === 'employée' && (
+                            {user.role.toLowerCase() === 'employee' && (
                                 <Link className="btn btn-outline-info" href="/profile/employee">
                                     Mon Profil
                                 </Link>

@@ -30,8 +30,8 @@ console.log("isEmployee:", isEmployee);
                 name: user.name || '',
                 prenom: user.prenom || '',
                 email: user.email || '',
-                etat: user.recruteur?.etat || user.employee?.etat || '',
-                tel: user.employee?.tel || user.recruteur?.tel || '',
+                etat: user.etat || '',
+                tel: user.tel || '',
                 filiere: user.employee?.filiere || '',
                 niveau_etude: user.employee?.niveau_etude || '',
                 poste: user.recruteur?.poste || '',
@@ -54,8 +54,8 @@ console.log("isEmployee:", isEmployee);
     const isRecruteur = normalizeRole(user?.role) === "recruteur";
 
     const currentPhoto = isRecruteur
-        ? user.recruteur?.photo
-        : user.employee?.photo;
+        ? user.photo
+        : user.photo;
 
     const photoSrc = preview || (currentPhoto ? `/storage/photos/${currentPhoto}` : '/images.png');
 
@@ -113,17 +113,9 @@ console.log("isEmployee:", isEmployee);
                             value={data.etat}
                             onChange={(e) => setData('etat', e.target.value)}
                         >
-                            {isRecruteur ? (
-                                <>
-                                    <option value="profil validé">profil validé</option>
-                                    <option value="profil en attente">profil en attente</option>
-                                </>
-                            ) : (
-                                <>
-                                    <option value="profil validé">profil validé</option>
-                                    <option value="en attente de validation">en attente de validation</option>
-                                </>
-                            )}
+                            <option value="profil validé">profil validé</option>
+                            <option value="profil en attente">profil en attente</option>
+                            
                         </select>
                         {errors.etat && <div className="text-danger">{errors.etat}</div>}
                     </div>

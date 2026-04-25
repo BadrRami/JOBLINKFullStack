@@ -66,17 +66,14 @@ class ProfileController extends Controller
             'name' => $request->name,
             'prenom' => $request->prenom,
             'email' => $request->email,
+            'tel'=>$request->tel,
+            'photo' => $nomPhoto
         ]);
 
         // update recruteurs table
         $user->recruteur->update([
-            'name' => $request->name,
-            'prenom' => $request->prenom,
-            'email' => $request->email,
             'entreprise' => $request->entreprise,
-            'tel'=>$request->tel,
             'poste'=>$request->poste,
-            'photo' => $nomPhoto
         ]);
 
         return redirect()->route('profile.recruteur.edit')->with('success', 'Profil recruteur mis à jour');
@@ -115,18 +112,15 @@ class ProfileController extends Controller
                 'name' => $request->name,
                 'prenom' => $request->prenom,
                 'email' => $request->email,
-            ]);
-
-            $user->employee->update([
-                'name' => $request->name,
-                'prenom' => $request->prenom,
-                'email' => $request->email,
                 'tel' => $request->tel,
-                'filiere'=>$request->filiere,
-                'niveau_etude'=>$request->niveau_etude,
                 'photo'=>$nomPhoto
             ]);
 
-            return back()->with('success', 'Profil employee mis à jour');
+            $user->employee->update([
+                'filiere'=>$request->filiere,
+                'niveau_etude'=>$request->niveau_etude,
+            ]);
+
+            return redirect()->route('profile.employee')->with('success', 'Profil employee mis à jour');
     }
 }

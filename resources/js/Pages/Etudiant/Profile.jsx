@@ -24,7 +24,7 @@ const Profile = ({ user }) => {
                         {/* PHOTO */}
                         <div className="col-md-3 text-center">
                             <img
-                                src={user.employee.photo ? `/storage/photos/${user.employee.photo}` : '/images.png'}
+                                src={user.photo ? `/storage/photos/${user.photo}` : '/images.png'}
                                 className="img-fluid rounded-circle border"
                                 width="150"
                                 alt="profil"
@@ -41,12 +41,12 @@ const Profile = ({ user }) => {
                             <p><strong>Email :</strong> {user.email}</p>
                             <p><strong>Rôle :</strong> {user.role}</p>
 
-                            <p><strong>Téléphone :</strong> {user.employee?.tel}</p>
+                            <p><strong>Téléphone :</strong> {user.tel}</p>
                             <p><strong>Filière :</strong> {user.employee?.filiere}</p>
                             <p><strong>Niveau :</strong> {user.employee?.niveau_etude}</p>
 
                             <span className="badge bg-info">
-                                {user.employee?.etat}
+                                {user.etat}
                             </span>
 
                         </div>
@@ -62,13 +62,13 @@ const Profile = ({ user }) => {
                             Modifier Profil
                         </Link>
 
-                        {user.employee?.etat !== 'profile validé' && (
+                        {user.etat !== 'profile validé' && (
                             <div className="alert alert-warning">
                                 Vous ne pouvez pas créer des offres tant que votre compte n'est pas validé
                             </div>
                         )}
 
-                        {user.employee?.etat === 'profile validé' && (
+                        {user.etat === 'profile validé' && (
                             <>
                                 <Link href={route('publications.create')} className="btn btn-secondary">
                                     Créer un poste
