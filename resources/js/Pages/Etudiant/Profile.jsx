@@ -62,13 +62,13 @@ const Profile = ({ user }) => {
                             Modifier Profil
                         </Link>
 
-                        {user.etat !== 'profile validé' && (
+                        {user.etat !== 'profil validé' && (
                             <div className="alert alert-warning">
                                 Vous ne pouvez pas créer des offres tant que votre compte n'est pas validé
                             </div>
                         )}
 
-                        {user.etat === 'profile validé' && (
+                        {user.etat === 'profil validé' && (
                             <>
                                 <Link href={route('publications.create')} className="btn btn-secondary">
                                     Créer un poste
