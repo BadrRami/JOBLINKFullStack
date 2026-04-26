@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 class posts extends Controller
 {
-    public function index(){
-        $posts = Post::all();
-        return Inertia::render('Publications/Index', [
-            'posts' => $posts
-        ]);
-    }
+    public function index()
+{
+    $posts = Post::with(['comments.user', 'likes'])->get();
+
+    return Inertia('Publications/Index', [
+        'posts' => $posts
+    ]);
+}
 }

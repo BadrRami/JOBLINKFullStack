@@ -1,0 +1,286 @@
+/* =========================================
+   Profile.css — JobLink.ma Profile Page
+   Style : Dark Corporate + Blue Accent
+   ========================================= */
+
+/* =========================================
+   PAGE WRAPPER
+   ========================================= */
+#jl-profile-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   BODY
+   ========================================= */
+#jl-profile-body {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 52px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+#jl-profile-body::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: hsla(220, 89.87%, 46.25%, 0.06);
+  pointer-events: none;
+}
+
+#jl-profile-body::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: hsla(197, 100%, 50%, 0.05);
+  pointer-events: none;
+}
+
+/* =========================================
+   CARD
+   ========================================= */
+#jl-profile-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 40px rgba(15, 23, 42, 0.10),
+              0 1px 3px rgba(15, 23, 42, 0.06);
+  width: 100%;
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Barre dégradée en haut */
+#jl-profile-card::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+/* =========================================
+   CARD HEADER BAND (fond sombre)
+   ========================================= */
+#jl-profile-banner {
+  background: #0f172a;
+  padding: 32px 36px 28px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   AVATAR
+   ========================================= */
+#jl-profile-avatar-wrap {
+  flex-shrink: 0;
+  position: relative;
+}
+
+#jl-profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid hsl(220, 89.87%, 46.25%);
+  box-shadow: 0 0 0 4px hsla(220, 89.87%, 46.25%, 0.20),
+              0 4px 16px rgba(0,0,0,0.30);
+  display: block;
+}
+
+/* Indicateur en ligne */
+#jl-profile-avatar-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; right: 4px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid #0f172a;
+}
+
+/* =========================================
+   USER INFO (dans la bannière)
+   ========================================= */
+#jl-profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+#jl-profile-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#jl-profile-email {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0 0 10px 0;
+}
+
+/* Badge rôle */
+#jl-profile-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: hsla(220, 89.87%, 46.25%, 0.18);
+  color: hsl(220, 89.87%, 75%);
+  border: 1px solid hsla(220, 89.87%, 46.25%, 0.30);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+}
+
+#jl-profile-role-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: hsl(220, 89.87%, 65%);
+  flex-shrink: 0;
+}
+
+/* =========================================
+   DIVIDER
+   ========================================= */
+#jl-profile-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0;
+  border: none;
+}
+
+/* =========================================
+   ACTIONS (bas de la carte)
+   ========================================= */
+#jl-profile-actions {
+  padding: 24px 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Base bouton */
+.jl-btn {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+  white-space: nowrap;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1;
+}
+
+/* Modifier profil — primaire */
+.jl-btn-edit {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-color: hsl(220, 89.87%, 46.25%);
+}
+
+.jl-btn-edit:hover {
+  background: hsl(220, 89.87%, 36%);
+  border-color: hsl(220, 89.87%, 36%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px hsla(220, 89.87%, 46.25%, 0.35);
+}
+
+/* Dashboard — ghost sombre */
+.jl-btn-dashboard {
+  background: #f1f5f9;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
+.jl-btn-dashboard:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+  border-color: #cbd5e1;
+}
+
+/* Supprimer — danger discret */
+.jl-btn-delete {
+  background: transparent;
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.25);
+  margin-left: auto;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.jl-btn-delete:hover {
+  background: #fef2f2;
+  border-color: rgba(220, 38, 38, 0.50);
+  color: #b91c1c;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 580px) {
+  #jl-profile-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px 24px;
+    gap: 20px;
+  }
+
+  #jl-profile-actions {
+    padding: 20px 24px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .jl-btn {
+    justify-content: center;
+  }
+
+  .jl-btn-delete {
+    margin-left: 0;
+  }
+
+  #jl-profile-name {
+    font-size: 1.2rem;
+    white-space: normal;
+  }
+}

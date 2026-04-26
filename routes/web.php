@@ -9,6 +9,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\posts;
 use App\Http\Controllers\OffreControlleur;
 use App\Http\Controllers\EntreprisesController;
+use App\Http\Controllers\LikesController;
+use App\Http\Controllers\CommantaireController;
 // Admin Controllers
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -112,6 +114,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/sauvegardes', [sauvegarde::class , 'index'])->name('sauvegarde.index');
     Route::post('/sauvegardes', [sauvegarde::class , 'add'])->name('sauvegarde.store');
     Route::delete('/sauvegardes/{id}', [sauvegarde::class , 'delete'])->name('sauvegarde.delete');
+
+
+    // Likes routes
+    Route::post('/likes', [LikesController::class, 'store'])->name('likes.store');
+    Route::delete('/likes', [LikesController::class, 'destroy'])->name('likes.destroy');
+
+    // Comments routes 
+    Route::resource('/comments', CommantaireController::class);
 
 
 });

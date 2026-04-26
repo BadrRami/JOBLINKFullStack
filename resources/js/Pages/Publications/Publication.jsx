@@ -1,7 +1,16 @@
-
-import React from 'react';
-
+import React, { useState } from 'react';
+import { router } from '@inertiajs/react';
+import CommentsSection from './Commentaire/CommentsSection';
 const Publication = ({ post }) => {
+    const [afficher , setafficher] = useState(false)
+    const handleLike = (postId) => {
+        router.post('/likes', {
+            post_id: postId
+        });
+    };
+    const affichageComments = ()=>{
+        setafficher(true)
+    }
 
     if (!post) return null;
 
@@ -12,10 +21,10 @@ const Publication = ({ post }) => {
     <div className="card-body d-flex align-items-center">
         <img
             src={
-                post.user?.photo
-                    ? `/storage/photos/${post.postable?.photo}`
-                    : '/images.png'
-            }
+    post.user?.photo
+        ? `/storage/photos/${post.user.photo}`
+        : '/images.png'
+}
             alt="avatar"
             className="rounded-circle me-2"
             style={{ width: '40px', height: '40px', objectFit: 'cover' }}
@@ -23,7 +32,7 @@ const Publication = ({ post }) => {
         <div>
             <h6 className="mb-0 fw-bold">
                 {post.user
-                    ? `${post.user.nom} ${post.user.prenom}`
+                    ? `${post.user.name} ${post.user.prenom}`
                     : 'Utilisateur inconnu'}
             </h6>
             <small className="text-muted">
@@ -51,7 +60,7 @@ const Publication = ({ post }) => {
 
     {/* STATS */}
     <div className="px-3 py-2 d-flex justify-content-between text-muted small">
-        <span>👍 {post.NBLikes}</span>
+        <span>👍 {post.likes?.length}</span>
         <span>💬 {post.NBComments} commentaires</span>
     </div>
 
@@ -59,16 +68,23 @@ const Publication = ({ post }) => {
 
     {/* ACTIONS */}
     <div className="d-flex justify-content-around py-2">
-        <button className="btn btn-light w-100">
+        <button className="btn btn-light w-100" onClick={()=> handleLike(post.id)}>
             👍 J'aime
         </button>
-        <button className="btn btn-light w-100">
+        <button className="btn btn-light w-100" onClick={affichageComments}>
             💬 Commenter
         </button>
-        <button className="btn btn-light w-100">
+        <button className="btn btn-light w-100" >
             ↗️ Partager
         </button>
     </div>
+
+    {afficher && 
+    <CommentsSection post={post} />
+}
+
+
+    
 
 </div>
     );
