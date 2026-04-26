@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\posts;
-use App\Http\Controllers\OffreController;
+use App\Http\Controllers\OffreControlleur;
 // Admin Controllers
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\Admin\PostsController;
+
+// Recruteur Controller
+use App\Http\Controllers\OffreController;
+
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -82,7 +86,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // CRUD Offres routes
-    Route::get('/offres', [OffreController::class, 'index'])->name('offres.index');
+    Route::get('/recruteur/offres', [OffreController::class, 'index'])->name('offresrecruteur.index');
     Route::get('/offres/create', [OffreController::class, 'create'])->name('offres.create');
     Route::post('/offres', [OffreController::class, 'store'])->name('offres.store');
     Route::get('/offres/{offre}/edit', [OffreController::class, 'edit'])->name('offres.edit');
@@ -91,5 +95,5 @@ Route::middleware('auth')->group(function () {
 
 
 });
-Route::get('/offres', [OffreController::class, 'index'])->name('offres.index');
+Route::get('/offres', [OffreControlleur::class, 'index'])->name('offres.index');
 Route::get('/posts', [posts::class, 'index'])->name('posts.index');

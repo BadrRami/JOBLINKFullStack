@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         // Récupérer tous les posts de l'utilisateur connecté via la relation polymorphe
-        $postes = auth()->user()->posts()->get();
+        $postes = Post::where('user_id', auth()->id())->get();
 
         return Inertia::render('posts/Liste', compact('postes'));
     }
@@ -36,8 +36,7 @@ class PostController extends Controller
             'media'=> 'nullable|file|mimes:jpg,jpeg,png,gif,mp4,mov,avi,webm|max:10240'
         ]);
 
-        $data['postable_id'] = auth()->id();
-        $data['postable_type'] = auth()->user()::class;
+        $data['user_id'] = auth()->id();
         $data['NBLikes'] = 0;       // Ajout ici
         $data['NBComments'] = 0;    // Ajout ici
         $data['media'] = 'null';
@@ -84,7 +83,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
 {
-    if ($post->postable_id != auth()->id()) {
+    if ($post->user_id != auth()->id()) {
         abort(403, 'Action non autorisée');
     }
 

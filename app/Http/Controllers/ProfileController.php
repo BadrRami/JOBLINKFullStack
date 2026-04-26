@@ -31,12 +31,17 @@ class ProfileController extends Controller
         ]);
         return redirect()->route('profile.admin')->with('success', 'Profil admin mis à jour');
     }
-    public function showRecruteur()
-    {
-        $user = Auth::user()->load('Recruteur'); 
 
-        return Inertia::render('Recruteur/Profile', compact('user'));
-    }
+    // Affiche le profil du recruteur
+
+    public function showRecruteur()
+{
+    $user = Auth::user()->load('recruteur');
+
+    return Inertia::render('Recruteur/Profile', [
+        'user' => $user
+    ]);
+}
     
     public function editRecruteur()
     {

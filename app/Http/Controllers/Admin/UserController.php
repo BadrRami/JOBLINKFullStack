@@ -65,51 +65,36 @@ class UserController extends Controller
 {
     $user = User::findOrFail($id);
 
-    if ($user->role === 'Recruteur') {
-        $request->validate([
-            'name'   => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'email'  => 'required|email|unique:users,email,' . $user->id,
-            'etat'   => 'required|in:profil validé,profil en attente',
-        ]);
-    } elseif ($user->role === 'Employee') {
-        $request->validate([
-            'name'   => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'email'  => 'required|email|unique:users,email,' . $user->id,
-            'etat'   => 'required|in:profil validé,en attente de validation',
-        ]);
-    }
-
-    // Gestion de la photo
-    $nomPhoto = null;
-    if ($request->hasFile('photo')) {
-        $nomPhoto = time() . '.' . $request->photo->extension();
-        $request->photo->storeAs('photos', $nomPhoto, 'public');
-    }
-
-    // Mise à jour table users
-    $user->update([
+    $data = [
         'name'   => $request->name,
         'prenom' => $request->prenom,
         'email'  => $request->email,
-        'tel'        => $request->tel,
-        'etat'       => $request->etat,
-        'photo'      => $nomPhoto,
-    ]);
+        'tel'    => $request->tel,
+        'etat'   => $request->etat,
+    ];
 
-    // Mise à jour Recruteur
+
+    if ($request->hasFile('photo')) {
+        $nomPhoto = time() . '.' . $request->photo->extension();
+        $request->photo->storeAs('photos', $nomPhoto, 'public');
+
+        $data['photo'] = $nomPhoto; 
+    }
+
+    $user->update($data);
+
+    // Recruteur
     if ($user->role === 'Recruteur' && $user->recruteur) {
         $user->recruteur->update([
-            'poste'      => $request->poste,
+            'poste' => $request->poste,
             'entreprise_id' => $request->entreprise,
         ]);
     }
 
-    // Mise à jour Employée
+    // Employee
     if ($user->role === 'Employee' && $user->employee) {
         $user->employee->update([
-            'filiere'      => $request->filiere,
+            'filiere' => $request->filiere,
             'niveau_etude' => $request->niveau_etude,
         ]);
     }

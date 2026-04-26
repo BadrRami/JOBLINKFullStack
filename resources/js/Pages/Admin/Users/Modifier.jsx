@@ -22,9 +22,9 @@ const Modifier = ({ user }) => {
 
     React.useEffect(() => {
         if (user) {
-            console.log("role:", user?.role);
-console.log("employee:", user?.employee);
-console.log("isEmployee:", isEmployee);
+            // console.log("role:", user?.role);
+// console.log("employee:", user?.employee);
+// console.log("isEmployee:", isEmployee);
             setData({
                 _method: 'PUT',
                 name: user.name || '',

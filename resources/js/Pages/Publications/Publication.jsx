@@ -11,14 +11,21 @@ const Publication = ({ post }) => {
     {/* HEADER */}
     <div className="card-body d-flex align-items-center">
         <img
-            src="/default-avatar.png"
+            src={
+                post.user?.photo
+                    ? `/storage/photos/${post.postable?.photo}`
+                    : '/images.png'
+            }
             alt="avatar"
             className="rounded-circle me-2"
-            width="45"
-            height="45"
+            style={{ width: '40px', height: '40px', objectFit: 'cover' }}
         />
         <div>
-            <h6 className="mb-0 fw-bold">Utilisateur</h6>
+            <h6 className="mb-0 fw-bold">
+                {post.user
+                    ? `${post.user.nom} ${post.user.prenom}`
+                    : 'Utilisateur inconnu'}
+            </h6>
             <small className="text-muted">
                 {new Date(post.created_at).toLocaleString()}
             </small>
@@ -32,12 +39,14 @@ const Publication = ({ post }) => {
 
     {/* IMAGE */}
     <img
-        src={post.media 
-            ? `/storage/media/${post.media}` 
-            : '/images.png'}
-        alt="publication"
-        className="img-fluid"
-        style={{ maxHeight: '400px', objectFit: 'cover', width: '100%' }}
+        src={
+        post.media && post.media !== "null"
+            ? `/storage/media/${post.media}`
+            : '/images.png'
+    }
+    alt="publication"
+    className="img-fluid"
+    style={{ maxHeight: '400px', objectFit: 'cover', width: '100%' }}
     />
 
     {/* STATS */}

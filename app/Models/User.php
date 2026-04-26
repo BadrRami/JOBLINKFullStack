@@ -38,9 +38,10 @@ class User extends Authenticatable
         return $this->hasOne(Employee::class);
     }
     public function posts()
-    {
-        return $this->morphMany(Post::class, 'postable');
-    }
+{
+    return $this->hasMany(Post::class);
+}
+
 
     /**
      * The attributes that should be hidden for serialization.

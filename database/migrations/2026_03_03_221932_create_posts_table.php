@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->morphs('postable');  // récupere l'id utilisateur
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('titre');
             $table->integer('NBLikes')->default(0);
             $table->integer('NBComments')->default(0);
