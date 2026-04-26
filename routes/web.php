@@ -8,14 +8,18 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\posts;
 use App\Http\Controllers\OffreControlleur;
+use App\Http\Controllers\EntreprisesController;
 // Admin Controllers
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\Admin\PostsController;
-
+use App\Http\Controllers\Admin\AdminEntreprisesController;
+// Employee Controllers
+use App\Http\Controllers\sauvegarde;
 // Recruteur Controller
 use App\Http\Controllers\OffreController;
+use App\Http\Controllers\GererEntrepriseController;
 
 use Inertia\Inertia;
 
@@ -42,6 +46,9 @@ Route::middleware('auth')->group(function () {
     
     Route::put('/profile/recruteur', [ProfileController::class, 'updateRecruteur'])
         ->name('profile.recruteur.update');
+
+    Route::get('/ajouterEntreprise', [GererEntrepriseController::class, 'create'])->name('entrepriseRecruteur.create');
+    Route::post('/ajouterEntreprise', [GererEntrepriseController::class, 'store'])->name('entrepriseRecruteur.store');
     
     // Profile Employee routes
     Route::get('/profile/employee', [ProfileController::class, 'showEmployee'])
@@ -71,6 +78,13 @@ Route::middleware('auth')->group(function () {
     // CRUD OFFRES ADMIN
     Route::resource('offresAdmin', OffresController::class)->except(['show']);
 
+    // CRUD ENTREPRISES ADMIN
+    Route::resource('entrepriseAdmin', AdminEntreprisesController::class)->except(['show','create','store','edit','update'])
+    ->names([
+        'index' => 'entrepriseAdmin.index',
+        'destroy' => 'entreprise.destroy',
+    ]);
+
     // CRUD PUBLICATIONS ADMIN
     Route::resource('postsAdmin', PostsController::class)->except(['show']);
 
@@ -94,6 +108,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/offres/{offre}', [OffreController::class, 'destroy'])->name('offres.destroy');
 
 
+    // CRUD Sauvegardes routes
+    Route::get('/sauvegardes', [sauvegarde::class , 'index'])->name('sauvegarde.index');
+    Route::post('/sauvegardes', [sauvegarde::class , 'add'])->name('sauvegarde.store');
+    Route::delete('/sauvegardes/{id}', [sauvegarde::class , 'delete'])->name('sauvegarde.delete');
+
+
 });
 Route::get('/offres', [OffreControlleur::class, 'index'])->name('offres.index');
 Route::get('/posts', [posts::class, 'index'])->name('posts.index');
+Route::get('/entreprises', [EntreprisesController::class, 'index'])->name('entreprises.index');

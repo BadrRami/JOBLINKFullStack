@@ -1,11 +1,20 @@
 import React from 'react';
 import Menu from '../Menu';
-
+import { usePage } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
+import { route } from 'ziggy-js';
 const Profile = ({user}) => {
+    const { flash } = usePage().props;
     return (
         <div>
             <Menu />
             <div className="container mt-5">
+                {flash.success && (
+                <div classNameName="alert alert-success">
+                    {flash.success}
+                </div>
+            )}
+
     <div className="card shadow-lg p-4">
 
         <div className="row align-items-center">
@@ -39,10 +48,10 @@ const Profile = ({user}) => {
 
         <div className="d-flex gap-2 flex-wrap">
 
-            <a href="" className="btn btn-warning">
+            <a href={route('profile.recruteur.edit')} className="btn btn-warning">
                 Modifier Profil
             </a>
-            <a href="" className="btn btn-info">
+            <a href={route('entrepriseRecruteur.create')} className="btn btn-info">
                 Associer à une entreprise
             </a>
             {user.etat === 'profil en attente' ?(

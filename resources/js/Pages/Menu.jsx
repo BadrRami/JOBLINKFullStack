@@ -23,7 +23,7 @@ const Menu = () => {
                     <ul className="navbar-nav me-auto">
                         <li><Link className="nav-link" href="/">Accueil</Link></li>
                         <li><Link className="nav-link" href={route('offres.index')}>Offres</Link></li>
-                        <li><Link className="nav-link" href="/entreprises">Entreprises</Link></li>
+                        <li><Link className="nav-link" href={route('entreprises.index')}>Entreprises</Link></li>
                         <li><Link className="nav-link" href={route('posts.index')}>Publications</Link></li>
                     </ul>
 

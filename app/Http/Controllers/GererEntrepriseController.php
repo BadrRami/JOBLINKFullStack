@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Domaine;
 use App\Models\entreprises;
+use Inertia\Inertia;
 class GererEntrepriseController extends Controller
 {
     /**
@@ -21,7 +22,9 @@ class GererEntrepriseController extends Controller
     public function create()
     {
         $domaines = Domaine::all();
-        return view('Recruteur.entreprise.create',compact('domaines'));
+        return Inertia('Recruteur/Entreprise/Ajouter', [
+            'domaines' => $domaines
+        ]);
     }
 
     /**
@@ -33,7 +36,7 @@ class GererEntrepriseController extends Controller
             'nom' => $request->nom,
             'tel' => $request->tel,
             'email' => $request->email,
-            'domaine_id' => $request->domaine,
+            'domaine_id'=> $request->domaine_id,
             'adresse' => $request->adresse,
             'annee_creation' => $request->annee_creation,
             'site_web' => $request->site_web,
@@ -55,7 +58,7 @@ class GererEntrepriseController extends Controller
         // ✅ Création
         entreprises::create($data);
 
-        return redirect()->route('entreprise.create')
+        return redirect()->route('profile.recruteur')
             ->with('success', "Association réussie");
     }
 

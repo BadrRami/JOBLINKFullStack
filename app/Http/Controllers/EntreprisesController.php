@@ -8,6 +8,6 @@ class EntreprisesController extends Controller
 {
     public function index(){
         $entreprises = entreprises::all();
-        return view('Entreprises', compact('entreprises'));
+        return Inertia('Entreprises/Liste', compact('entreprises'));
     }
 }

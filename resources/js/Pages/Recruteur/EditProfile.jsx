@@ -8,7 +8,7 @@ const EditProfile = ({ user }) => {
         name: user.name || '',
         prenom: user.prenom || '',
         email: user.email || '',
-        tel: user.recruteur?.tel || '',
+        tel: user.tel || '',
         poste: user.recruteur?.poste || '',
         photo: null,
     });
@@ -70,7 +70,7 @@ const EditProfile = ({ user }) => {
                 <br />
 
                 {/* Photo actuelle */}
-                {user.recruteur?.photo ? (
+                {user.photo ? (
                     <img
                         src={`/storage/photos/${user.recruteur.photo}`}
                         alt="photo"

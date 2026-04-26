@@ -84,7 +84,7 @@ const Profile = ({ user }) => {
                             </>
                         )}
 
-                        <Link href="" className="btn btn-primary">
+                        <Link href={route('sauvegarde.index')} className="btn btn-primary">
                             Sauvegardes
                         </Link>
 

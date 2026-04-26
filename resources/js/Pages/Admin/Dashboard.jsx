@@ -92,7 +92,7 @@ Gérer les offres
 </a>
 
 
-<a href='' className="btn btn-warning">
+<a href={route('entrepriseAdmin.index')} className="btn btn-warning">
     Gérer les entreprises
     
 </a>

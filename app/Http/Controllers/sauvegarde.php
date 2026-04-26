@@ -13,7 +13,7 @@ class sauvegarde extends Controller
     {
         $sauvegardes = sauvegardes::where('user_id', Auth::id())->with('offre')->get();
 
-        return view('Employee.sauvegardes', compact('sauvegardes'));
+        return Inertia('Etudiant/Sauvegardes/Liste', compact('sauvegardes'));
     }
 
     // 2️⃣ Ajouter une sauvegarde (bookmark)
