@@ -11,6 +11,8 @@ use App\Http\Controllers\OffreControlleur;
 use App\Http\Controllers\EntreprisesController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\CommantaireController;
+use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\MessageController;
 // Admin Controllers
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -122,6 +124,17 @@ Route::middleware('auth')->group(function () {
 
     // Comments routes 
     Route::resource('/comments', CommantaireController::class);
+
+
+    // Conversation 
+    Route::get('/conversation/create', [ConversationController::class, 'create']);
+    Route::get('/conversation/{id}', [ConversationController::class, 'show'])
+    ->name('conversation.show');
+    Route::post('/conversation', [ConversationController::class, 'store']);
+
+    // Messages of conversation routes
+
+    Route::post('/massage',[MessageController::class, 'store'])->name('message.store');
 
 
 });

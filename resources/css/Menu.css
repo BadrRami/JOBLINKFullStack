@@ -1,5 +1,5 @@
 /* =========================================
-   Menu.css v2 — JobLink.ma Navbar
+   Menu.css v3 — JobLink.ma Navbar
    Style : Dark Corporate + Blue Accent
    ========================================= */
 
@@ -25,21 +25,16 @@
 #jl-navbar {
   background: var(--jl-dark);
   font-family: var(--jl-font);
-  padding: 0 32px;
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: none;
 }
 
-/* Ligne dégradée en bas */
 #jl-navbar::after {
   content: '';
   display: block;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   height: 2px;
   background: linear-gradient(
     90deg,
@@ -56,8 +51,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 32px;
   height: 62px;
 }
 
@@ -80,7 +77,6 @@
   opacity: 0.88;
 }
 
-/* Point lumineux devant le logo */
 #jl-navbar .jl-brand::before {
   content: '';
   display: inline-block;
@@ -92,8 +88,57 @@
   flex-shrink: 0;
 }
 
+#jl-navbar .jl-brand-accent {
+  color: var(--jl-blue-light);
+}
+
 /* =========================================
-   NAV INNER
+   HAMBURGER — caché sur desktop
+   ========================================= */
+#jl-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--jl-radius);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background var(--jl-transition);
+}
+
+#jl-hamburger:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+#jl-hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--jl-muted-light);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+/* Animation → X */
+#jl-hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+#jl-hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+#jl-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =========================================
+   NAV INNER — desktop
    ========================================= */
 #jl-navbar .jl-nav-inner {
   display: flex;
@@ -159,6 +204,7 @@
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   transition: background var(--jl-transition),
               color var(--jl-transition),
@@ -171,13 +217,11 @@
   line-height: 1;
 }
 
-/* Se connecter — CTA principal */
 #jl-navbar .jl-btn-login {
   background: var(--jl-blue);
   color: var(--jl-white);
   border-color: var(--jl-blue);
 }
-
 #jl-navbar .jl-btn-login:hover {
   background: var(--jl-blue-dark);
   border-color: var(--jl-blue-dark);
@@ -185,88 +229,100 @@
   box-shadow: 0 4px 14px var(--jl-blue-glow);
 }
 
-/* Mon Profil / ghost */
 #jl-navbar .jl-btn-ghost {
   background: rgba(255, 255, 255, 0.07);
   color: var(--jl-muted-light);
   border-color: rgba(255, 255, 255, 0.10);
 }
-
 #jl-navbar .jl-btn-ghost:hover {
   background: rgba(255, 255, 255, 0.13);
   color: var(--jl-white);
   border-color: rgba(255, 255, 255, 0.18);
 }
 
-/* Admin — accent bleu */
 #jl-navbar .jl-btn-admin {
   background: rgba(255, 255, 255, 0.07);
   color: var(--jl-blue-light);
   border-color: hsla(220, 89.87%, 70%, 0.25);
 }
-
 #jl-navbar .jl-btn-admin:hover {
   background: var(--jl-blue-glow);
   color: var(--jl-white);
   border-color: var(--jl-blue);
 }
 
-/* Se déconnecter */
 #jl-navbar .jl-btn-logout {
   background: transparent;
   color: var(--jl-red);
   border-color: rgba(248, 113, 113, 0.28);
   font-family: var(--jl-font);
 }
-
 #jl-navbar .jl-btn-logout:hover {
   background: rgba(248, 113, 113, 0.10);
   border-color: rgba(248, 113, 113, 0.50);
 }
 
 /* =========================================
-   RESPONSIVE — mobile
+   RESPONSIVE MOBILE
    ========================================= */
-@media (max-width: 991px) {
-  #jl-navbar {
-    padding: 0 16px;
-  }
+@media (max-width: 768px) {
 
   #jl-navbar .jl-container {
-    flex-wrap: wrap;
     height: auto;
-    padding: 12px 0;
+    min-height: 62px;
+    padding: 0 16px;
+    align-items: center;
   }
 
+  /* Afficher le burger */
+  #jl-hamburger {
+    display: flex;
+  }
+
+  /* Cacher le nav inner par défaut */
   #jl-navbar .jl-nav-inner {
+    display: none;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    flex: unset;
     margin-left: 0;
     width: 100%;
-    padding-top: 10px;
+    padding: 12px 0 18px;
     gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    background: var(--jl-dark-2);
   }
 
+  /* Afficher quand ouvert */
+  #jl-navbar .jl-nav-inner.is-open {
+    display: flex;
+  }
+
+  /* Links en colonne */
   #jl-navbar .jl-nav-list {
-    flex-wrap: wrap;
-    gap: 4px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
     width: 100%;
   }
 
   #jl-navbar .jl-nav-link {
-    font-size: 0.85rem;
-    padding: 8px 12px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
   }
 
+  /* Actions en colonne */
   #jl-navbar .jl-nav-actions {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
     width: 100%;
-    padding-bottom: 10px;
+    padding: 0 4px;
   }
 
   #jl-navbar .jl-btn {
-    flex: 1;
-    justify-content: center;
-    min-width: 110px;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 0.88rem;
   }
 }

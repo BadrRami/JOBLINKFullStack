@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('conversation_id')->nullable()->constrained('conversations')->onDelete('set null');
             $table->foreignId('sender_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade');
             $table->text('message');
             $table->timestamp('read_at')->nullable(); // indique si le message a été lu
             $table->timestamps();

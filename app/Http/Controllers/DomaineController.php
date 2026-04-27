@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Domaine;
 use Illuminate\Http\Request;
-
+use Inertia\Inertia;
 class DomaineController extends Controller
 {
     /**

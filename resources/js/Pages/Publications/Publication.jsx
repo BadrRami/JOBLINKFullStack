@@ -11,6 +11,11 @@ const Publication = ({ post }) => {
     const affichageComments = ()=>{
         setafficher(true)
     }
+    const handleMessage = (userId) => {
+        router.post('/conversation', {
+    user_id: userId
+});
+    };
 
     if (!post) return null;
 
@@ -21,10 +26,10 @@ const Publication = ({ post }) => {
     <div className="card-body d-flex align-items-center">
         <img
             src={
-    post.user?.photo
-        ? `/storage/photos/${post.user.photo}`
-        : '/images.png'
-}
+                post.user?.photo
+                    ? `/storage/photos/${post.user.photo}`
+                    : '/images.png'
+            }
             alt="avatar"
             className="rounded-circle me-2"
             style={{ width: '40px', height: '40px', objectFit: 'cover' }}
@@ -38,6 +43,9 @@ const Publication = ({ post }) => {
             <small className="text-muted">
                 {new Date(post.created_at).toLocaleString()}
             </small>
+            <button className='btn' onClick={() => handleMessage(post.user_id)}>
+                <i className="bi bi-wechat"></i>
+            </button>
         </div>
     </div>
 
@@ -49,19 +57,19 @@ const Publication = ({ post }) => {
     {/* IMAGE */}
     <img
         src={
-        post.media && post.media !== "null"
-            ? `/storage/media/${post.media}`
-            : '/images.png'
-    }
-    alt="publication"
-    className="img-fluid"
-    style={{ maxHeight: '400px', objectFit: 'cover', width: '100%' }}
+            post.media && post.media !== "null"
+                ? `/storage/media/${post.media}`
+                : '/images.png'
+        }
+        alt="publication"
+        className="img-fluid"
+        style={{ maxHeight: '400px', objectFit: 'cover', width: '100%' }}
     />
 
     {/* STATS */}
     <div className="px-3 py-2 d-flex justify-content-between text-muted small">
-        <span>👍 {post.likes?.length}</span>
-        <span>💬 {post.NBComments} commentaires</span>
+        <span><i className="bi bi-hand-thumbs-up"></i> {post.likes?.length}</span>
+        <span><i className="bi bi-share-fill"></i> {post.NBComments} commentaires</span>
     </div>
 
     <hr className="my-0" />
@@ -69,13 +77,13 @@ const Publication = ({ post }) => {
     {/* ACTIONS */}
     <div className="d-flex justify-content-around py-2">
         <button className="btn btn-light w-100" onClick={()=> handleLike(post.id)}>
-            👍 J'aime
+            <i className="bi bi-hand-thumbs-up"></i> J'aime
         </button>
         <button className="btn btn-light w-100" onClick={affichageComments}>
-            💬 Commenter
+            <i className="bi bi-chat-left-dots"></i> Commenter
         </button>
         <button className="btn btn-light w-100" >
-            ↗️ Partager
+            <i className="bi bi-share-fill"></i> Partager
         </button>
     </div>
 
