@@ -127,7 +127,8 @@ Route::middleware('auth')->group(function () {
 
 
     // Conversation 
-    Route::get('/conversation/create', [ConversationController::class, 'create']);
+    Route::get('/conversation/create', [ConversationController::class, 'create'])
+    ->name('conversation.create');
     Route::get('/conversation/{id}', [ConversationController::class, 'show'])
     ->name('conversation.show');
     Route::post('/conversation', [ConversationController::class, 'store']);

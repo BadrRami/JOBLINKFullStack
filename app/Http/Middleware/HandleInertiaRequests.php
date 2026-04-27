@@ -34,10 +34,21 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'unreadCount' => function () use ($request) {
+                if (!$request->user()) return 0;
+
+                return \App\Models\Message::whereHas('conversation', function ($q) use ($request) {
+                        $q->where('user_one_id', $request->user()->id)
+                        ->orWhere('user_two_id', $request->user()->id);
+                    })
+                    ->where('sender_id', '!=', $request->user()->id)
+                    ->whereNull('read_at')
+                    ->count();
+            },
             'flash' => [
-            'success' => $request->session()->get('success'),
-            'error' => $request->session()->get('error'),
-        ],
+                'success' => $request->session()->get('success'),
+                'error' => $request->session()->get('error'),
+            ],
         ];
     }
 }

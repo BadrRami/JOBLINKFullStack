@@ -21,13 +21,24 @@ class ConversationController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        if(Auth::check()){
-            return inertia('Messagerie/Conversation');
-        }else{
-            return redirect()->route('login');
-        }
+{
+    if (Auth::check()) {
+        $authId = Auth::id();
+
+        $contacts = Conversation::with(['userOne', 'userTwo', 'lastMessage'])
+            ->where('user_one_id', $authId)
+            ->orWhere('user_two_id', $authId)
+            ->latest('updated_at')
+            ->get();
+
+        return inertia('Messagerie/Conversation', [
+            'contacts'     => $contacts,
+            'conversation' => null, // aucune conversation sélectionnée par défaut
+        ]);
     }
+
+    return redirect()->route('login');
+}
 
     /**
      * Store a newly created resource in storage.
@@ -78,7 +89,11 @@ class ConversationController extends Controller
             $q->where('user_one_id', $authId)
               ->orWhere('user_two_id', $authId);
         })->firstOrFail(); // 403 si l'user n'appartient pas à la conv
-
+        
+        Message::where('conversation_id', $id)
+        ->where('sender_id', '!=', $authId)
+        ->whereNull('read_at')
+        ->update(['read_at' => now()]);
     // Toutes les conversations de l'utilisateur pour le panneau gauche
     $contacts = Conversation::with(['userOne', 'userTwo', 'lastMessage'])
         ->where('user_one_id', $authId)

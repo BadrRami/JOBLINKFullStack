@@ -8,10 +8,14 @@ const Menu = () => {
     const { auth } = usePage().props;
     const user = auth?.user;
     const [isOpen, setIsOpen] = useState(false);
-
+    const { unreadCount } = usePage().props;
     const handleLogout = () => {
         router.post('/logout');
     };
+
+   const handleConversation = () => {
+    router.get(route('conversation.create'));
+};
 
     return (
         <nav id="jl-navbar">
@@ -43,6 +47,33 @@ const Menu = () => {
                     </ul>
 
                     <div className="jl-nav-actions">
+                        <button className='btn' onClick={handleConversation}>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#374151" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+                        </button>
+                        
+                {unreadCount > 0 && (
+                    <span style={{
+                        position: 'absolute',
+                        top: 2,
+                        right: 2,
+                        backgroundColor: '#ef4444',
+                        color: '#fff',
+                        fontSize: 11,
+                        fontWeight: 700,
+                        borderRadius: '999px',
+                        minWidth: 18,
+                        height: 18,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '0 4px',
+                    }}>
+                        {unreadCount > 99 ? '99+' : unreadCount}
+                    </span>
+                )}
                         {user ? (
                             <>
                                 {user.role === 'admin' && (
