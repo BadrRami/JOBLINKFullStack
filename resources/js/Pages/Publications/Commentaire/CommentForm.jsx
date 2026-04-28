@@ -6,24 +6,25 @@ const CommentForm = ({ postId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         router.post('/comments', {
             content,
             post_id: postId
         });
-
         setContent('');
     };
 
     return (
-        <form onSubmit={handleSubmit} className="mb-2">
+        <form className="jl-comment-form" onSubmit={handleSubmit}>
             <input
                 type="text"
-                className="form-control"
+                className="jl-comment-input"
                 placeholder="Écrire un commentaire..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
+            <button type="submit" className="jl-comment-submit">
+                <i className="bi bi-send-fill"></i>
+            </button>
         </form>
     );
 };

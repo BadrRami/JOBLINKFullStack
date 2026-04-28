@@ -1,0 +1,352 @@
+/* =========================================
+   publications.css — JobLink.ma
+   Style : Dark Corporate + Blue Accent
+   Couvre : Publications, Publication,
+            CommentsSection, CommentList,
+            CommentItem, CommentForm
+   ========================================= */
+
+/* =========================================
+   PAGE
+   ========================================= */
+#jl-publications-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   FEED
+   ========================================= */
+#jl-publications-feed {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================================
+   CARTE PUBLICATION
+   ========================================= */
+.jl-pub-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.jl-pub-card:hover {
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.11);
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+.jl-pub-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px 12px;
+}
+
+.jl-pub-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid hsl(220, 89.87%, 46.25%);
+  flex-shrink: 0;
+}
+
+.jl-pub-header-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+.jl-pub-author {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.jl-pub-date {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Bouton message (wechat) */
+.jl-pub-msg-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #94a3b8;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  padding: 0;
+}
+
+.jl-pub-msg-btn:hover {
+  background: hsl(220, 89.87%, 96%);
+  color: hsl(220, 89.87%, 46.25%);
+}
+
+/* =========================================
+   CONTENU
+   ========================================= */
+.jl-pub-body {
+  padding: 0 18px 12px;
+}
+
+.jl-pub-titre {
+  font-size: 0.92rem;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* =========================================
+   IMAGE
+   ========================================= */
+.jl-pub-media {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================================
+   STATS
+   ========================================= */
+.jl-pub-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.jl-pub-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.jl-pub-stat i {
+  font-size: 0.85rem;
+  color: hsl(220, 89.87%, 46.25%);
+}
+
+/* =========================================
+   DIVIDER
+   ========================================= */
+.jl-pub-divider {
+  height: 1px;
+  background: #f1f5f9;
+  border: none;
+  margin: 0;
+}
+
+/* =========================================
+   ACTIONS
+   ========================================= */
+.jl-pub-actions {
+  display: flex;
+  align-items: center;
+}
+
+.jl-pub-action-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 8px;
+  background: transparent;
+  border: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.jl-pub-action-btn i {
+  font-size: 1rem;
+  transition: transform 0.18s ease;
+}
+
+.jl-pub-action-btn:hover {
+  background: #f8fafc;
+  color: hsl(220, 89.87%, 46.25%);
+}
+
+.jl-pub-action-btn:hover i {
+  transform: scale(1.12);
+}
+
+/* Bouton like actif */
+.jl-pub-action-btn.is-liked {
+  color: hsl(220, 89.87%, 46.25%);
+}
+
+.jl-pub-action-btn + .jl-pub-action-btn {
+  border-left: 1px solid #f1f5f9;
+}
+
+/* =========================================
+   COMMENTS SECTION
+   ========================================= */
+.jl-comments-section {
+  border-top: 1px solid #f1f5f9;
+  padding: 14px 18px 18px;
+  background: #fafbfc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =========================================
+   COMMENT FORM
+   ========================================= */
+.jl-comment-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jl-comment-input {
+  flex: 1;
+  height: 38px;
+  padding: 0 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #0f172a;
+  background: #ffffff;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jl-comment-input:focus {
+  border-color: hsl(220, 89.87%, 46.25%);
+  box-shadow: 0 0 0 3px hsla(220, 89.87%, 46.25%, 0.10);
+}
+
+.jl-comment-input::placeholder {
+  color: #94a3b8;
+}
+
+.jl-comment-submit {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: hsl(220, 89.87%, 46.25%);
+  border: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.jl-comment-submit:hover {
+  background: hsl(220, 89.87%, 36%);
+  transform: scale(1.05);
+}
+
+/* =========================================
+   COMMENT LIST
+   ========================================= */
+.jl-comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* =========================================
+   COMMENT ITEM
+   ========================================= */
+.jl-comment-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* Avatar initiales */
+.jl-comment-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(220, 89.87%, 40%), hsl(197, 100%, 40%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.jl-comment-bubble {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  border-top-left-radius: 4px;
+  padding: 8px 12px;
+  flex: 1;
+}
+
+.jl-comment-author {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 3px;
+}
+
+.jl-comment-content {
+  font-size: 0.83rem;
+  color: #374151;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 480px) {
+  .jl-pub-action-btn {
+    font-size: 0.76rem;
+    padding: 10px 4px;
+    gap: 4px;
+  }
+
+  .jl-pub-action-btn i {
+    font-size: 0.9rem;
+  }
+}
