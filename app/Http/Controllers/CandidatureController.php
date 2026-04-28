@@ -99,6 +99,6 @@ class CandidatureController extends Controller
      */
     public function destroy(Candidature $candidature)
     {
-        //
+        
     }
 }

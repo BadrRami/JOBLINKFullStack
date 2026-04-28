@@ -1,0 +1,220 @@
+/* =========================================
+   candidatures.css — JobLink.ma
+   Style : Dark Corporate + Blue Accent
+   Couvre : Liste + Candidature
+   ========================================= */
+
+/* =========================================
+   PAGE WRAPPER
+   ========================================= */
+#jl-candidatures-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   FEED
+   ========================================= */
+#jl-candidatures-feed {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Titre de section */
+#jl-candidatures-heading {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+#jl-candidatures-count {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 0 0 20px;
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+#jl-candidatures-empty {
+  text-align: center;
+  padding: 64px 24px;
+  color: #94a3b8;
+  font-size: 0.92rem;
+}
+
+#jl-candidatures-empty::before {
+  content: '📋';
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+/* =========================================
+   CARTE CANDIDATURE
+   ========================================= */
+.jl-candidature-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease,
+              transform 0.2s ease,
+              border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.jl-candidature-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: #e2e8f0;
+  transition: background 0.2s ease;
+}
+
+.jl-candidature-card:hover {
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.10);
+  transform: translateY(-1px);
+  border-color: #cbd5e1;
+}
+
+.jl-candidature-card:hover::before {
+  background: hsl(220, 89.87%, 46.25%);
+}
+
+/* =========================================
+   CONTENU (gauche)
+   ========================================= */
+.jl-candidature-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.jl-candidature-titre {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jl-candidature-date {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+
+.jl-candidature-date i {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+/* =========================================
+   STATUT (droite)
+   ========================================= */
+.jl-candidature-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.jl-candidature-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* En attente */
+.jl-status-pending {
+  background: #fefce8;
+  color: #a16207;
+  border: 1px solid #fde68a;
+}
+.jl-status-pending::before {
+  background: #eab308;
+}
+
+/* Accepté */
+.jl-status-accepted {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+.jl-status-accepted::before {
+  background: #22c55e;
+}
+
+/* Refusé */
+.jl-status-refused {
+  background: #fff5f5;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+.jl-status-refused::before {
+  background: #ef4444;
+}
+
+/* Chevron droite */
+.jl-candidature-arrow {
+  color: #cbd5e1;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.jl-candidature-card:hover .jl-candidature-arrow {
+  color: hsl(220, 89.87%, 46.25%);
+  transform: translateX(3px);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 520px) {
+  .jl-candidature-card {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .jl-candidature-titre {
+    font-size: 0.88rem;
+    white-space: normal;
+  }
+
+  .jl-candidature-arrow {
+    display: none;
+  }
+}

@@ -13,37 +13,41 @@ const Offre = ({ offre }) => {
     const handlePostuler = () => {
         router.get(`/candidatures/create/${offre.id}`);
     };
-    
 
     return (
-        <div className="card p-3 mb-3">
+        <div className="jl-offre-card">
 
-            <h3>{offre.titre}</h3>
-            <p>{offre.description}</p>
-            <p>Lieu: {offre.localisation}</p>
-            <p>Type de contrat: {offre.type}</p>
+            {/* HEADER : titre + badge type */}
+            <div className="jl-offre-header">
+                <h3 className="jl-offre-titre">{offre.titre}</h3>
+                <span className="jl-offre-type">{offre.type}</span>
+            </div>
 
-            <div className="d-flex gap-2">
+            {/* DESCRIPTION */}
+            <p className="jl-offre-description">{offre.description}</p>
 
-                <button className="btn btn-info">
+            {/* MÉTA */}
+            <div className="jl-offre-meta">
+                <span className="jl-offre-meta-item">
+                    <i className="bi bi-geo-alt-fill"></i>
+                    {offre.localisation}
+                </span>
+            </div>
+
+            {/* ACTIONS */}
+            <div className="jl-offre-actions">
+                <button className="jl-offre-btn jl-offre-btn-share">
                     <i className="bi bi-share-fill"></i>
                 </button>
-
-                <button 
-                    className="btn btn-secondary" 
-                    onClick={handleSauvegarde}
-                >
+                <button className="jl-offre-btn jl-offre-btn-save" onClick={handleSauvegarde}>
                     <i className="bi bi-bookmark-fill"></i>
                 </button>
-
-                <button className="btn btn-primary">
+                <button className="jl-offre-btn jl-offre-btn-view">
                     <i className="bi bi-eye-fill"></i>
                 </button>
-
-                <a className="btn btn-success" onClick={handlePostuler}>
+                <a className="jl-offre-btn jl-offre-btn-postuler" onClick={handlePostuler}>
                     Postuler
                 </a>
-
             </div>
 
         </div>
