@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Candidature = () => {
+const Candidature = ({candidature}) => {
     return (
         <div>
-            
+            {candidature.offre.titre}
         </div>
     );
 }

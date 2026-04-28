@@ -78,7 +78,7 @@ const Profile = ({ user }) => {
                                     Mes postes
                                 </Link>
 
-                                <Link href="" className="btn btn-success">
+                                <Link href={route('candidature.index')} className="btn btn-success">
                                     Mes Candidatures
                                 </Link>
                             </>

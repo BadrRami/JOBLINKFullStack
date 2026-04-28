@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
         ->name('profile.employee.update');
 
     // Candidatures Routes
-    
+    Route::get('/candidatures',[CandidatureController::class,'index'])->name('candidature.index');
     Route::get('/candidatures/create/{offre}',[CandidatureController::class,'create'])->name('candidature.create');
     Route::post('/candidatures',[CandidatureController::class,'store'])->name('candidature.store');
     

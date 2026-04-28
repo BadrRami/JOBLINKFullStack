@@ -13,8 +13,8 @@ class CandidatureController extends Controller
      */
     public function index()
     {
-        $candidatures = Candidature::all();
-        return Inertia::render('')
+        $candidatures = Candidature::with('offre')->get();
+        return Inertia::render('Etudiant/Candidatures/Liste',compact('candidatures'));
     }
 
     /**
