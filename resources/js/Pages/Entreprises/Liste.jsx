@@ -1,24 +1,23 @@
 import React from 'react';
 import Entreprise from './Entreprise';
 import Menu from '../Menu';
+import '../../../css/entreprises/entreprises.css';
 
 const Liste = ({ entreprises }) => {
     return (
-        <div>
+        <div id="jl-entreprises-page">
             <Menu />
-
-            <div className="container mt-4">
-
-                {entreprises.length > 0 ? (
-                    <div className="row">
-                        {entreprises.map((entreprise) => (
+            <div id="jl-entreprises-container">
+                <h1 id="jl-entreprises-heading">Entreprises</h1>
+                <div id="jl-entreprises-grid">
+                    {entreprises.length > 0 ? (
+                        entreprises.map((entreprise) => (
                             <Entreprise key={entreprise.id} entreprise={entreprise} />
-                        ))}
-                    </div>
-                ) : (
-                    <p>Aucune entreprise trouvée</p>
-                )}
-
+                        ))
+                    ) : (
+                        <p id="jl-entreprises-empty">Aucune entreprise trouvée</p>
+                    )}
+                </div>
             </div>
         </div>
     );
