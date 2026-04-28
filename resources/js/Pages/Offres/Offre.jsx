@@ -1,5 +1,6 @@
 import React from 'react';
 import { router } from '@inertiajs/react';
+import { route } from 'ziggy-js';
 
 const Offre = ({ offre }) => {
 
@@ -9,9 +10,10 @@ const Offre = ({ offre }) => {
         });
     };
 
-    const handlePostule = () => {
-        
-    }
+    const handlePostuler = () => {
+        router.get(`/candidatures/create/${offre.id}`);
+    };
+    
 
     return (
         <div className="card p-3 mb-3">
@@ -38,9 +40,9 @@ const Offre = ({ offre }) => {
                     <i className="bi bi-eye-fill"></i>
                 </button>
 
-                <button className="btn btn-success">
+                <a className="btn btn-success" onClick={handlePostuler}>
                     Postuler
-                </button>
+                </a>
 
             </div>
 

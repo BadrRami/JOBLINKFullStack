@@ -68,8 +68,10 @@ Route::middleware('auth')->group(function () {
 
     // Candidatures Routes
     
-    Route::get('/candidature/create',[CandidatureController::class,'create'])->name('candidature.create');
-
+    Route::get('/candidatures/create/{offre}',[CandidatureController::class,'create'])->name('candidature.create');
+    Route::post('/candidatures',[CandidatureController::class,'store'])->name('candidature.store');
+    
+    Route::get('/candidature',[CandidatureController::class,'store'])->name('candidature.store');
     // Profile Admin routes
     Route::get('/profile/admin', [ProfileController::class, 'showAdmin'])
         ->name('profile.admin');
