@@ -9,6 +9,10 @@ const Offre = ({ offre }) => {
         });
     };
 
+    const handlePostule = () => {
+        
+    }
+
     return (
         <div className="card p-3 mb-3">
 

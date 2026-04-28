@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\AdminEntreprisesController;
 use App\Http\Controllers\Admin\dashboard\UserAnalyticsController;
 // Employee Controllers
 use App\Http\Controllers\sauvegarde;
+use App\Http\Controllers\CandidatureController;
 // Recruteur Controller
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\GererEntrepriseController;
@@ -64,6 +65,10 @@ Route::middleware('auth')->group(function () {
     
     Route::put('/profile/employee', [ProfileController::class, 'updateEmployee'])
         ->name('profile.employee.update');
+
+    // Candidatures Routes
+    
+    Route::get('/candidature/create',[CandidatureController::class,'create'])->name('candidature.create');
 
     // Profile Admin routes
     Route::get('/profile/admin', [ProfileController::class, 'showAdmin'])

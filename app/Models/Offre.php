@@ -28,4 +28,8 @@ class Offre extends Model
     {
         return $this->belongsTo(Villes::class);
     }
+    public function candidatures()
+    {
+        return $this->hasMany(Candidature::class);
+    }
 }

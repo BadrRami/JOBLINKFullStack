@@ -38,17 +38,21 @@ class User extends Authenticatable
         return $this->hasOne(Employee::class);
     }
     public function posts()
-{
-    return $this->hasMany(Post::class);
-}
-public function likes()
-{
-    return $this->hasMany(Likes::class);
-}
-public function comments()
-{
-    return $this->hasMany(Comment::class);
-}
+    {
+        return $this->hasMany(Post::class);
+    }
+    public function likes()
+    {
+        return $this->hasMany(Likes::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    public function candidatures()
+    {
+        return $this->hasMany(Candidature::class);
+    }
 
 
     /**
