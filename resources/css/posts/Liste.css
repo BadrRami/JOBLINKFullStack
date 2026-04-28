@@ -1,0 +1,42 @@
+/* =========================================
+   Liste.css — JobLink.ma Posts List Page
+   Style : Dark Corporate + Blue Accent
+   ========================================= */
+
+/* =========================================
+   PAGE WRAPPER
+   ========================================= */
+#jl-liste-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   FEED CONTAINER
+   ========================================= */
+#jl-liste-feed {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+#jl-liste-empty {
+  text-align: center;
+  padding: 64px 24px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+#jl-liste-empty::before {
+  content: '📭';
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}

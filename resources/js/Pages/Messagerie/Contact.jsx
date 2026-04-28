@@ -3,21 +3,27 @@ import { router, usePage } from '@inertiajs/react';
 
 const Contact = ({ contact, isActive }) => {
     const { auth } = usePage().props;
-
     const otherUser = contact.user_one_id === auth.user.id
         ? contact.user_two
         : contact.user_one;
 
+    // Initiales pour l'avatar
+    const initials = otherUser?.name
+        ? otherUser.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+        : '?';
+
     return (
         <div
-            className="p-2 border-bottom"
-            style={{ cursor: 'pointer', backgroundColor: isActive ? '#eff6ff' : 'transparent' }}
+            className={`jl-contact-item ${isActive ? 'is-active' : ''}`}
             onClick={() => router.get(route('conversation.show', contact.id))}
         >
-            <strong>{otherUser?.name}</strong>
-            <p className="text-muted">
-                {contact.last_message?.message ?? 'Aucun message'}
-            </p>
+            <div className="jl-contact-avatar">{initials}</div>
+            <div className="jl-contact-info">
+                <p className="jl-contact-name">{otherUser?.name}</p>
+                <p className="jl-contact-last-msg">
+                    {contact.last_message?.message ?? 'Aucun message'}
+                </p>
+            </div>
         </div>
     );
 };

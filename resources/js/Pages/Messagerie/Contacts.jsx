@@ -3,7 +3,7 @@ import Contact from './Contact';
 
 const Contacts = ({ contacts = [], activeId }) => {
     return (
-        <div className="card">
+        <div>
             {contacts.map((contact) => (
                 <Contact
                     key={contact.id}

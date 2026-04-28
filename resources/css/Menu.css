@@ -1,5 +1,5 @@
 /* =========================================
-   Menu.css v3 — JobLink.ma Navbar
+   Menu.css v4 — JobLink.ma Navbar
    Style : Dark Corporate + Blue Accent
    ========================================= */
 
@@ -93,7 +93,7 @@
 }
 
 /* =========================================
-   HAMBURGER — caché sur desktop
+   HAMBURGER
    ========================================= */
 #jl-hamburger {
   display: none;
@@ -125,7 +125,6 @@
   transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
 }
 
-/* Animation → X */
 #jl-hamburger.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -138,7 +137,7 @@
 }
 
 /* =========================================
-   NAV INNER — desktop
+   NAV INNER
    ========================================= */
 #jl-navbar .jl-nav-inner {
   display: flex;
@@ -189,6 +188,59 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* =========================================
+   CHAT BUTTON + BADGE
+   ========================================= */
+#jl-navbar .jl-chat-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+#jl-navbar .jl-btn-chat {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--jl-radius);
+  color: var(--jl-muted-light);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--jl-transition),
+              color var(--jl-transition),
+              border-color var(--jl-transition);
+  padding: 0;
+}
+
+#jl-navbar .jl-btn-chat:hover {
+  background: rgba(255, 255, 255, 0.13);
+  color: var(--jl-white);
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+#jl-navbar .jl-chat-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--jl-dark);
+  line-height: 1;
+  pointer-events: none;
 }
 
 /* =========================================
@@ -274,12 +326,10 @@
     align-items: center;
   }
 
-  /* Afficher le burger */
   #jl-hamburger {
     display: flex;
   }
 
-  /* Cacher le nav inner par défaut */
   #jl-navbar .jl-nav-inner {
     display: none;
     flex-direction: column;
@@ -293,12 +343,10 @@
     background: var(--jl-dark-2);
   }
 
-  /* Afficher quand ouvert */
   #jl-navbar .jl-nav-inner.is-open {
     display: flex;
   }
 
-  /* Links en colonne */
   #jl-navbar .jl-nav-list {
     flex-direction: column;
     align-items: stretch;
@@ -311,7 +359,6 @@
     font-size: 0.9rem;
   }
 
-  /* Actions en colonne */
   #jl-navbar .jl-nav-actions {
     flex-direction: column;
     align-items: stretch;
@@ -324,5 +371,30 @@
     width: 100%;
     padding: 10px 16px;
     font-size: 0.88rem;
+  }
+
+  /* Chat button full width sur mobile */
+  #jl-navbar .jl-chat-wrap {
+    width: 100%;
+  }
+
+  #jl-navbar .jl-btn-chat {
+    width: 100%;
+    height: 40px;
+    border-radius: var(--jl-radius);
+    font-size: 1rem;
+    gap: 8px;
+  }
+
+  #jl-navbar .jl-btn-chat::after {
+    content: 'Messages';
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: var(--jl-font);
+  }
+
+  #jl-navbar .jl-chat-badge {
+    top: -4px;
+    right: -4px;
   }
 }

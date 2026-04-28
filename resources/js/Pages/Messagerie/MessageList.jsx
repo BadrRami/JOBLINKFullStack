@@ -10,19 +10,12 @@ const MessageList = ({ messages = [] }) => {
     }, [messages]);
 
     return (
-        <div style={{ flex: 1, overflowY: 'auto', padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div id="jl-message-list">
             {messages.map((msg) => {
                 const isMine = msg.sender_id === auth.user.id;
                 return (
-                    <div key={msg.id} style={{ display: 'flex', justifyContent: isMine ? 'flex-end' : 'flex-start' }}>
-                        <div style={{
-                            maxWidth: '70%',
-                            padding: '8px 12px',
-                            borderRadius: 12,
-                            backgroundColor: isMine ? '#3b82f6' : '#f3f4f6',
-                            color: isMine ? '#fff' : '#111',
-                            fontSize: 14,
-                        }}>
+                    <div key={msg.id} className={`jl-msg-row ${isMine ? 'is-mine' : 'is-other'}`}>
+                        <div className="jl-msg-bubble">
                             {msg.message}
                         </div>
                     </div>

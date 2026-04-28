@@ -9,13 +9,14 @@ const Menu = () => {
     const user = auth?.user;
     const [isOpen, setIsOpen] = useState(false);
     const { unreadCount } = usePage().props;
+
     const handleLogout = () => {
         router.post('/logout');
     };
 
-   const handleConversation = () => {
-    router.get(route('conversation.create'));
-};
+    const handleConversation = () => {
+        router.get(route('conversation.create'));
+    };
 
     return (
         <nav id="jl-navbar">
@@ -25,7 +26,7 @@ const Menu = () => {
                     Job<span className="jl-brand-accent">Link</span>
                 </Link>
 
-                {/* ✅ Burger button ajouté — visible uniquement sur mobile via CSS */}
+                {/* Burger button */}
                 <button
                     id="jl-hamburger"
                     className={isOpen ? 'is-open' : ''}
@@ -47,33 +48,19 @@ const Menu = () => {
                     </ul>
 
                     <div className="jl-nav-actions">
-                        <button className='btn' onClick={handleConversation}>
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="#374151" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
-                        </button>
-                        
-                {unreadCount > 0 && (
-                    <span style={{
-                        position: 'absolute',
-                        top: 2,
-                        right: 2,
-                        backgroundColor: '#ef4444',
-                        color: '#fff',
-                        fontSize: 11,
-                        fontWeight: 700,
-                        borderRadius: '999px',
-                        minWidth: 18,
-                        height: 18,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        padding: '0 4px',
-                    }}>
-                        {unreadCount > 99 ? '99+' : unreadCount}
-                    </span>
-                )}
+
+                        {/* Bouton chat + badge */}
+                        <div className="jl-chat-wrap">
+                            <button className="jl-btn-chat" onClick={handleConversation}>
+                                <i className="bi bi-chat-left"></i>
+                            </button>
+                            {unreadCount > 0 && (
+                                <span className="jl-chat-badge">
+                                    {unreadCount > 99 ? '99+' : unreadCount}
+                                </span>
+                            )}
+                        </div>
+
                         {user ? (
                             <>
                                 {user.role === 'admin' && (

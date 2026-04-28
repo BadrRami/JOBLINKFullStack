@@ -1,0 +1,264 @@
+/* =========================================
+   post.css — JobLink.ma Post Card
+   Style : Dark Corporate + Blue Accent
+   ========================================= */
+
+/* =========================================
+   CARD
+   ========================================= */
+.jl-post-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.jl-post-card:hover {
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.11);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+.jl-post-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px 12px;
+}
+
+.jl-post-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid hsl(220, 89.87%, 46.25%);
+  flex-shrink: 0;
+}
+
+/* Bloc auteur (à droite de l'avatar) */
+.jl-post-header > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.jl-post-author-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.jl-post-date {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* =========================================
+   DROPDOWN TROIS POINTS
+   ========================================= */
+.jl-post-header > div > div {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Icône trois points */
+.jl-post-header > div > div > i {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.18s ease, color 0.18s ease;
+  user-select: none;
+}
+
+.jl-post-header > div > div > i:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Menu dropdown (le div enfant) */
+.jl-post-header > div > div > div {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  padding: 4px;
+  min-width: 140px;
+  z-index: 10;
+  animation: jl-dropdown-in 0.15s ease;
+}
+
+@keyframes jl-dropdown-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Bouton supprimer dans le dropdown */
+.jl-post-header > div > div > div button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ef4444;
+  cursor: pointer;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  transition: background 0.15s ease;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.jl-post-header > div > div > div button:hover {
+  background: #fff0f0;
+}
+
+.jl-post-header > div > div > div button i {
+  font-size: 0.9rem;
+}
+
+/* Positionner la card en relative pour le dropdown absolu */
+.jl-post-card {
+  position: relative;
+}
+
+/* =========================================
+   CONTENU
+   ========================================= */
+.jl-post-body {
+  padding: 0 18px 12px;
+}
+
+.jl-post-titre {
+  font-size: 0.92rem;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* =========================================
+   IMAGE
+   ========================================= */
+.jl-post-media {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================================
+   STATS
+   ========================================= */
+.jl-post-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.jl-post-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.jl-post-stat i {
+  font-size: 0.85rem;
+  color: hsl(220, 89.87%, 46.25%);
+}
+
+/* =========================================
+   DIVIDER
+   ========================================= */
+.jl-post-divider {
+  height: 1px;
+  background: #f1f5f9;
+  border: none;
+  margin: 0;
+}
+
+/* =========================================
+   ACTIONS
+   ========================================= */
+.jl-post-actions {
+  display: flex;
+  align-items: center;
+}
+
+.jl-post-action-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 8px;
+  background: transparent;
+  border: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.jl-post-action-btn i {
+  font-size: 1rem;
+  transition: transform 0.18s ease;
+}
+
+.jl-post-action-btn:hover {
+  background: #f8fafc;
+  color: hsl(220, 89.87%, 46.25%);
+}
+
+.jl-post-action-btn:hover i {
+  transform: scale(1.15);
+}
+
+.jl-post-action-btn + .jl-post-action-btn {
+  border-left: 1px solid #f1f5f9;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 480px) {
+  .jl-post-action-btn {
+    font-size: 0.76rem;
+    padding: 10px 4px;
+    gap: 4px;
+  }
+
+  .jl-post-action-btn i {
+    font-size: 0.9rem;
+  }
+
+  .jl-post-stats {
+    font-size: 0.78rem;
+  }
+}

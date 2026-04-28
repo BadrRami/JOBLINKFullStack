@@ -1,0 +1,344 @@
+/* =========================================
+   chat.css — JobLink.ma Chat Module
+   Style : Dark Corporate + Blue Accent
+   Couvre : Conversation, ChatWindow,
+            Contacts, Contact, MessageList, Form
+   ========================================= */
+
+/* =========================================
+   PAGE WRAPPER
+   ========================================= */
+#jl-chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   LAYOUT : sidebar + fenêtre
+   ========================================= */
+#jl-chat-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 62px);
+}
+
+/* =========================================
+   SIDEBAR CONTACTS
+   ========================================= */
+#jl-chat-sidebar {
+  width: 30%;
+  min-width: 240px;
+  max-width: 340px;
+  border-right: 1px solid #e2e8f0;
+  overflow-y: auto;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+#jl-chat-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+#jl-chat-sidebar::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+/* Titre sidebar */
+#jl-contacts-title {
+  padding: 18px 16px 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #f1f5f9;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   LISTE CONTACTS
+   ========================================= */
+#jl-contacts-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   CONTACT ITEM
+   ========================================= */
+.jl-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f8fafc;
+  transition: background 0.15s ease;
+  position: relative;
+}
+
+.jl-contact-item:hover {
+  background: #f8fafc;
+}
+
+.jl-contact-item.is-active {
+  background: hsl(220, 89.87%, 96%);
+  border-left: 3px solid hsl(220, 89.87%, 46.25%);
+}
+
+.jl-contact-item.is-active .jl-contact-name {
+  color: hsl(220, 89.87%, 40%);
+}
+
+/* Avatar contact */
+.jl-contact-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(220, 89.87%, 40%), hsl(197, 100%, 40%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+}
+
+.jl-contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.jl-contact-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jl-contact-last-msg {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =========================================
+   CHAT WINDOW (zone droite)
+   ========================================= */
+#jl-chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+/* =========================================
+   CHAT HEADER
+   ========================================= */
+#jl-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+#jl-chat-header-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, hsl(220, 89.87%, 40%), hsl(197, 100%, 40%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+#jl-chat-header-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* =========================================
+   EMPTY STATE (aucune conversation)
+   ========================================= */
+#jl-chat-empty {
+  margin: auto;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#jl-chat-empty::before {
+  content: '💬';
+  font-size: 2.5rem;
+}
+
+/* =========================================
+   MESSAGE LIST
+   ========================================= */
+#jl-message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#jl-message-list::-webkit-scrollbar {
+  width: 4px;
+}
+#jl-message-list::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+/* Ligne de message */
+.jl-msg-row {
+  display: flex;
+}
+
+.jl-msg-row.is-mine {
+  justify-content: flex-end;
+}
+
+.jl-msg-row.is-other {
+  justify-content: flex-start;
+}
+
+/* Bulle */
+.jl-msg-bubble {
+  max-width: 70%;
+  padding: 9px 14px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.jl-msg-row.is-mine .jl-msg-bubble {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+.jl-msg-row.is-other .jl-msg-bubble {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+}
+
+/* =========================================
+   FORM ENVOI MESSAGE
+   ========================================= */
+#jl-chat-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+#jl-chat-input {
+  flex: 1;
+  height: 42px;
+  padding: 0 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 21px;
+  font-size: 0.875rem;
+  color: #0f172a;
+  background: #f8fafc;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#jl-chat-input:focus {
+  border-color: hsl(220, 89.87%, 46.25%);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px hsla(220, 89.87%, 46.25%, 0.12);
+}
+
+#jl-chat-input::placeholder {
+  color: #94a3b8;
+}
+
+#jl-chat-send {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: hsl(220, 89.87%, 46.25%);
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#jl-chat-send:hover {
+  background: hsl(220, 89.87%, 36%);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px hsla(220, 89.87%, 46.25%, 0.35);
+}
+
+#jl-chat-send:active {
+  transform: scale(0.97);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 640px) {
+  #jl-chat-sidebar {
+    width: 100%;
+    max-width: 100%;
+    border-right: none;
+  }
+
+  #jl-chat-layout {
+    flex-direction: column;
+  }
+
+  #jl-chat-window {
+    height: 100%;
+  }
+
+  .jl-msg-bubble {
+    max-width: 85%;
+  }
+}
