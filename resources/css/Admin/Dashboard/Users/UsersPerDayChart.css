@@ -1,0 +1,16 @@
+.jl-chart-card {
+    background-color: var(--jl-dark-2);
+    border: 1px solid var(--jl-blue-glow);
+    border-radius: var(--jl-radius);
+    padding: 1.5rem;
+}
+
+.jl-chart-title {
+    font-family: var(--jl-font);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--jl-muted-light);
+    margin: 0 0 1.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}

@@ -1,0 +1,92 @@
+/* ── Wrapper ── */
+#jl-liste-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    font-family: var(--jl-font);
+}
+
+/* ── Alert success ── */
+.jl-alert-success {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background-color: hsla(142, 70%, 45%, 0.12);
+    border: 1px solid hsla(142, 70%, 45%, 0.35);
+    border-radius: var(--jl-radius);
+    color: hsl(142, 60%, 60%);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.jl-alert-success i {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* ── Container ── */
+#jl-liste-container {
+    background-color: var(--jl-dark-2);
+    border: 1px solid var(--jl-blue-glow);
+    border-radius: var(--jl-radius);
+    padding: 1.5rem;
+}
+
+/* ── Titre ── */
+#jl-liste-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--jl-muted-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1.25rem 0;
+}
+
+/* ── Scroll horizontal sur petits écrans ── */
+#jl-table-wrapper {
+    overflow-x: auto;
+}
+
+/* ── Table ── */
+#jl-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    color: var(--jl-muted-light);
+}
+
+#jl-table thead tr {
+    border-bottom: 1px solid var(--jl-dark-2);
+}
+
+#jl-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--jl-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background-color: var(--jl-dark);
+    white-space: nowrap;
+}
+
+#jl-table td {
+    padding: 12px 14px;
+    color: var(--jl-muted-light);
+    vertical-align: middle;
+    border-bottom: 1px solid hsla(220, 89.87%, 46.25%, 0.08);
+}
+
+#jl-table tbody tr {
+    transition: background var(--jl-transition);
+}
+
+#jl-table tbody tr:hover {
+    background-color: var(--jl-blue-glow);
+}
+
+#jl-table tbody tr:last-child td {
+    border-bottom: none;
+}

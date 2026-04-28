@@ -10,6 +10,7 @@ const EditProfile = ({ user }) => {
         email: user.email || '',
         tel: user.tel || '',
         poste: user.recruteur?.poste || '',
+        gender: user.gender || '',
         photo: null,
     });
 
@@ -51,6 +52,16 @@ const EditProfile = ({ user }) => {
                     value={data.email}
                     onChange={(e) => setData('email', e.target.value)}
                 />
+
+                <br />
+
+                <label>Genre</label>
+                <select name="gender" id="" value={data.gender}
+                    onChange={(e) => setData('gender', e.target.value)}>
+                    <option value="">--choisir--</option>
+                    <option value="femme">Femme</option>
+                    <option value="homme">Homme</option>
+                </select>
                 <br />
 
                 <label>Téléphone</label>

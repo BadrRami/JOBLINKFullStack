@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
     // Dashboard Admin routes
     Route::get('/Dashboard' , [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/admin/users/stats', [UserAnalyticsController::class, 'index']);
+    Route::get('/admin/users/stats', [UserAnalyticsController::class, 'index'])->name('usersStatistique.index');
 
 
 

@@ -1,16 +1,17 @@
 <?php
+namespace App\Http\Controllers\Admin\Dashboard;
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
 use Carbon\Carbon;
+
 class UserAnalyticsController extends Controller
 {
     public function index()
     {
-        return Insertia::render('Admin/Dashboard/Users/part1',[
+        return Inertia::render('Admin/Dashboard/Users/StatsPage', [
             'users_per_day' => $this->usersPerDay(),
             'gender_stats' => $this->genderStats(),
             'age_stats' => $this->ageStats(),
@@ -35,9 +36,8 @@ class UserAnalyticsController extends Controller
     private function ageStats()
     {
         return User::all()
-            ->map(fn($u) => \Carbon\Carbon::parse($u->birth_date)->age)
+            ->map(fn($u) => Carbon::parse($u->birth_date)->age)
             ->groupBy(fn($age) => $age)
             ->map(fn($group) => count($group));
     }
 }
-

@@ -1,0 +1,17 @@
+/* ── Layout principal ── */
+#jl-stats-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--jl-dark);
+    font-family: var(--jl-font);
+}
+
+/* ── Zone de contenu ── */
+#jl-stats-content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+}

@@ -1,0 +1,31 @@
+:root {
+  --jl-blue:        hsl(220, 89.87%, 46.25%);
+  --jl-blue-dark:   hsl(220, 89.87%, 34%);
+  --jl-blue-light:  hsl(220, 89.87%, 70%);
+  --jl-blue-glow:   hsla(220, 89.87%, 46.25%, 0.18);
+  --jl-white:       #ffffff;
+  --jl-dark:        #0f172a;
+  --jl-dark-2:      #1e293b;
+  --jl-muted:       #94a3b8;
+  --jl-muted-light: #cbd5e1;
+  --jl-red:         #f87171;
+  --jl-font:        'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --jl-radius:      6px;
+  --jl-transition:  0.2s ease;
+}
+.jl-chart-card {
+    background-color: var(--jl-dark-2);
+    border: 1px solid var(--jl-blue-glow);
+    border-radius: var(--jl-radius);
+    padding: 1.5rem;
+}
+
+.jl-chart-title {
+    font-family: var(--jl-font);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--jl-muted-light);
+    margin: 0 0 1.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}

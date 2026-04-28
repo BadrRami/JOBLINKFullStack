@@ -1,102 +1,117 @@
-/* =========================================
-   LeftBar.css — JobLink.ma Admin Sidebar
-   Style : Dark Corporate + Blue Accent
-   ========================================= */
+:root {
+  --jl-blue:        hsl(220, 89.87%, 46.25%);
+  --jl-blue-dark:   hsl(220, 89.87%, 34%);
+  --jl-blue-light:  hsl(220, 89.87%, 70%);
+  --jl-blue-glow:   hsla(220, 89.87%, 46.25%, 0.18);
+  --jl-white:       #ffffff;
+  --jl-dark:        #0f172a;
+  --jl-dark-2:      #1e293b;
+  --jl-muted:       #94a3b8;
+  --jl-muted-light: #cbd5e1;
+  --jl-red:         #f87171;
+  --jl-font:        'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --jl-radius:      6px;
+  --jl-transition:  0.2s ease;
+}
 
-/* =========================================
-   SIDEBAR WRAPPER
-   ========================================= */
+/* ── Sidebar ── */
 #jl-leftbar {
-  width: 220px;
-  min-height: 100vh;
-  background: #0f172a;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0;
-  position: sticky;
-  top: 0;
-  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+    width: 240px;
+    min-height: 100vh;
+    background-color: var(--jl-dark);
+    border-right: 1px solid var(--jl-dark-2);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    transition: width var(--jl-transition);
+    overflow: hidden;
 }
 
-/* Ligne dégradée en haut */
-#jl-leftbar::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    hsl(220, 89.87%, 46.25%),
-    hsl(197, 100%, 50%),
-    hsl(220, 89.87%, 46.25%)
-  );
+#jl-leftbar.collapsed {
+    width: 64px;
 }
 
-/* =========================================
-   NAV LIST
-   ========================================= */
+/* ── Burger ── */
+#jl-burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 0 0 1.5rem 14px;
+    background: transparent;
+    border: 1px solid var(--jl-dark-2);
+    border-radius: var(--jl-radius);
+    color: var(--jl-muted);
+    font-size: 1.25rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background var(--jl-transition), color var(--jl-transition);
+}
+
+#jl-burger:hover {
+    background: var(--jl-dark-2);
+    color: var(--jl-white);
+}
+
+/* ── Nav list ── */
 #jl-leftbar-nav {
-  list-style: none;
-  margin: 0;
-  padding: 0 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
-/* =========================================
-   NAV ITEM
-   ========================================= */
-.jl-leftbar-item {
-  display: block;
-}
-
+/* ── Link ── */
 .jl-leftbar-link {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #94a3b8;
-  transition: background 0.18s ease,
-              color 0.18s ease,
-              padding-left 0.18s ease;
-  white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    margin: 0 8px;
+    color: var(--jl-muted);
+    text-decoration: none;
+    font-family: var(--jl-font);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--jl-radius);
+    white-space: nowrap;
+    transition: background var(--jl-transition), color var(--jl-transition);
+}
+
+.jl-leftbar-link i {
+    font-size: 1rem;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
 }
 
 .jl-leftbar-link:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  padding-left: 18px;
+    background: var(--jl-blue-glow);
+    color: var(--jl-blue-light);
 }
 
 .jl-leftbar-link.active {
-  background: hsla(220, 89.87%, 46.25%, 0.18);
-  color: hsl(220, 89.87%, 75%);
-  border-left: 3px solid hsl(220, 89.87%, 46.25%);
-  padding-left: 11px;
+    background: var(--jl-blue-glow);
+    color: var(--jl-blue);
+    border-left: 3px solid var(--jl-blue);
+    padding-left: 13px;
 }
 
-/* =========================================
-   ICÔNES
-   ========================================= */
-.jl-leftbar-link i {
-  font-size: 1rem;
-  flex-shrink: 0;
-  color: #64748b;
-  transition: color 0.18s ease, transform 0.18s ease;
+/* ── Collapsed : icônes seules ── */
+#jl-leftbar.collapsed .jl-leftbar-link {
+    justify-content: center;
+    padding: 10px;
+    margin: 0 6px;
 }
 
-.jl-leftbar-link:hover i {
-  color: hsl(220, 89.87%, 70%);
-  transform: scale(1.1);
+#jl-leftbar.collapsed .jl-leftbar-link span {
+    display: none;
 }
 
-.jl-leftbar-link.active i {
-  color: hsl(220, 89.87%, 70%);
+#jl-leftbar.collapsed #jl-burger {
+    margin-left: auto;
+    margin-right: auto;
 }

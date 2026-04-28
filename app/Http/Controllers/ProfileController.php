@@ -72,7 +72,8 @@ class ProfileController extends Controller
             'prenom' => $request->prenom,
             'email' => $request->email,
             'tel'=>$request->tel,
-            'photo' => $nomPhoto
+            'photo' => $nomPhoto,
+            'gender' => $request->gender
         ]);
 
         // update recruteurs table
@@ -118,7 +119,8 @@ class ProfileController extends Controller
                 'prenom' => $request->prenom,
                 'email' => $request->email,
                 'tel' => $request->tel,
-                'photo'=>$nomPhoto
+                'photo'=>$nomPhoto,
+                'gender' => $request->gender
             ]);
 
             $user->employee->update([

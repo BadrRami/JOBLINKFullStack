@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return Inertia('Admin/Users/Liste', compact('users'));
+        return Inertia('Admin/Dashboard/Users/part2/Liste', compact('users'));
     }
 
     /**
@@ -55,7 +55,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::with(['employee', 'recruteur'])->find($id);
-        return Inertia('Admin/Users/Modifier', compact('user'));
+        return Inertia('Admin/Dashboard/Users/part2/Modifier', compact('user'));
     }
 
     /**
@@ -71,6 +71,7 @@ class UserController extends Controller
         'email'  => $request->email,
         'tel'    => $request->tel,
         'etat'   => $request->etat,
+        'gender' => $request->gender
     ];
 
 
