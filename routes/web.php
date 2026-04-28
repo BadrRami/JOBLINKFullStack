@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\AdminEntreprisesController;
+use App\Http\Controllers\Admin\dashboard\UserAnalyticsController;
 // Employee Controllers
 use App\Http\Controllers\sauvegarde;
 // Recruteur Controller
@@ -71,7 +72,21 @@ Route::middleware('auth')->group(function () {
         ->name('profile.admin.edit');
     Route::put('/profile/admin', [ProfileController::class, 'updateAdmin'])
         ->name('profile.admin.update');
+
+
+
+
+
+    // Dashboard Admin routes
     Route::get('/Dashboard' , [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/admin/users/stats', [UserAnalyticsController::class, 'index']);
+
+
+
+
+
+
     // CRUD Users routes
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');

@@ -1,17 +1,18 @@
 import React from 'react';
 import Menu from '../Menu';
+import LeftBar from './Dashboard/LeftBar';
 
 const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises }) => {
     return (
         <div>
-          <Menu />  
+          {/* <Menu />  
 <div className="container mt-4">
 
 <h2 className="mb-4 fw-bold">Dashboard Admin</h2>
 
 <div className="row">
 
-{/* Utilisateurs */}
+
 <div className="col-md-3 mb-4">
 <div className="card text-white bg-primary shadow h-100">
 <div className="card-body text-center">
@@ -21,7 +22,7 @@ const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises })
 </div>
 </div>
 
-{/* Recruteurs */}
+
 <div className="col-md-3 mb-4">
 <div className="card text-white bg-success shadow h-100">
 <div className="card-body text-center">
@@ -31,7 +32,7 @@ const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises })
 </div>
 </div>
 
-{/* Employés */}
+
 <div className="col-md-3 mb-4">
 <div className="card text-white bg-warning shadow h-100">
 <div className="card-body text-center">
@@ -41,7 +42,7 @@ const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises })
 </div>
 </div>
 
-{/* Offres */}
+
 <div className="col-md-3 mb-4">
 <div className="card text-white bg-danger shadow h-100">
 <div className="card-body text-center">
@@ -51,7 +52,7 @@ const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises })
 </div>
 </div>
 
-{/* Posts */}
+
 <div className="col-md-3 mb-4">
 <div className="card text-white bg-info shadow h-100">
 <div className="card-body text-center">
@@ -61,7 +62,7 @@ const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises })
 </div>
 </div>
 
-{/* Entreprises */}
+
 <div className="col-md-3 mb-4">
 <div className="card text-white bg-secondary shadow h-100">
 <div className="card-body text-center">
@@ -72,7 +73,7 @@ const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises })
 </div>
 </div>
 
-{/* Actions rapides */}
+
 <div className="card shadow mt-4">
 <div className="card-header bg-dark text-white">
 Actions rapides
@@ -102,7 +103,8 @@ Gérer les offres
 </div>
 </div>
 
-</div>
+</div> */}
+<LeftBar/>
         </div>
     );
 }

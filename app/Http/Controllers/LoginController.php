@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 class LoginController extends Controller
 {
     // Affiche la page login
@@ -29,10 +32,22 @@ class LoginController extends Controller
 
             // Redirection selon le rôle
             if (Auth::user()->role === 'Recruteur') {
+                $user = Auth::user();
+
+        Mail::to($user->email)->send(new WelcomeMail($user));
+        Log::info("Email envoyé à ".$user->email);
                 return redirect()->route('profile.recruteur');
             }else if(Auth::user()->role === 'Admin'){
+                $user = Auth::user();
+
+        Mail::to($user->email)->send(new WelcomeMail($user));
+        Log::info("Email envoyé à ".$user->email);
                 return redirect()->route('profile.admin');
             } else {
+                $user = Auth::user();
+
+        Mail::to($user->email)->send(new WelcomeMail($user));
+        Log::info("Email envoyé à ".$user->email);
                 return redirect()->route('profile.employee');
             }
         }

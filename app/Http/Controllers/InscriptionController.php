@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Recruteur;
 use App\Models\Employee;
 use Inertia\Inertia;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 class InscriptionController extends Controller
 {
     public function index()
@@ -43,12 +45,18 @@ class InscriptionController extends Controller
                 'poste' => null,
                 'entreprise_id' => null,
             ]);
+            // envoyer email
+            Mail::to($user->email)->send(new WelcomeMail($user));
+    
         } else { 
             Employee::create([
                 'user_id' => $user->id,
                 'filiere' => null,
                 'niveau_etude' => null,
             ]);
+            // envoyer email
+            Mail::to($user->email)->send(new WelcomeMail($user));
+    
         }
 
         //  Connexion automatique

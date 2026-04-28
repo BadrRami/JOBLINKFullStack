@@ -1,0 +1,102 @@
+/* =========================================
+   LeftBar.css — JobLink.ma Admin Sidebar
+   Style : Dark Corporate + Blue Accent
+   ========================================= */
+
+/* =========================================
+   SIDEBAR WRAPPER
+   ========================================= */
+#jl-leftbar {
+  width: 220px;
+  min-height: 100vh;
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Ligne dégradée en haut */
+#jl-leftbar::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+/* =========================================
+   NAV LIST
+   ========================================= */
+#jl-leftbar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* =========================================
+   NAV ITEM
+   ========================================= */
+.jl-leftbar-item {
+  display: block;
+}
+
+.jl-leftbar-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8;
+  transition: background 0.18s ease,
+              color 0.18s ease,
+              padding-left 0.18s ease;
+  white-space: nowrap;
+}
+
+.jl-leftbar-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  padding-left: 18px;
+}
+
+.jl-leftbar-link.active {
+  background: hsla(220, 89.87%, 46.25%, 0.18);
+  color: hsl(220, 89.87%, 75%);
+  border-left: 3px solid hsl(220, 89.87%, 46.25%);
+  padding-left: 11px;
+}
+
+/* =========================================
+   ICÔNES
+   ========================================= */
+.jl-leftbar-link i {
+  font-size: 1rem;
+  flex-shrink: 0;
+  color: #64748b;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.jl-leftbar-link:hover i {
+  color: hsl(220, 89.87%, 70%);
+  transform: scale(1.1);
+}
+
+.jl-leftbar-link.active i {
+  color: hsl(220, 89.87%, 70%);
+}

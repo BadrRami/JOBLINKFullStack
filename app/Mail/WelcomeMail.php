@@ -17,10 +17,14 @@ class WelcomeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $user;
+
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
+
+    
 
     /**
      * Get the message envelope.
@@ -36,11 +40,11 @@ class WelcomeMail extends Mailable
      * Get the message content definition.
      */
     public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
+{
+    return new Content(
+        view: 'emails.welcome', // ✅ CORRECT
+    );
+}
 
     /**
      * Get the attachments for the message.
