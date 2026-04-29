@@ -19,7 +19,7 @@ class AIController extends Controller
     try {
         $response = Http::timeout(180)  // 3 minutes
               ->post('http://127.0.0.1:11434/api/generate', [
-                'model'  => 'llama3',
+                'model' => 'llama3.2:1b',  // 👈 remplace llama3
                 'prompt' => $prompt,
                 'stream' => false,
             ]);
