@@ -26,6 +26,7 @@ use App\Http\Controllers\CandidatureController;
 // Recruteur Controller
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\GererEntrepriseController;
+use App\Http\Controllers\Recruteur\CandidaturesController;
 
 use Inertia\Inertia;
 
@@ -56,6 +57,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/ajouterEntreprise', [GererEntrepriseController::class, 'create'])->name('entrepriseRecruteur.create');
     Route::post('/ajouterEntreprise', [GererEntrepriseController::class, 'store'])->name('entrepriseRecruteur.store');
     
+    // Candidatures Reçus par recruteur
+    Route::get('/candidaturesreçus',[CandidaturesController::class, 'index'])->name('candidaturesreçus.index');
+
+
     // Profile Employee routes
     Route::get('/profile/employee', [ProfileController::class, 'showEmployee'])
         ->name('profile.employee');

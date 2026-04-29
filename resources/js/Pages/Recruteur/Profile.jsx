@@ -67,6 +67,9 @@ const Profile = ({user}) => {
             <a href={route('offres.create')} className="btn btn-primary">
                 Créer une Offre
             </a>
+            <a href={route('candidaturesreçus.index')} className="btn btn-primary">
+                Candidatures Reçus 
+            </a>
             <a href={route('publications.create')} className="btn btn-secondary">
                 Créer un poste
             </a>
