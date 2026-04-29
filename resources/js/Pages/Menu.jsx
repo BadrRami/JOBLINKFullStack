@@ -45,6 +45,13 @@ const Menu = () => {
                         <li><Link className="jl-nav-link" href={route('offres.index')} onClick={() => setIsOpen(false)}>Offres</Link></li>
                         <li><Link className="jl-nav-link" href={route('entreprises.index')} onClick={() => setIsOpen(false)}>Entreprises</Link></li>
                         <li><Link className="jl-nav-link" href={route('posts.index')} onClick={() => setIsOpen(false)}>Publications</Link></li>
+                        <li><Link 
+  className="jl-nav-link" 
+  href={route('ai.page')} 
+  onClick={() => setIsOpen(false)}
+>
+  AI
+</Link></li>
                     </ul>
 
                     <div className="jl-nav-actions">

@@ -28,11 +28,11 @@ use App\Http\Controllers\OffreController;
 use App\Http\Controllers\GererEntrepriseController;
 use App\Http\Controllers\Recruteur\CandidaturesController;
 
+use App\Http\Controllers\AIController;
+use App\Http\Controllers\Accueil;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Accueil');
-});
+Route::get('/',[Accueil::class , 'index']);
 Route::get('/Offres', function () {
     return Inertia::render('Offres');
 })->name('offres');
@@ -163,6 +163,15 @@ Route::middleware('auth')->group(function () {
     // Messages of conversation routes
 
     Route::post('/massage',[MessageController::class, 'store'])->name('message.store');
+
+
+
+    // Route::post('/ask-ai', [AIController::class, 'ask'])->name('ai.index');
+    Route::get('/ai', function () {
+    return Inertia::render('ChatAI');
+})->name('ai.page');
+
+Route::post('/ask-ai', [AIController::class, 'ask'])->name('ai.ask');
 
 
 });

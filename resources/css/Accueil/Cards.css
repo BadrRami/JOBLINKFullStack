@@ -1,0 +1,98 @@
+/* ── Carte commune ── */
+.jl-card {
+    background-color: var(--jl-dark-2);
+    border: 1px solid var(--jl-blue-glow);
+    border-radius: var(--jl-radius);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color var(--jl-transition);
+}
+
+.jl-card:hover {
+    border-color: var(--jl-blue);
+}
+
+/* ── Header ── */
+.jl-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.jl-card-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--jl-blue-glow);
+    border: 1px solid var(--jl-blue);
+    color: var(--jl-blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.jl-card-avatar--offre {
+    background-color: var(--jl-blue-glow);
+    color: var(--jl-blue-light);
+    font-size: 1rem;
+}
+
+.jl-card-author {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--jl-white);
+    margin: 0;
+}
+
+.jl-card-date {
+    font-size: 0.75rem;
+    color: var(--jl-muted);
+    margin: 0;
+}
+
+/* ── Body ── */
+.jl-card-body {
+    font-size: 0.875rem;
+    color: var(--jl-muted-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── Footer ── */
+.jl-card-footer {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.jl-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--jl-muted);
+}
+
+.jl-card-meta i {
+    font-size: 0.75rem;
+}
+
+/* ── Badge offre ── */
+.jl-badge {
+    margin-left: auto;
+    padding: 3px 10px;
+    background-color: var(--jl-blue-glow);
+    border: 1px solid var(--jl-blue);
+    border-radius: 99px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--jl-blue-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
