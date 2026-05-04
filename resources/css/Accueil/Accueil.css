@@ -1,28 +1,438 @@
-#jl-accueil {
-    min-height: 100vh;
-    background-color: var(--jl-dark);
-    font-family: var(--jl-font);
+/* =========================================
+   accueil.css — JobLink.ma Homepage
+   Style : Dark Corporate + Blue Accent
+   Couvre : Accueil, Profile, PostCard, OffreCard
+   ========================================= */
+
+/* =========================================
+   PAGE
+   ========================================= */
+#jl-accueil-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 }
 
-#jl-accueil-body {
-    display: flex;
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    align-items: flex-start;
+/* =========================================
+   LAYOUT : sidebar + feed
+   ========================================= */
+#jl-accueil-layout {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+  gap: 24px;
 }
 
+/* =========================================
+   SIDEBAR PROFILE (gauche)
+   ========================================= */
 #jl-accueil-sidebar {
-    width: 260px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 1rem;
+  width: 260px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 86px;
 }
 
+/* =========================================
+   PROFILE CARD
+   ========================================= */
+#jl-profile-widget {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Bannière sombre en haut */
+.jl-profile-widget-banner {
+  background: #0f172a;
+  height: 60px;
+  position: relative;
+}
+
+.jl-profile-widget-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+/* Avatar centré chevauchant la bannière */
+.jl-profile-widget-avatar-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: -36px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.jl-profile-widget-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid hsl(220, 89.87%, 46.25%);
+  box-shadow: 0 0 0 4px #ffffff, 0 4px 12px rgba(15, 23, 42, 0.15);
+  display: block;
+}
+
+/* Infos texte */
+.jl-profile-widget-body {
+  padding: 12px 20px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jl-profile-widget-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.jl-profile-widget-role {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Séparateur */
+.jl-profile-widget-divider {
+  height: 1px;
+  background: #f1f5f9;
+  border: none;
+  margin: 12px 0 0;
+}
+
+/* Lien voir profil */
+.jl-profile-widget-link {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: hsl(220, 89.87%, 46.25%);
+  text-decoration: none;
+  transition: background 0.18s ease;
+  border-radius: 0 0 14px 14px;
+}
+
+.jl-profile-widget-link:hover {
+  background: hsl(220, 89.87%, 97%);
+}
+
+/* =========================================
+   FEED (centre)
+   ========================================= */
 #jl-accueil-feed {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* =========================================
+   POST CARD
+   ========================================= */
+.jl-post-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.jl-post-card:hover {
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.11);
+}
+
+.jl-post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px 12px;
+}
+
+.jl-post-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid hsl(220, 89.87%, 46.25%);
+  flex-shrink: 0;
+}
+
+.jl-post-author {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 2px;
+}
+
+.jl-post-date {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.jl-post-body {
+  padding: 0 18px 12px;
+}
+
+.jl-post-titre {
+  font-size: 0.92rem;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.jl-post-media {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.jl-post-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.jl-post-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.jl-post-stat i { color: hsl(220, 89.87%, 46.25%); }
+
+.jl-post-divider {
+  height: 1px;
+  background: #f1f5f9;
+  border: none;
+  margin: 0;
+}
+
+.jl-post-actions {
+  display: flex;
+}
+
+.jl-post-action-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 8px;
+  background: transparent;
+  border: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.jl-post-action-btn i { font-size: 1rem; transition: transform 0.18s ease; }
+.jl-post-action-btn:hover { background: #f8fafc; color: hsl(220, 89.87%, 46.25%); }
+.jl-post-action-btn:hover i { transform: scale(1.12); }
+.jl-post-action-btn + .jl-post-action-btn { border-left: 1px solid #f1f5f9; }
+
+/* =========================================
+   OFFRE CARD
+   ========================================= */
+.jl-offre-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.jl-offre-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: #e2e8f0;
+  transition: background 0.2s ease;
+}
+
+.jl-offre-card:hover {
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.10);
+  transform: translateY(-1px);
+}
+
+.jl-offre-card:hover::before {
+  background: hsl(220, 89.87%, 46.25%);
+}
+
+.jl-offre-card-body {
+  padding: 20px 22px 16px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Badge "Offre" dans le feed */
+.jl-offre-feed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: hsl(220, 89.87%, 46.25%);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.jl-offre-feed-badge i { font-size: 0.8rem; }
+
+.jl-offre-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.jl-offre-titre {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.jl-offre-type {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  background: hsla(220, 89.87%, 46.25%, 0.10);
+  color: hsl(220, 89.87%, 40%);
+  border: 1px solid hsla(220, 89.87%, 46.25%, 0.20);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.jl-offre-description {
+  font-size: 0.875rem;
+  color: #475569;
+  margin: 0;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.jl-offre-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.jl-offre-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.jl-offre-meta-item i { color: #94a3b8; font-size: 0.82rem; }
+
+.jl-offre-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px 14px 26px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.jl-offre-btn {
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.jl-offre-btn-postuler {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-color: hsl(220, 89.87%, 46.25%);
+}
+
+.jl-offre-btn-postuler:hover {
+  background: hsl(220, 89.87%, 36%);
+  border-color: hsl(220, 89.87%, 36%);
+  box-shadow: 0 4px 12px hsla(220, 89.87%, 46.25%, 0.32);
+}
+
+.jl-offre-btn-save {
+  background: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0;
+  margin-left: auto;
+}
+
+.jl-offre-btn-save:hover {
+  background: #fefce8;
+  color: #a16207;
+  border-color: #fde68a;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 860px) {
+  #jl-accueil-sidebar {
+    display: none;
+  }
+
+  #jl-accueil-layout {
+    padding: 20px 12px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jl-post-action-btn {
+    font-size: 0.76rem;
+    padding: 10px 4px;
+    gap: 4px;
+  }
 }

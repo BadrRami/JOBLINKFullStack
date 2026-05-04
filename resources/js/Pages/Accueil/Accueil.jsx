@@ -3,25 +3,34 @@ import Menu from '../Menu';
 import Profile from './Profile';
 import PostCard from './PostCard';
 import OffreCard from './OffreCard';
-import '../../../css/Accueil/Accueil.css';
+import '../../../css/accueil/accueil.css';
 
 const Accueil = ({ feed, user }) => {
     return (
-        <div id="jl-accueil">
+        <div id="jl-accueil-page">
             <Menu />
-            <div id="jl-accueil-body">
-                <aside id="jl-accueil-sidebar">
+            <div id="jl-accueil-layout">
+
+                {/* Sidebar profil */}
+                <div id="jl-accueil-sidebar">
                     <Profile user={user} />
-                </aside>
-                <main id="jl-accueil-feed">
+                </div>
+
+                {/* Feed central */}
+                <div id="jl-accueil-feed">
                     {feed.map((item, index) => {
-                        if (item.type === 'post')  return <PostCard  key={index} post={item} />;
-                        if (item.type === 'offre') return <OffreCard key={index} offre={item} />;
+                        if (item.type === 'post') {
+                            return <PostCard key={index} post={item} />;
+                        }
+                        if (item.type === 'offre') {
+                            return <OffreCard key={index} offre={item} />;
+                        }
                     })}
-                </main>
+                </div>
+
             </div>
         </div>
     );
-};
+}
 
 export default Accueil;

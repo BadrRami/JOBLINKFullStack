@@ -32,10 +32,7 @@ use App\Http\Controllers\AIController;
 use App\Http\Controllers\Accueil;
 use Inertia\Inertia;
 
-Route::get('/',[Accueil::class , 'index']);
-Route::get('/Offres', function () {
-    return Inertia::render('Offres');
-})->name('offres');
+
 Route::middleware('guest')->group(function (){
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'traiter'])->name('login.traiter');
@@ -44,6 +41,10 @@ Route::middleware('guest')->group(function (){
     Route::post('/register', [InscriptionController::class, 'traiter'])->name('register.traiter');
 });
 Route::middleware('auth')->group(function () {
+    Route::get('/',[Accueil::class , 'index']);
+    Route::get('/Offres', function () {
+        return Inertia::render('Offres');
+    })->name('offres');
     // Profile Recruteur routes
     Route::get('/profile/recruteur', [ProfileController::class, 'showRecruteur'])
         ->name('profile.recruteur');

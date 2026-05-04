@@ -1,32 +1,57 @@
 import React from 'react';
-import '../../../css/Accueil/Cards.css';
+import { router } from '@inertiajs/react';
 
 const OffreCard = ({ offre }) => {
+
+    const handlePostuler = () => {
+        router.get(`/candidatures/create/${offre.id}`);
+    };
+
+    const handleSauvegarder = () => {
+        router.post('/sauvegardes', { offre_id: offre.id });
+    };
+
     return (
-        <div className="jl-card">
-            <div className="jl-card-header">
-                <div className="jl-card-avatar jl-card-avatar--offre">
-                    <i className="bi bi-briefcase-fill"></i>
-                </div>
-                <div>
-                    <p className="jl-card-author">{offre?.titre}</p>
-                    <p className="jl-card-date">{offre?.entreprise}</p>
-                </div>
-                <span className="jl-badge">Offre</span>
-            </div>
-            <p className="jl-card-body">{offre?.description}</p>
-            <div className="jl-card-footer">
-                <span className="jl-card-meta">
-                    <i className="bi bi-geo-alt-fill"></i>
-                    {offre?.localisation}
+        <div className="jl-offre-card">
+
+            <div className="jl-offre-card-body">
+
+                {/* Label "Offre d'emploi" */}
+                <span className="jl-offre-feed-badge">
+                    <i className="bi bi-briefcase-fill"></i> Offre d'emploi
                 </span>
-                <span className="jl-card-meta">
-                    <i className="bi bi-clock-fill"></i>
-                    {offre?.created_at}
-                </span>
+
+                {/* Titre + type contrat */}
+                <div className="jl-offre-header">
+                    <h3 className="jl-offre-titre">{offre.titre}</h3>
+                    <span className="jl-offre-type">{offre.type}</span>
+                </div>
+
+                {/* Description */}
+                <p className="jl-offre-description">{offre.description}</p>
+
+                {/* Localisation */}
+                <div className="jl-offre-meta">
+                    <span className="jl-offre-meta-item">
+                        <i className="bi bi-geo-alt-fill"></i>
+                        {offre.localisation}
+                    </span>
+                </div>
+
             </div>
+
+            {/* Actions */}
+            <div className="jl-offre-actions">
+                <button className="jl-offre-btn jl-offre-btn-postuler" onClick={handlePostuler}>
+                    Postuler
+                </button>
+                <button className="jl-offre-btn jl-offre-btn-save" onClick={handleSauvegarder}>
+                    <i className="bi bi-bookmark-fill"></i> Sauvegarder
+                </button>
+            </div>
+
         </div>
     );
-};
+}
 
 export default OffreCard;
