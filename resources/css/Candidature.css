@@ -1,0 +1,168 @@
+/* ── Page ── */
+#jl-candidature-page {
+    min-height: 100vh;
+    background-color: var(--jl-white);
+    font-family: var(--jl-font);
+}
+
+/* ── Carte centrale ── */
+#jl-candidature-wrapper {
+    max-width: 640px;
+    margin: 2.5rem auto;
+    background-color: var(--jl-dark-2);
+    border: 1px solid var(--jl-blue-glow);
+    border-radius: var(--jl-radius);
+    overflow: hidden;
+}
+
+/* ── En-tête offre ── */
+#jl-candidature-offre {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 1.25rem 1.5rem;
+    background-color: var(--jl-dark);
+    border-bottom: 1px solid var(--jl-blue-glow);
+}
+
+#jl-candidature-offre-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--jl-blue-glow);
+    border: 1px solid var(--jl-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--jl-blue-light);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+#jl-candidature-offre-titre {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--jl-white);
+    margin: 0;
+}
+
+#jl-candidature-offre-entreprise {
+    font-size: 0.8rem;
+    color: var(--jl-muted);
+    margin: 0;
+}
+
+/* ── Formulaire ── */
+#jl-candidature-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+}
+
+/* ── Champ ── */
+.jl-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.jl-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--jl-muted-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.jl-required {
+    color: var(--jl-red);
+    margin-left: 2px;
+}
+
+/* ── File upload ── */
+.jl-file-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background-color: var(--jl-dark);
+    border: 1px dashed var(--jl-muted);
+    border-radius: var(--jl-radius);
+    color: var(--jl-muted);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color var(--jl-transition), color var(--jl-transition);
+}
+
+.jl-file-label:hover {
+    border-color: var(--jl-blue);
+    color: var(--jl-blue-light);
+}
+
+.jl-file-input {
+    display: none;
+}
+
+/* ── Textarea ── */
+.jl-textarea {
+    padding: 10px 14px;
+    background-color: var(--jl-dark);
+    border: 1px solid var(--jl-dark-2);
+    border-radius: var(--jl-radius);
+    color: var(--jl-white);
+    font-family: var(--jl-font);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: border-color var(--jl-transition);
+}
+
+.jl-textarea::placeholder {
+    color: var(--jl-muted);
+}
+
+.jl-textarea:focus {
+    border-color: var(--jl-blue);
+}
+
+/* ── Bouton submit ── */
+#jl-candidature-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    background-color: var(--jl-blue);
+    color: var(--jl-white);
+    border: none;
+    border-radius: var(--jl-radius);
+    font-family: var(--jl-font);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--jl-transition);
+    align-self: flex-end;
+}
+
+#jl-candidature-submit:hover:not(:disabled) {
+    background-color: var(--jl-blue-dark);
+}
+
+#jl-candidature-submit:disabled {
+    background-color: var(--jl-dark-2);
+    color: var(--jl-muted);
+    cursor: not-allowed;
+    border: 1px solid var(--jl-dark-2);
+}
+
+/* ── Spin animation ── */
+.jl-spin {
+    animation: jl-spin 0.8s linear infinite;
+}
+
+@keyframes jl-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
