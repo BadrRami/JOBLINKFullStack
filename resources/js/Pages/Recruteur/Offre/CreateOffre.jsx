@@ -1,7 +1,8 @@
 import React from 'react';
 import Menu from '../../Menu';
-import { useForm } from '@inertiajs/react';
-import { usePage } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
+import '../../../../css/CRUD_Offre/create-offre.css';
+
 const CreateOffre = ({ domaines, villes }) => {
     const { flash } = usePage().props;
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -17,7 +18,6 @@ const CreateOffre = ({ domaines, villes }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         post(route('offres.store'), {
             onSuccess: () => reset(),
         });
@@ -26,108 +26,166 @@ const CreateOffre = ({ domaines, villes }) => {
     };
 
     return (
-        <div>
+        <div id="jl-create-offre-page">
             <Menu />
-            {flash.success && (
-                <div className="alert alert-success">
-                    {flash.success}
+
+            <div id="jl-create-offre-body">
+                <div id="jl-create-offre-card">
+
+                    {/* Header sombre */}
+                    <div id="jl-create-offre-header">
+                        <div id="jl-create-offre-header-icon">
+                            <i className="bi bi-briefcase-fill"></i>
+                        </div>
+                        <div>
+                            <h2 id="jl-create-offre-title">Créer une offre</h2>
+                            <p id="jl-create-offre-subtitle">Publiez une nouvelle opportunité d'emploi</p>
+                        </div>
+                    </div>
+
+                    {/* Flash messages */}
+                    {flash.success && (
+                        <div className="jl-flash jl-flash-success">{flash.success}</div>
+                    )}
+                    {flash.error && (
+                        <div className="jl-flash jl-flash-error">{flash.error}</div>
+                    )}
+
+                    <form id="jl-create-offre-form" onSubmit={handleSubmit}>
+
+                        {/* Titre */}
+                        <div className="jl-field">
+                            <label className="jl-label" htmlFor="jl-offre-titre">Titre</label>
+                            <input
+                                id="jl-offre-titre"
+                                type="text"
+                                className="jl-input"
+                                value={data.titre}
+                                onChange={(e) => setData('titre', e.target.value)}
+                                placeholder="Ex: Développeur React Senior"
+                            />
+                            {errors.titre && <span className="jl-error">{errors.titre}</span>}
+                        </div>
+
+                        {/* Description */}
+                        <div className="jl-field">
+                            <label className="jl-label" htmlFor="jl-offre-description">Description</label>
+                            <textarea
+                                id="jl-offre-description"
+                                className="jl-textarea"
+                                value={data.description}
+                                onChange={(e) => setData('description', e.target.value)}
+                                placeholder="Décrivez le poste, les missions et les compétences requises..."
+                            />
+                            {errors.description && <span className="jl-error">{errors.description}</span>}
+                        </div>
+
+                        {/* Type + Domaine sur la même ligne */}
+                        <div className="jl-field-row">
+                            <div className="jl-field">
+                                <label className="jl-label" htmlFor="jl-offre-type">Type</label>
+                                <select
+                                    id="jl-offre-type"
+                                    className="jl-select"
+                                    value={data.type}
+                                    onChange={(e) => setData('type', e.target.value)}
+                                >
+                                    <option value="">-- Choisir --</option>
+                                    <option value="full-time">Full-time</option>
+                                    <option value="part-time">Part-time</option>
+                                    <option value="stage">Stage</option>
+                                    <option value="mission">Mission</option>
+                                    <option value="freelance">Freelance</option>
+                                </select>
+                            </div>
+
+                            <div className="jl-field">
+                                <label className="jl-label" htmlFor="jl-offre-domaine">Domaine</label>
+                                <select
+                                    id="jl-offre-domaine"
+                                    className="jl-select"
+                                    value={data.domaine_id}
+                                    onChange={(e) => setData('domaine_id', e.target.value)}
+                                >
+                                    <option value="">-- Choisir --</option>
+                                    {domaines.map((d) => (
+                                        <option key={d.id} value={d.id}>{d.nom}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* Ville + Localisation sur la même ligne */}
+                        <div className="jl-field-row">
+                            <div className="jl-field">
+                                <label className="jl-label" htmlFor="jl-offre-ville">Ville</label>
+                                <select
+                                    id="jl-offre-ville"
+                                    className="jl-select"
+                                    value={data.ville_id}
+                                    onChange={(e) => setData('ville_id', e.target.value)}
+                                >
+                                    <option value="">-- Choisir --</option>
+                                    {villes.map((v) => (
+                                        <option key={v.id} value={v.id}>{v.nom}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="jl-field">
+                                <label className="jl-label" htmlFor="jl-offre-localisation">Localisation</label>
+                                <input
+                                    id="jl-offre-localisation"
+                                    type="text"
+                                    className="jl-input"
+                                    value={data.localisation}
+                                    onChange={(e) => setData('localisation', e.target.value)}
+                                    placeholder="Ex: Quartier Maarif"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Salaire + Etat sur la même ligne */}
+                        <div className="jl-field-row">
+                            <div className="jl-field">
+                                <label className="jl-label" htmlFor="jl-offre-salaire">Salaire</label>
+                                <input
+                                    id="jl-offre-salaire"
+                                    type="number"
+                                    className="jl-input"
+                                    value={data.salaire}
+                                    onChange={(e) => setData('salaire', e.target.value)}
+                                    placeholder="Ex: 8000"
+                                />
+                            </div>
+
+                            <div className="jl-field">
+                                <label className="jl-label" htmlFor="jl-offre-etat">État</label>
+                                <select
+                                    id="jl-offre-etat"
+                                    className="jl-select"
+                                    value={data.etat}
+                                    onChange={(e) => setData('etat', e.target.value)}
+                                >
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* Submit */}
+                        <button
+                            id="jl-create-offre-submit"
+                            type="submit"
+                            disabled={processing}
+                        >
+                            <i className="bi bi-plus-circle-fill"></i>
+                            {processing ? 'Création en cours...' : 'Créer l\'offre'}
+                        </button>
+
+                    </form>
                 </div>
-            )}
-            {flash.error && (
-                <div className="alert alert-danger">
-                    {flash.error}
-                </div>
-            )}
-
-            <form onSubmit={handleSubmit}>
-
-                <label htmlFor="Titre">Titre</label>
-                <input
-                    type="text"
-                    value={data.titre}
-                    onChange={(e) => setData('titre', e.target.value)}
-                />
-                {errors.titre && <div className="text-danger">{errors.titre}</div>}
-                <br />
-
-                <label htmlFor="Description">Description</label>
-                <input
-                    type="text"
-                    value={data.description}
-                    onChange={(e) => setData('description', e.target.value)}
-                />
-                {errors.description && <div className="text-danger">{errors.description}</div>}
-                <br />
-
-                <label htmlFor="Type">Type</label>
-                <select
-                    value={data.type}
-                    onChange={(e) => setData('type', e.target.value)}
-                >
-                    <option value="">-- Choisir --</option>
-                    <option value="full-time">full-time</option>
-                    <option value="part-time">part-time</option>
-                    <option value="stage">stage</option>
-                    <option value="mission">mission</option>
-                    <option value="freelance">freelance</option>
-                </select>
-                <br />
-
-                <label>Domaine</label>
-                <select
-                    value={data.domaine_id}
-                    onChange={(e) => setData('domaine_id', e.target.value)}
-                >
-                    <option value="">-- Choisir --</option>
-                    {domaines.map((d) => (
-                        <option key={d.id} value={d.id}>{d.nom}</option>
-                    ))}
-                </select>
-                <br />
-
-                <label>Ville</label>
-                <select
-                    value={data.ville_id}
-                    onChange={(e) => setData('ville_id', e.target.value)}
-                >
-                    <option value="">-- Choisir --</option>
-                    {villes.map((v) => (
-                        <option key={v.id} value={v.id}>{v.nom}</option>
-                    ))}
-                </select>
-                <br />
-
-                <label>Localisation</label>
-                <input
-                    type="text"
-                    value={data.localisation}
-                    onChange={(e) => setData('localisation', e.target.value)}
-                />
-                <br />
-
-                <label>Salaire</label>
-                <input
-                    type="number"
-                    value={data.salaire}
-                    onChange={(e) => setData('salaire', e.target.value)}
-                />
-                <br />
-
-                <label>Etat</label>
-                <select
-                    value={data.etat}
-                    onChange={(e) => setData('etat', e.target.value)}
-                >
-                    <option value="active">active</option>
-                    <option value="inactive">inactive</option>
-                </select>
-                <br />
-
-                <button type="submit" disabled={processing}>
-                    Créer
-                </button>
-
-            </form>
+            </div>
         </div>
     );
 };
