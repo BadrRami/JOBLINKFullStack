@@ -1,13 +1,13 @@
 /* =========================================
-   candidature-form.css — JobLink.ma
+   create-post.css — JobLink.ma
    Style : Dark Corporate + Blue Accent
-   Formulaire de candidature (postuler)
+   Formulaire création de publication
    ========================================= */
 
 /* =========================================
    PAGE
    ========================================= */
-#jl-cand-form-page {
+#jl-create-page {
   min-height: 100vh;
   background: #f1f5f9;
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -16,16 +16,15 @@
 /* =========================================
    BODY
    ========================================= */
-#jl-cand-form-body {
+#jl-create-body {
   display: flex;
-  align-items: flex-start;
   justify-content: center;
   padding: 48px 16px;
   position: relative;
   overflow: hidden;
 }
 
-#jl-cand-form-body::before {
+#jl-create-body::before {
   content: '';
   position: absolute;
   top: -100px; right: -100px;
@@ -35,7 +34,7 @@
   pointer-events: none;
 }
 
-#jl-cand-form-body::after {
+#jl-create-body::after {
   content: '';
   position: absolute;
   bottom: -80px; left: -80px;
@@ -48,20 +47,20 @@
 /* =========================================
    CARD
    ========================================= */
-#jl-cand-form-card {
+#jl-create-card {
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 8px 40px rgba(15, 23, 42, 0.10),
               0 1px 3px rgba(15, 23, 42, 0.06);
   width: 100%;
-  max-width: 560px;
+  max-width: 580px;
   position: relative;
   z-index: 1;
   overflow: hidden;
 }
 
-#jl-cand-form-card::before {
+#jl-create-card::before {
   content: '';
   display: block;
   position: absolute;
@@ -76,17 +75,17 @@
 }
 
 /* =========================================
-   HEADER (sombre)
+   HEADER SOMBRE
    ========================================= */
-#jl-cand-form-header {
+#jl-create-header {
   background: #0f172a;
-  padding: 24px 32px 22px;
+  padding: 22px 30px;
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-#jl-cand-form-header-icon {
+#jl-create-header-icon {
   width: 44px;
   height: 44px;
   border-radius: 10px;
@@ -95,35 +94,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   color: hsl(220, 89.87%, 70%);
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
-#jl-cand-form-title {
-  font-size: 1.15rem;
+#jl-create-title {
+  font-size: 1.1rem;
   font-weight: 800;
   color: #ffffff;
   margin: 0 0 3px;
   letter-spacing: -0.3px;
 }
 
-/* Titre de l'offre */
-#jl-cand-form-offre {
+#jl-create-subtitle {
   font-size: 0.8rem;
-  color: hsl(220, 89.87%, 70%);
+  color: #94a3b8;
   margin: 0;
-  font-weight: 500;
 }
 
 /* =========================================
-   FORM BODY
+   FORM
    ========================================= */
-#jl-cand-form {
-  padding: 28px 32px 32px;
+#jl-create-form {
+  padding: 28px 30px 30px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
 }
 
 /* =========================================
@@ -140,16 +137,36 @@
   font-weight: 600;
   color: #374151;
   letter-spacing: 0.2px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 
-/* Astérisque requis */
-.jl-label span {
-  color: #ef4444;
+/* =========================================
+   TEXTAREA
+   ========================================= */
+.jl-textarea {
+  padding: 12px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
   font-size: 0.9rem;
-  line-height: 1;
+  color: #0f172a;
+  background: #f8fafc;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  resize: vertical;
+  min-height: 120px;
+  outline: none;
+  line-height: 1.6;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.jl-textarea:focus {
+  border-color: hsl(220, 89.87%, 46.25%);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px hsla(220, 89.87%, 46.25%, 0.12);
+}
+
+.jl-textarea::placeholder {
+  color: #94a3b8;
 }
 
 /* =========================================
@@ -184,10 +201,9 @@
   font-size: 0.84rem;
   font-weight: 600;
   color: #475569;
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-  white-space: nowrap;
   pointer-events: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .jl-file-wrap:hover .jl-file-btn {
@@ -198,7 +214,7 @@
 
 .jl-file-name {
   font-size: 0.8rem;
-  color: #64748b;
+  color: #94a3b8;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -206,77 +222,108 @@
 }
 
 /* =========================================
-   TEXTAREA
+   ERROR
    ========================================= */
-.jl-textarea {
-  padding: 12px 14px;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  color: #0f172a;
-  background: #f8fafc;
-  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  resize: vertical;
-  min-height: 140px;
-  outline: none;
-  line-height: 1.6;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
+.jl-error {
+  font-size: 0.78rem;
+  color: #dc2626;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.jl-textarea:focus {
-  border-color: hsl(220, 89.87%, 46.25%);
-  background: #ffffff;
-  box-shadow: 0 0 0 3px hsla(220, 89.87%, 46.25%, 0.12);
-}
-
-.jl-textarea::placeholder {
-  color: #94a3b8;
+.jl-error::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #dc2626;
+  flex-shrink: 0;
 }
 
 /* =========================================
-   SUBMIT BUTTON
+   ACTIONS
    ========================================= */
-#jl-cand-form-submit {
-  height: 46px;
+#jl-create-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+/* Publier — CTA */
+#jl-create-submit {
+  height: 42px;
+  padding: 0 24px;
   background: hsl(220, 89.87%, 46.25%);
   color: #ffffff;
   border: none;
   border-radius: 8px;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
   cursor: pointer;
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  width: 100%;
-  margin-top: 4px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  gap: 7px;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#jl-cand-form-submit:hover {
+#jl-create-submit:hover:not(:disabled) {
   background: hsl(220, 89.87%, 36%);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px hsla(220, 89.87%, 46.25%, 0.35);
+  box-shadow: 0 6px 16px hsla(220, 89.87%, 46.25%, 0.32);
 }
 
-#jl-cand-form-submit:active {
-  transform: translateY(0);
+#jl-create-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Annuler — ghost */
+#jl-create-cancel {
+  height: 42px;
+  padding: 0 20px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#jl-create-cancel:hover {
+  background: #e2e8f0;
+  color: #1e293b;
 }
 
 /* =========================================
    RESPONSIVE
    ========================================= */
 @media (max-width: 520px) {
-  #jl-cand-form-header {
+  #jl-create-header {
     padding: 20px 20px 18px;
   }
 
-  #jl-cand-form {
+  #jl-create-form {
     padding: 22px 20px 26px;
+  }
+
+  #jl-create-actions {
+    flex-direction: column-reverse;
+  }
+
+  #jl-create-submit,
+  #jl-create-cancel {
+    width: 100%;
+    justify-content: center;
   }
 }
