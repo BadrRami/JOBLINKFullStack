@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, Link } from '@inertiajs/react';
 import Menu from '../Menu';
+import '../../../css/profile/edit-profile-recruteur.css';
 
 const EditProfile = ({ user }) => {
 
@@ -16,140 +17,186 @@ const EditProfile = ({ user }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         put(route('profile.employee.update', { forceFormData: true }));
     };
 
     return (
-        <>
-        <Menu />
-        <div className="container mt-4">
+        <div id="jl-edit-rec-page">
+            <Menu />
 
-            <div className="card shadow-lg p-4">
+            <div id="jl-edit-rec-body">
+                <div id="jl-edit-rec-card">
 
-                <h3 className="mb-4">Modifier votre profil</h3>
-
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-
-                    <div className="row">
-
-                        {/* Nom */}
-                        <div className="col-md-6 mb-3">
-                            <label className="form-label">Nom</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={data.name}
-                                onChange={(e) => setData('name', e.target.value)}
-                            />
+                    {/* Header sombre avec avatar actuel */}
+                    <div id="jl-edit-rec-header">
+                        <img
+                            id="jl-edit-rec-avatar"
+                            src={
+                                user.employee?.photo
+                                    ? `/storage/photos/${user.employee.photo}`
+                                    : user.photo
+                                        ? `/storage/photos/${user.photo}`
+                                        : '/images.png'
+                            }
+                            alt="profil"
+                        />
+                        <div id="jl-edit-rec-header-info">
+                            <h2 id="jl-edit-rec-title">Modifier votre profil</h2>
+                            <p id="jl-edit-rec-subtitle">
+                                {user.name} {user.prenom}
+                            </p>
                         </div>
+                    </div>
 
-                        {/* Prénom */}
-                        <div className="col-md-6 mb-3">
-                            <label className="form-label">Prénom</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={data.prenom}
-                                onChange={(e) => setData('prenom', e.target.value)}
-                            />
-                        </div>
+                    <form
+                        id="jl-edit-rec-form"
+                        onSubmit={handleSubmit}
+                        encType="multipart/form-data"
+                    >
 
-                        {/* Email */}
-                        <div className="col-md-6 mb-3">
-                            <label className="form-label">Email</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                value={data.email}
-                                onChange={(e) => setData('email', e.target.value)}
-                            />
-                        </div>
-
-                        {/* Téléphone */}
-                        <div className="col-md-6 mb-3">
-                            <label className="form-label">Téléphone</label>
-                            <input
-                                type="tel"
-                                className="form-control"
-                                value={data.tel}
-                                onChange={(e) => setData('tel', e.target.value)}
-                            />
-                        </div>
-
-                        {/* Filière */}
-                        <div className="col-md-6 mb-3">
-                            <label className="form-label">Filière</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={data.filiere}
-                                onChange={(e) => setData('filiere', e.target.value)}
-                            />
-                        </div>
-
-                        {/* Niveau */}
-                        <div className="col-md-6 mb-3">
-                            <label className="form-label">Niveau d'étude</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={data.niveau_etude}
-                                onChange={(e) => setData('niveau_etude', e.target.value)}
-                            />
-                        </div>
-
-                        {/* Photo actuelle */}
-                        <div className="col-md-12 mb-3 text-center">
-
-                            {user.employee?.photo ? (
-                                <img
-                                    src={`/storage/photos/${user.employee.photo}`}
-                                    className="rounded-circle mb-3"
-                                    width="120"
-                                    alt="profile"
+                        {/* Nom + Prénom */}
+                        <div className="jl-field-row">
+                            <div className="jl-field">
+                                <label className="jl-label">Nom</label>
+                                <input
+                                    type="text"
+                                    className="jl-input"
+                                    value={data.name}
+                                    onChange={(e) => setData('name', e.target.value)}
+                                    placeholder="Votre nom"
                                 />
-                            ) : (
-                                <img
-                                src={user.photo ? `/storage/photos/${user.photo}` : '/images.png'}
-                                className="img-fluid rounded-circle border"
-                                width="150"
-                                alt="profil"
-                            />
-                            )}
-
-                            <br />
-
-                            <label className="form-label">Photo de profil</label>
-                            <input
-                                type="file"
-                                className="form-control"
-                                onChange={(e) => setData('photo', e.target.files[0])}
-                            />
-
+                            </div>
+                            <div className="jl-field">
+                                <label className="jl-label">Prénom</label>
+                                <input
+                                    type="text"
+                                    className="jl-input"
+                                    value={data.prenom}
+                                    onChange={(e) => setData('prenom', e.target.value)}
+                                    placeholder="Votre prénom"
+                                />
+                            </div>
                         </div>
 
-                    </div>
+                        {/* Email + Téléphone */}
+                        <div className="jl-field-row">
+                            <div className="jl-field">
+                                <label className="jl-label">Email</label>
+                                <input
+                                    type="email"
+                                    className="jl-input"
+                                    value={data.email}
+                                    onChange={(e) => setData('email', e.target.value)}
+                                    placeholder="votre@email.com"
+                                />
+                            </div>
+                            <div className="jl-field">
+                                <label className="jl-label">Téléphone</label>
+                                <input
+                                    type="tel"
+                                    className="jl-input"
+                                    value={data.tel}
+                                    onChange={(e) => setData('tel', e.target.value)}
+                                    placeholder="06XXXXXXXX"
+                                />
+                            </div>
+                        </div>
 
-                    {/* Buttons */}
-                    <div className="mt-3 d-flex gap-2">
+                        {/* Filière + Niveau d'étude */}
+                        <div className="jl-field-row">
+                            <div className="jl-field">
+                                <label className="jl-label">Filière</label>
+                                <input
+                                    type="text"
+                                    className="jl-input"
+                                    value={data.filiere}
+                                    onChange={(e) => setData('filiere', e.target.value)}
+                                    placeholder="Ex: Informatique"
+                                />
+                            </div>
+                            <div className="jl-field">
+                                <label className="jl-label">Niveau d'étude</label>
+                                <input
+                                    type="text"
+                                    className="jl-input"
+                                    value={data.niveau_etude}
+                                    onChange={(e) => setData('niveau_etude', e.target.value)}
+                                    placeholder="Ex: Bac+3, Master..."
+                                />
+                            </div>
+                        </div>
 
-                        <button type="submit" className="btn btn-primary" disabled={processing}>
-                            Modifier
-                        </button>
+                        {/* Section photo */}
+                        <div id="jl-edit-rec-photo-section">
+                            <img
+                                id="jl-edit-rec-photo-preview"
+                                src={
+                                    user.employee?.photo
+                                        ? `/storage/photos/${user.employee.photo}`
+                                        : user.photo
+                                            ? `/storage/photos/${user.photo}`
+                                            : '/images.png'
+                                }
+                                alt="photo actuelle"
+                            />
+                            <div id="jl-edit-rec-photo-info">
+                                <span id="jl-edit-rec-photo-label">Photo de profil</span>
+                                <div className="jl-file-wrap">
+                                    <input
+                                        type="file"
+                                        className="jl-file-input"
+                                        onChange={(e) => setData('photo', e.target.files[0])}
+                                    />
+                                    <span className="jl-file-btn">
+                                        <i className="bi bi-upload"></i>
+                                        Changer la photo
+                                    </span>
+                                    <span className="jl-file-name">
+                                        {data.photo ? data.photo.name : 'Aucun fichier'}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
 
-                        <Link href="/profile/employee" className="btn btn-secondary">
-                            Annuler
-                        </Link>
+                        {/* Actions */}
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                            <button
+                                id="jl-edit-rec-submit"
+                                type="submit"
+                                disabled={processing}
+                                style={{ flex: 1 }}
+                            >
+                                <i className="bi bi-check-lg"></i>
+                                {processing ? 'Enregistrement...' : 'Enregistrer les modifications'}
+                            </button>
+                            <Link
+                                href="/profile/employee"
+                                style={{
+                                    height: '46px',
+                                    padding: '0 20px',
+                                    background: '#f1f5f9',
+                                    color: '#475569',
+                                    border: '1px solid #e2e8f0',
+                                    borderRadius: '8px',
+                                    fontSize: '0.9rem',
+                                    fontWeight: '600',
+                                    textDecoration: 'none',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '7px',
+                                    fontFamily: "'Segoe UI', sans-serif",
+                                    transition: 'background 0.2s',
+                                }}
+                            >
+                                <i className="bi bi-x-lg"></i>
+                                Annuler
+                            </Link>
+                        </div>
 
-                    </div>
-
-                </form>
-
+                    </form>
+                </div>
             </div>
-
         </div>
-        </>
     );
 };
 
