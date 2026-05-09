@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from '../Menu';
 import { Link, router } from '@inertiajs/react';
 import { route } from 'ziggy-js';
+import '../../../css/profile/profile-emplyee.css';
 
 const Profile = ({ user }) => {
 
@@ -11,94 +12,113 @@ const Profile = ({ user }) => {
         }
     };
 
+    const etatClass = user.etat === 'profil validé'
+        ? 'jl-etat-active'
+        : 'jl-etat-pending';
+
     return (
-        <div>
+        <div id="jl-profile-rec-page">
             <Menu />
 
-            <div className="container mt-5">
+            <div id="jl-profile-rec-body">
+                <div id="jl-profile-rec-card">
 
-                <div className="card shadow-lg p-4">
-
-                    <div className="row align-items-center">
-
-                        {/* PHOTO */}
-                        <div className="col-md-3 text-center">
+                    {/* Bannière sombre : avatar + nom + état */}
+                    <div id="jl-profile-rec-banner">
+                        <div id="jl-profile-rec-avatar-wrap">
                             <img
+                                id="jl-profile-rec-avatar"
                                 src={user.photo ? `/storage/photos/${user.photo}` : '/images.png'}
-                                className="img-fluid rounded-circle border"
-                                width="150"
                                 alt="profil"
                             />
                         </div>
-
-                        {/* INFOS */}
-                        <div className="col-md-9">
-
-                            <h3 className="mb-3">
+                        <div id="jl-profile-rec-info">
+                            <h3 id="jl-profile-rec-name">
                                 {user.name} {user.prenom}
                             </h3>
-
-                            <p><strong>Email :</strong> {user.email}</p>
-                            <p><strong>Rôle :</strong> {user.role}</p>
-
-                            <p><strong>Téléphone :</strong> {user.tel}</p>
-                            <p><strong>Filière :</strong> {user.employee?.filiere}</p>
-                            <p><strong>Niveau :</strong> {user.employee?.niveau_etude}</p>
-
-                            <span className="badge bg-info">
+                            <p id="jl-profile-rec-role">{user.role}</p>
+                            <span className={`jl-profile-rec-etat ${etatClass}`}>
                                 {user.etat}
                             </span>
-
                         </div>
-
                     </div>
 
-                    <hr />
+                    {/* Détails */}
+                    <div id="jl-profile-rec-details">
+                        <div className="jl-profile-rec-detail-item">
+                            <span className="jl-profile-rec-detail-label">Email</span>
+                            <span className="jl-profile-rec-detail-value">{user.email}</span>
+                        </div>
+                        <div className="jl-profile-rec-detail-item">
+                            <span className="jl-profile-rec-detail-label">Rôle</span>
+                            <span className="jl-profile-rec-detail-value">{user.role}</span>
+                        </div>
+                        <div className="jl-profile-rec-detail-item">
+                            <span className="jl-profile-rec-detail-label">Téléphone</span>
+                            <span className="jl-profile-rec-detail-value">{user.tel || '—'}</span>
+                        </div>
+                        <div className="jl-profile-rec-detail-item">
+                            <span className="jl-profile-rec-detail-label">Filière</span>
+                            <span className="jl-profile-rec-detail-value">
+                                {user.employee?.filiere || '—'}
+                            </span>
+                        </div>
+                        <div className="jl-profile-rec-detail-item">
+                            <span className="jl-profile-rec-detail-label">Niveau d'étude</span>
+                            <span className="jl-profile-rec-detail-value">
+                                {user.employee?.niveau_etude || '—'}
+                            </span>
+                        </div>
+                    </div>
 
-                    {/* ACTIONS */}
-                    <div className="d-flex gap-2 flex-wrap">
+                    {/* Alerte compte non validé */}
+                    {user.etat !== 'profil validé' && (
+                        <div id="jl-profile-rec-pending-alert">
+                            <i className="bi bi-exclamation-triangle-fill"></i>
+                            Vous ne pouvez pas utiliser toutes les fonctionnalités tant que votre compte n'est pas validé.
+                        </div>
+                    )}
 
-                        <Link href="/profile/employee/edit" className="btn btn-warning">
+                    {/* Actions */}
+                    <div id="jl-profile-rec-actions">
+
+                        <Link href="/profile/employee/edit" className="jl-rec-btn jl-rec-btn-edit">
+                            <i className="bi bi-pencil-fill"></i>
                             Modifier Profil
                         </Link>
 
-                        {user.etat !== 'profil validé' && (
-                            <div className="alert alert-warning">
-                                Vous ne pouvez pas créer des offres tant que votre compte n'est pas validé
-                            </div>
-                        )}
-
                         {user.etat === 'profil validé' && (
                             <>
-                                <Link href={route('publications.create')} className="btn btn-secondary">
+                                <Link href={route('publications.create')} className="jl-rec-btn jl-rec-btn-ghost">
+                                    <i className="bi bi-pencil-square"></i>
                                     Créer un poste
                                 </Link>
-
-                                <Link href={route('publications.index')} className="btn btn-dark">
+                                <Link href={route('publications.index')} className="jl-rec-btn jl-rec-btn-ghost">
+                                    <i className="bi bi-file-earmark-post"></i>
                                     Mes postes
                                 </Link>
-
-                                <Link href={route('candidature.index')} className="btn btn-success">
+                                <Link href={route('candidature.index')} className="jl-rec-btn jl-rec-btn-candidatures-emp">
+                                    <i className="bi bi-briefcase-fill"></i>
                                     Mes Candidatures
                                 </Link>
                             </>
                         )}
 
-                        <Link href={route('sauvegarde.index')} className="btn btn-primary">
+                        <Link href={route('sauvegarde.index')} className="jl-rec-btn jl-rec-btn-save">
+                            <i className="bi bi-bookmark-fill"></i>
                             Sauvegardes
                         </Link>
 
                         <button
-                            className="btn btn-danger"
+                            className="jl-rec-btn jl-rec-btn-delete"
                             onClick={handleDelete}
                         >
+                            <i className="bi bi-trash-fill"></i>
                             Supprimer mon compte
                         </button>
 
                     </div>
-
                 </div>
-
             </div>
         </div>
     );

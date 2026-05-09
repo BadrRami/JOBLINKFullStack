@@ -1,0 +1,370 @@
+/* =========================================
+   profile-recruteur.css — JobLink.ma
+   Style : Dark Corporate + Blue Accent
+   Page profil recruteur
+   ========================================= */
+
+/* =========================================
+   PAGE
+   ========================================= */
+#jl-profile-rec-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   BODY
+   ========================================= */
+#jl-profile-rec-body {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 16px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* =========================================
+   FLASH
+   ========================================= */
+.jl-flash {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.jl-flash::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.jl-flash-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+}
+.jl-flash-success::before { background: #22c55e; }
+
+/* =========================================
+   CARD
+   ========================================= */
+#jl-profile-rec-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+/* =========================================
+   BANNER + AVATAR
+   ========================================= */
+#jl-profile-rec-banner {
+  background: #0f172a;
+  padding: 28px 32px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+#jl-profile-rec-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+#jl-profile-rec-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+#jl-profile-rec-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid hsl(220, 89.87%, 46.25%);
+  box-shadow: 0 0 0 4px hsla(220, 89.87%, 46.25%, 0.20),
+              0 4px 16px rgba(0, 0, 0, 0.30);
+  display: block;
+}
+
+/* Indicateur en ligne */
+#jl-profile-rec-avatar-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; right: 4px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid #0f172a;
+}
+
+#jl-profile-rec-info {
+  flex: 1;
+  min-width: 0;
+}
+
+#jl-profile-rec-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+#jl-profile-rec-role {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 0 0 10px;
+}
+
+/* Badge état */
+.jl-profile-rec-etat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.jl-profile-rec-etat::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.jl-etat-active {
+  background: hsla(220, 89.87%, 46.25%, 0.18);
+  color: hsl(220, 89.87%, 75%);
+  border: 1px solid hsla(220, 89.87%, 46.25%, 0.30);
+}
+.jl-etat-active::before { background: hsl(220, 89.87%, 65%); }
+
+.jl-etat-pending {
+  background: rgba(234, 179, 8, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(234, 179, 8, 0.30);
+}
+.jl-etat-pending::before { background: #fbbf24; }
+
+/* =========================================
+   INFOS DÉTAIL
+   ========================================= */
+#jl-profile-rec-details {
+  padding: 22px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.jl-profile-rec-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jl-profile-rec-detail-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.jl-profile-rec-detail-value {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* =========================================
+   ALERTE EN ATTENTE
+   ========================================= */
+#jl-profile-rec-pending-alert {
+  margin: 20px 32px;
+  padding: 12px 16px;
+  background: #fefce8;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: #a16207;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+#jl-profile-rec-pending-alert i {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* =========================================
+   ACTIONS
+   ========================================= */
+#jl-profile-rec-actions {
+  padding: 20px 32px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Base bouton */
+.jl-rec-btn {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  transition: background 0.18s ease,
+              color 0.18s ease,
+              border-color 0.18s ease,
+              box-shadow 0.18s ease,
+              transform 0.18s ease;
+  white-space: nowrap;
+}
+
+/* Modifier profil — jaune */
+.jl-rec-btn-edit {
+  background: #fefce8;
+  color: #a16207;
+  border-color: #fde68a;
+}
+.jl-rec-btn-edit:hover {
+  background: #eab308;
+  color: #fff;
+  border-color: #eab308;
+  box-shadow: 0 3px 10px rgba(234,179,8,.30);
+}
+
+/* Associer entreprise — bleu clair */
+.jl-rec-btn-entreprise {
+  background: hsl(220, 89.87%, 96%);
+  color: hsl(220, 89.87%, 40%);
+  border-color: hsla(220, 89.87%, 46.25%, 0.25);
+}
+.jl-rec-btn-entreprise:hover {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #fff;
+  border-color: hsl(220, 89.87%, 46.25%);
+  box-shadow: 0 3px 10px hsla(220,89.87%,46.25%,.28);
+}
+
+/* Mes Offres — vert */
+.jl-rec-btn-offres {
+  background: #f0fdf4;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+.jl-rec-btn-offres:hover {
+  background: #22c55e;
+  color: #fff;
+  border-color: #22c55e;
+  box-shadow: 0 3px 10px rgba(34,197,94,.28);
+}
+
+/* Créer offre / candidatures — bleu plein */
+.jl-rec-btn-primary {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-color: hsl(220, 89.87%, 46.25%);
+}
+.jl-rec-btn-primary:hover {
+  background: hsl(220, 89.87%, 36%);
+  border-color: hsl(220, 89.87%, 36%);
+  box-shadow: 0 3px 10px hsla(220,89.87%,46.25%,.32);
+  transform: translateY(-1px);
+}
+
+/* Créer post / mes postes — ghost sombre */
+.jl-rec-btn-ghost {
+  background: #f1f5f9;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+.jl-rec-btn-ghost:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Supprimer — danger */
+.jl-rec-btn-delete {
+  background: transparent;
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.25);
+  margin-left: auto;
+}
+.jl-rec-btn-delete:hover {
+  background: #fef2f2;
+  border-color: rgba(220, 38, 38, 0.50);
+}
+
+/* Sauvegardes — bleu */
+.jl-rec-btn-save {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-color: hsl(220, 89.87%, 46.25%);
+}
+.jl-rec-btn-save:hover {
+  background: hsl(220, 89.87%, 36%);
+  border-color: hsl(220, 89.87%, 36%);
+  box-shadow: 0 3px 10px hsla(220,89.87%,46.25%,.32);
+  transform: translateY(-1px);
+}
+
+/* Mes Candidatures — vert */
+.jl-rec-btn-candidatures-emp {
+  background: #f0fdf4;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+.jl-rec-btn-candidatures-emp:hover {
+  background: #22c55e;
+  color: #ffffff;
+  border-color: #22c55e;
+  box-shadow: 0 3px 10px rgba(34,197,94,.28);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 600px) {
+  #jl-profile-rec-banner   { padding: 22px 18px 20px; }
+  #jl-profile-rec-details  { grid-template-columns: 1fr; padding: 18px; }
+  #jl-profile-rec-actions  { padding: 16px 18px 20px; }
+  #jl-profile-rec-pending-alert { margin: 16px 18px; }
+
+  .jl-rec-btn-delete { margin-left: 0; }
+}
