@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from '../../Menu';
 import { router } from '@inertiajs/react';
 import Offre from './Offre';
+import '../../../../css/sauvegardes.css';
 
 const Liste = ({ sauvegardes, flash }) => {
 
@@ -12,30 +13,28 @@ const Liste = ({ sauvegardes, flash }) => {
     };
 
     return (
-        <div>
+        <div id="jl-sauv-page">
             <Menu />
 
-            <div className="container mt-4">
+            <div id="jl-sauv-container">
 
-                {/* Message succès */}
+                <h1 id="jl-sauv-heading">Mes Sauvegardes</h1>
+
                 {flash?.success && (
-                    <div className="alert alert-success">
-                        {flash.success}
-                    </div>
+                    <div className="jl-flash jl-flash-success">{flash.success}</div>
                 )}
 
-                {/* Liste vide */}
                 {sauvegardes.length === 0 ? (
-                    <p className="text-center mt-5">
-                        Vous n'avez aucune offre sauvegardée.
-                    </p>
+                    <p id="jl-sauv-empty">Vous n'avez aucune offre sauvegardée.</p>
                 ) : (
-                    <div className="row row-cols-1 row-cols-md-3 g-4">
-
+                    <div id="jl-sauv-grid">
                         {sauvegardes.map((sauvegarde) => (
-                            <Offre sauvegarde={sauvegarde} handleDelete={handleDelete}/>
+                            <Offre
+                                key={sauvegarde.id}
+                                sauvegarde={sauvegarde}
+                                handleDelete={handleDelete}
+                            />
                         ))}
-
                     </div>
                 )}
 
