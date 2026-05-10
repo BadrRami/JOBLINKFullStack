@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Link } from '@inertiajs/react';
 import Menu from '../Menu';
 import '../../../css/profile/edit-profile-recruteur.css';
 
 const EditProfile = ({ user }) => {
 
-    const { data, setData, put, processing } = useForm({
+    const { data, setData, put, processing, errors } = useForm({
         name: user.name || '',
         prenom: user.prenom || '',
         email: user.email || '',
-        tel: user.employee?.tel || '',
+        tel: user.tel || '',
         filiere: user.employee?.filiere || '',
         niveau_etude: user.employee?.niveau_etude || '',
         photo: null,
+        gender: user.gender || '',
+        birth_date: user.birth_date || '',
     });
+
+    // ✅ useState ajouté — manquait dans l'original
+    const [preview, setPreview] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (
+            !data.name || !data.prenom || !data.email ||
+            !data.tel || !data.filiere || !data.niveau_etude ||
+            !data.gender || !data.birth_date
+        ) {
+            alert('Veuillez remplir tous les champs');
+        }
         put(route('profile.employee.update', { forceFormData: true }));
     };
+
+    const photoSrc = preview
+        || (user.employee?.photo
+            ? `/storage/photos/${user.employee.photo}`
+            : user.photo
+                ? `/storage/photos/${user.photo}`
+                : '/images.png');
 
     return (
         <div id="jl-edit-rec-page">
@@ -31,13 +50,7 @@ const EditProfile = ({ user }) => {
                     <div id="jl-edit-rec-header">
                         <img
                             id="jl-edit-rec-avatar"
-                            src={
-                                user.employee?.photo
-                                    ? `/storage/photos/${user.employee.photo}`
-                                    : user.photo
-                                        ? `/storage/photos/${user.photo}`
-                                        : '/images.png'
-                            }
+                            src={photoSrc}
                             alt="profil"
                         />
                         <div id="jl-edit-rec-header-info">
@@ -65,6 +78,8 @@ const EditProfile = ({ user }) => {
                                     onChange={(e) => setData('name', e.target.value)}
                                     placeholder="Votre nom"
                                 />
+                                {/* ✅ error à l'intérieur du jl-field */}
+                                {errors.name && <span className="jl-error">{errors.name}</span>}
                             </div>
                             <div className="jl-field">
                                 <label className="jl-label">Prénom</label>
@@ -75,6 +90,7 @@ const EditProfile = ({ user }) => {
                                     onChange={(e) => setData('prenom', e.target.value)}
                                     placeholder="Votre prénom"
                                 />
+                                {errors.prenom && <span className="jl-error">{errors.prenom}</span>}
                             </div>
                         </div>
 
@@ -89,6 +105,7 @@ const EditProfile = ({ user }) => {
                                     onChange={(e) => setData('email', e.target.value)}
                                     placeholder="votre@email.com"
                                 />
+                                {errors.email && <span className="jl-error">{errors.email}</span>}
                             </div>
                             <div className="jl-field">
                                 <label className="jl-label">Téléphone</label>
@@ -99,6 +116,7 @@ const EditProfile = ({ user }) => {
                                     onChange={(e) => setData('tel', e.target.value)}
                                     placeholder="06XXXXXXXX"
                                 />
+                                {errors.tel && <span className="jl-error">{errors.tel}</span>}
                             </div>
                         </div>
 
@@ -113,6 +131,7 @@ const EditProfile = ({ user }) => {
                                     onChange={(e) => setData('filiere', e.target.value)}
                                     placeholder="Ex: Informatique"
                                 />
+                                {errors.filiere && <span className="jl-error">{errors.filiere}</span>}
                             </div>
                             <div className="jl-field">
                                 <label className="jl-label">Niveau d'étude</label>
@@ -123,6 +142,36 @@ const EditProfile = ({ user }) => {
                                     onChange={(e) => setData('niveau_etude', e.target.value)}
                                     placeholder="Ex: Bac+3, Master..."
                                 />
+                                {errors.niveau_etude && <span className="jl-error">{errors.niveau_etude}</span>}
+                            </div>
+                        </div>
+
+                        {/* Genre + Date de naissance */}
+                        <div className="jl-field-row">
+                            <div className="jl-field">
+                                <label className="jl-label">Genre</label>
+                                <select
+                                    className="jl-select"
+                                    name="gender"
+                                    value={data.gender}
+                                    onChange={(e) => setData('gender', e.target.value)}
+                                >
+                                    <option value="">-- Choisir --</option>
+                                    <option value="femme">Femme</option>
+                                    <option value="homme">Homme</option>
+                                </select>
+                                {errors.gender && <span className="jl-error">{errors.gender}</span>}
+                            </div>
+                            <div className="jl-field">
+                                <label className="jl-label">Date de naissance</label>
+                                <input
+                                    type="date"
+                                    className="jl-input"
+                                    name="birth_date"
+                                    value={data.birth_date}
+                                    onChange={(e) => setData('birth_date', e.target.value)}
+                                />
+                                {errors.birth_date && <span className="jl-error">{errors.birth_date}</span>}
                             </div>
                         </div>
 
@@ -130,13 +179,7 @@ const EditProfile = ({ user }) => {
                         <div id="jl-edit-rec-photo-section">
                             <img
                                 id="jl-edit-rec-photo-preview"
-                                src={
-                                    user.employee?.photo
-                                        ? `/storage/photos/${user.employee.photo}`
-                                        : user.photo
-                                            ? `/storage/photos/${user.photo}`
-                                            : '/images.png'
-                                }
+                                src={photoSrc}
                                 alt="photo actuelle"
                             />
                             <div id="jl-edit-rec-photo-info">
@@ -144,8 +187,16 @@ const EditProfile = ({ user }) => {
                                 <div className="jl-file-wrap">
                                     <input
                                         type="file"
+                                        name="photo"
+                                        accept="image/*"
                                         className="jl-file-input"
-                                        onChange={(e) => setData('photo', e.target.files[0])}
+                                        onChange={(e) => {
+                                            const file = e.target.files[0];
+                                            if (file) {
+                                                setData('photo', file);
+                                                setPreview(URL.createObjectURL(file));
+                                            }
+                                        }}
                                     />
                                     <span className="jl-file-btn">
                                         <i className="bi bi-upload"></i>

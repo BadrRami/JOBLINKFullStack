@@ -106,33 +106,50 @@ class ProfileController extends Controller
 
 
     public function updateEmployee(Request $request)
-    {
-            $user = auth()->user();
-            if ($request->hasFile('photo') && $user->employee->photo) {
-                Storage::disk('public')->delete('photos/'.$user->employee->photo);
-            }
-            $nomPhoto = null;
+{
+    $user = auth()->user();
 
-            if($request->hasFile('photo')){
-                $nomPhoto = time().'.'.$request->photo->extension();
+    $request->validate([
+        'name' => 'required',
+        'prenom' => 'required',
+        'email' => 'required',
+        'tel' => 'required',
+        'gender' => 'required',
+        'birth_date' => 'required',
+        'filiere' => 'required',
+        'niveau_etude' => 'required'
+    ]);
 
-                $request->photo->storeAs('photos', $nomPhoto, 'public');
-            }
 
-            $user->update([
-                'name' => $request->name,
-                'prenom' => $request->prenom,
-                'email' => $request->email,
-                'tel' => $request->tel,
-                'photo'=>$nomPhoto,
-                'gender' => $request->gender
-            ]);
+    $nomPhoto = $user->photo;
 
-            $user->employee->update([
-                'filiere'=>$request->filiere,
-                'niveau_etude'=>$request->niveau_etude,
-            ]);
+    if ($request->hasFile('photo')) {
 
-            return redirect()->route('profile.employee')->with('success', 'Profil employee mis à jour');
+        if ($user->photo) {
+            Storage::disk('public')->delete('photos/' . $user->photo);
+        }
+
+        $nomPhoto = time() . '.' . $request->photo->extension();
+
+        $request->photo->storeAs('photos', $nomPhoto, 'public');
     }
+
+    $user->update([
+        'name' => $request->name,
+        'prenom' => $request->prenom,
+        'email' => $request->email,
+        'tel' => $request->tel,
+        'photo' => $nomPhoto,
+        'gender' => $request->gender,
+        'birth_date' => $request->birth_date,
+    ]);
+
+    $user->employee->update([
+        'filiere' => $request->filiere,
+        'niveau_etude' => $request->niveau_etude,
+    ]);
+
+    return redirect()->route('profile.employee')
+                     ->with('success', 'Profil employee mis à jour');
+}
 }
