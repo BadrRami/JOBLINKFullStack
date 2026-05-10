@@ -13,7 +13,8 @@ class PublicationsAnalyticsController extends Controller
     {
         return Inertia::render('Admin/Dashboard/Publications/Statistique',[
             'publications' => $this->getPublications(),
-            'publicationsPerDay'=> $this->publicationsPerDay()
+            'publicationsPerDay'=> $this->publicationsPerDay(),
+            'mostLikedPublications' => $this->mostLikedPublications()
         ]);
     }
 
@@ -27,6 +28,14 @@ class PublicationsAnalyticsController extends Controller
         return Post::selectRaw('DATE(created_at) as date, COUNT(*) as total')
             ->groupBy('date')
             ->orderBy('date')
+            ->get();
+    }
+
+    private function mostLikedPublications()
+    {
+        return Post::withCount('likes')
+            ->orderByDesc('likes_count')
+            ->take(5)
             ->get();
     }
 }

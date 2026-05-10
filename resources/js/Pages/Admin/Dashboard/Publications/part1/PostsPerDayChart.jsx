@@ -1,6 +1,6 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
-import '../../../../../../css/Admin/Dashboard/publications/charts.css'
+import '../../../../../../css/Admin/Dashboard/publications/charts.css';
 
 const PostsPerDayChart = ({ data }) => {
     return (
