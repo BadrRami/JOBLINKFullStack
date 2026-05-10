@@ -22,6 +22,11 @@ class ProfileController extends Controller
         return Inertia::render('Admin/EditProfile', compact('user'));
     }
     public function updateAdmin(Request $request){
+        $request->validate([
+            'name' => 'required|min:3',
+            'prenom' => 'required|min:3',
+            'email' => 'required|email'
+        ]);
         $user = auth()->user();
         // update users table
         $user->update([

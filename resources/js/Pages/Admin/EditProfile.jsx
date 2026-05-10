@@ -24,6 +24,9 @@ const EditProfile = ({ user }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!data.email || !data.name || !data.prenom) {
+            alert('Veuillez remplir tous les champs');
+        }
         put(route('profile.admin.update', user.id));
     };
 
