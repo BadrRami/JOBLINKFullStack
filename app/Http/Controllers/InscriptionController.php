@@ -23,7 +23,7 @@ class InscriptionController extends Controller
             'nom' => 'required|string|max:255',
             'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:8',
-            'statut' => 'required|in:Recruteur,Employee,Admin'
+            'statut' => 'required|in:Recruteur,Employee'
         ]);
 
         //  Créer l'utilisateur

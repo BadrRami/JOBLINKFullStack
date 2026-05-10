@@ -15,6 +15,9 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!data.email || !data.password || !data.nom || !data.prenom || !data.statut) {
+            alert('Veuillez remplir tous les champs');
+        }
         post(route('register'));
     };
 
@@ -106,7 +109,6 @@ const Register = () => {
                                 <option value="">-- Choisir un statut --</option>
                                 <option value="Recruteur">Recruteur</option>
                                 <option value="Employee">Employée</option>
-                                <option value="Admin">Admin</option>
                             </select>
                             {errors.statut && <span className="jl-error">{errors.statut}</span>}
                         </div>
