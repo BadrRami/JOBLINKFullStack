@@ -12,6 +12,9 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!data.email || !data.password) {
+            alert('Vueillez remplir tous les champs')
+        }
         post(route('login.traiter'));
     };
 
