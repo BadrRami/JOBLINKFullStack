@@ -6,7 +6,7 @@ import '../../../../../css/Admin/Dashboard/Users/StatsPage.css';
 import Liste from './part2/Liste';
 
 export default function StatsPage(props) {
-    const { users_per_day, gender_stats, age_stats } = props;
+    const { users_per_day, gender_stats, age_stats, users } = props;
 
     return (
         <div id="jl-stats-page">
@@ -15,7 +15,7 @@ export default function StatsPage(props) {
                 <UsersPerDayChart data={users_per_day} />
                 <GenderChart data={gender_stats} />
                 <AgeChart data={age_stats} />
-                <Liste />
+                <Liste users={users}/>
             </main>
         </div>
     );

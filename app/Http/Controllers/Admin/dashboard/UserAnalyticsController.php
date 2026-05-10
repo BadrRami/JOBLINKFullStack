@@ -15,7 +15,12 @@ class UserAnalyticsController extends Controller
             'users_per_day' => $this->usersPerDay(),
             'gender_stats' => $this->genderStats(),
             'age_stats' => $this->ageStats(),
+            'users' => $this->getUsers()
         ]);
+    }
+
+    private function getUsers(){
+       return $users = User::all(); 
     }
 
     private function usersPerDay()
