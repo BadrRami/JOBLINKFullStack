@@ -1,0 +1,271 @@
+/* =========================================
+   admin-publications.css — JobLink.ma
+   Style : Dark Corporate + Blue Accent
+   Vue admin : Liste publications (tableau)
+   ========================================= */
+
+/* =========================================
+   PAGE
+   ========================================= */
+#jl-admin-pub-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   CONTAINER
+   ========================================= */
+#jl-admin-pub-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 16px 56px;
+}
+
+/* =========================================
+   HEADING
+   ========================================= */
+#jl-admin-pub-heading {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 20px;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#jl-admin-pub-heading::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, hsl(220, 89.87%, 46.25%), hsl(197, 100%, 50%));
+  flex-shrink: 0;
+}
+
+/* =========================================
+   TABLE CARD
+   ========================================= */
+#jl-admin-pub-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+}
+
+/* Ligne dégradée en haut */
+#jl-admin-pub-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+/* =========================================
+   TABLE
+   ========================================= */
+#jl-admin-pub-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.855rem;
+}
+
+/* =========================================
+   THEAD
+   ========================================= */
+#jl-admin-pub-table thead tr {
+  background: #0f172a;
+}
+
+#jl-admin-pub-table thead th {
+  padding: 13px 16px;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  border: none;
+}
+
+#jl-admin-pub-table thead th:first-child { padding-left: 20px; }
+#jl-admin-pub-table thead th:last-child  { padding-right: 20px; text-align: right; }
+
+/* =========================================
+   TBODY
+   ========================================= */
+#jl-admin-pub-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s ease;
+}
+
+#jl-admin-pub-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+#jl-admin-pub-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+#jl-admin-pub-table tbody td {
+  padding: 13px 16px;
+  vertical-align: middle;
+  color: #374151;
+}
+
+#jl-admin-pub-table tbody td:first-child { padding-left: 20px; }
+#jl-admin-pub-table tbody td:last-child  { padding-right: 20px; text-align: right; }
+
+/* =========================================
+   CELLULE MEDIA
+   ========================================= */
+.jl-pub-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #e2e8f0;
+  display: block;
+  flex-shrink: 0;
+}
+
+.jl-pub-thumb-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   CELLULE DATE
+   ========================================= */
+.jl-pub-date {
+  font-size: 0.8rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* =========================================
+   CELLULE STATS (likes / commentaires)
+   ========================================= */
+.jl-pub-stats-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.jl-pub-stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.jl-pub-stat-item i {
+  font-size: 0.78rem;
+  color: hsl(220, 89.87%, 46.25%);
+}
+
+/* =========================================
+   CELLULE ACTIONS
+   ========================================= */
+.jl-pub-actions-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.jl-pub-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.18s ease,
+              color 0.18s ease,
+              border-color 0.18s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* Voir détail */
+.jl-pub-btn-view {
+  background: hsl(220, 89.87%, 96%);
+  color: hsl(220, 89.87%, 40%);
+  border-color: hsla(220, 89.87%, 46.25%, 0.22);
+}
+.jl-pub-btn-view:hover {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-color: hsl(220, 89.87%, 46.25%);
+}
+
+/* Supprimer */
+.jl-pub-btn-delete {
+  background: #fff5f5;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+.jl-pub-btn-delete:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+#jl-admin-pub-empty {
+  text-align: center;
+  padding: 56px 24px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+#jl-admin-pub-empty i {
+  display: block;
+  font-size: 2.2rem;
+  color: #e2e8f0;
+  margin-bottom: 10px;
+}
+
+/* =========================================
+   RESPONSIVE — scroll horizontal sur mobile
+   ========================================= */
+#jl-admin-pub-card {
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  #jl-admin-pub-container { padding: 24px 12px 40px; }
+
+  #jl-admin-pub-table thead th,
+  #jl-admin-pub-table tbody td {
+    padding: 11px 12px;
+    font-size: 0.8rem;
+  }
+}
