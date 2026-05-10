@@ -1,0 +1,187 @@
+/* =========================================
+   charts.css — JobLink.ma
+   Style : Dark Corporate + Blue Accent
+   Couvre : PostsPerDayChart + tous les charts
+   ========================================= */
+
+/* =========================================
+   VARIABLES (requises par les composants chart)
+   ========================================= */
+:root {
+  --jl-blue:        hsl(220, 89.87%, 46.25%);
+  --jl-blue-dark:   hsl(220, 89.87%, 34%);
+  --jl-blue-light:  hsl(220, 89.87%, 70%);
+  --jl-blue-glow:   hsla(220, 89.87%, 46.25%, 0.15);
+  --jl-white:       #ffffff;
+  --jl-dark:        #0f172a;
+  --jl-dark-2:      #1e293b;
+  --jl-muted:       #94a3b8;
+  --jl-muted-light: #cbd5e1;
+  --jl-radius:      8px;
+  --jl-font:        'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   CHART CARD
+   ========================================= */
+.jl-chart-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.07);
+  padding: 22px 24px 18px;
+  font-family: var(--jl-font);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.jl-chart-card:hover {
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.11);
+}
+
+/* Ligne dégradée en haut */
+.jl-chart-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+/* =========================================
+   CHART TITLE
+   ========================================= */
+.jl-chart-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 18px;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jl-chart-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, hsl(220, 89.87%, 46.25%), hsl(197, 100%, 50%));
+  flex-shrink: 0;
+}
+
+/* =========================================
+   CHART SUBTITLE (optionnel)
+   ========================================= */
+.jl-chart-subtitle {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin: -12px 0 16px 12px;
+}
+
+/* =========================================
+   CHART DARK VARIANT (fond sombre)
+   ========================================= */
+.jl-chart-card-dark {
+  background: #0f172a;
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.jl-chart-card-dark .jl-chart-title {
+  color: #ffffff;
+}
+
+.jl-chart-card-dark .jl-chart-subtitle {
+  color: #64748b;
+}
+
+/* =========================================
+   STAT CHIPS (résumé au-dessus du chart)
+   ========================================= */
+.jl-chart-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.jl-chart-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jl-chart-stat-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.jl-chart-stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Variante colorée */
+.jl-chart-stat-value.blue  { color: hsl(220, 89.87%, 46.25%); }
+.jl-chart-stat-value.green { color: #22c55e; }
+.jl-chart-stat-value.amber { color: #eab308; }
+.jl-chart-stat-value.red   { color: #ef4444; }
+
+/* =========================================
+   CHART EMPTY STATE
+   ========================================= */
+.jl-chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #94a3b8;
+  font-size: 0.88rem;
+  gap: 8px;
+}
+
+.jl-chart-empty i {
+  font-size: 2rem;
+  color: #e2e8f0;
+}
+
+/* =========================================
+   GRID DE CHARTS (pour dashboard)
+   ========================================= */
+.jl-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.jl-charts-grid .jl-chart-card-full {
+  grid-column: 1 / -1;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  .jl-charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .jl-chart-card {
+    padding: 18px 16px 14px;
+  }
+}

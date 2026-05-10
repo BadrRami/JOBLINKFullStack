@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\OffresController;
 use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\AdminEntreprisesController;
 use App\Http\Controllers\Admin\dashboard\UserAnalyticsController;
+use App\Http\Controllers\Admin\dashboard\PublicationsAnalyticsController;
 // Employee Controllers
 use App\Http\Controllers\sauvegarde;
 use App\Http\Controllers\CandidatureController;
@@ -94,6 +95,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/Dashboard' , [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/admin/users/stats', [UserAnalyticsController::class, 'index'])->name('usersStatistique.index');
+    Route::get('/admin/publication/stats', [PublicationsAnalyticsController::class, 'index'])->name('publicationsStatistique.index');
+
 
 
 

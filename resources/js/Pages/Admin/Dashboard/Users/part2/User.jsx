@@ -15,8 +15,8 @@ const User = ({ user }) => {
             <td>{new Date(user.created_at).toLocaleString()}</td>
             <td>{new Date(user.updated_at).toLocaleString()}</td>
             <td>
-                <a href={route('users.edit', user.id)} className="btn btn-sm btn-primary">Modifier</a>
-                <button onClick={() => handleDelete(user.id)} className="btn btn-sm btn-danger">Supprimer</button>
+                <a href={route('users.edit', user.id)} className="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
+                <button onClick={() => handleDelete(user.id)} className="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>
             </td>
         </tr>
     );

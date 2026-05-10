@@ -23,7 +23,7 @@ const LeftBar = () => {
                     </a>
                 </li>
                 <li className="jl-leftbar-item">
-                    <a href="" className="jl-leftbar-link">
+                    <a href={route('publicationsStatistique.index')} className="jl-leftbar-link">
                         <i className="bi bi-file-earmark-post"></i>
                         <span>Publications</span>
                     </a>
