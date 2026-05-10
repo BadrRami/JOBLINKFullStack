@@ -63,44 +63,58 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
 {
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'prenom' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $id,
+        'tel' => 'required|string|max:20',
+        'etat' => 'required',
+        'gender' => 'required',
+        'birth_date' => 'required|date',
+        'photo' => 'nullable|image'
+    ]);
+
     $user = User::findOrFail($id);
 
     $data = [
-        'name'   => $request->name,
+        'name' => $request->name,
         'prenom' => $request->prenom,
-        'email'  => $request->email,
-        'tel'    => $request->tel,
-        'etat'   => $request->etat,
-        'gender' => $request->gender
+        'email' => $request->email,
+        'tel' => $request->tel,
+        'etat' => $request->etat,
+        'gender' => $request->gender,
+        'birth_date' => $request->birth_date,
     ];
 
-
     if ($request->hasFile('photo')) {
+
         $nomPhoto = time() . '.' . $request->photo->extension();
+
         $request->photo->storeAs('photos', $nomPhoto, 'public');
 
-        $data['photo'] = $nomPhoto; 
+        $data['photo'] = $nomPhoto;
     }
 
     $user->update($data);
 
-    // Recruteur
     if ($user->role === 'Recruteur' && $user->recruteur) {
+
         $user->recruteur->update([
             'poste' => $request->poste,
             'entreprise_id' => $request->entreprise,
         ]);
     }
 
-    // Employee
     if ($user->role === 'Employee' && $user->employee) {
+
         $user->employee->update([
             'filiere' => $request->filiere,
             'niveau_etude' => $request->niveau_etude,
         ]);
     }
 
-    return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour');
+    return redirect()->route('usersStatistique.index')
+                     ->with('success', 'Utilisateur mis à jour');
 }
 
     /**
