@@ -8,6 +8,7 @@ use App\Models\Recruteur;
 use App\Models\Employee;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\RecruteurEditProfil;
 class ProfileController extends Controller
 {
 
@@ -55,40 +56,45 @@ class ProfileController extends Controller
         return Inertia::render('Recruteur/EditProfile', compact('user'));
     }
     
-    public function updateRecruteur(Request $request)
-    {
-        $user = auth()->user();
-        
-        if ($request->hasFile('photo') && $user->recruteur->photo) {
-            Storage::disk('public')->delete('photos/'.$user->recruteur->photo);
+    public function updateRecruteur(RecruteurEditProfil $request)
+{
+    $user = auth()->user();
+
+    $nomPhoto = $user->photo;
+
+    // supprimer ancienne photo
+    if ($request->hasFile('photo')) {
+
+        if ($user->photo) {
+            Storage::disk('public')->delete('photos/' . $user->photo);
         }
 
-        $nomPhoto = null;
+        $nomPhoto = time() . '.' . $request->photo->extension();
 
-        if($request->hasFile('photo')){
-            $nomPhoto = time().'.'.$request->photo->extension();
-
-            $request->photo->storeAs('photos', $nomPhoto, 'public');
-        }
-
-        // update users table
-        $user->update([
-            'name' => $request->name,
-            'prenom' => $request->prenom,
-            'email' => $request->email,
-            'tel'=>$request->tel,
-            'photo' => $nomPhoto,
-            'gender' => $request->gender
-        ]);
-
-        // update recruteurs table
-        $user->recruteur->update([
-            'entreprise' => $request->entreprise,
-            'poste'=>$request->poste,
-        ]);
-
-        return redirect()->route('profile.recruteur.edit')->with('success', 'Profil recruteur mis à jour');
+        $request->photo->storeAs('photos', $nomPhoto, 'public');
     }
+
+    // update users table
+    $user->update([
+        'name' => $request->name,
+        'prenom' => $request->prenom,
+        'email' => $request->email,
+        'tel' => $request->tel,
+        'photo' => $nomPhoto,
+        'gender' => $request->gender,
+        'birth_date' => $request->birth_date,
+    ]);
+
+    // update recruteurs table
+    $user->recruteur->update([
+        'entreprise' => $request->entreprise,
+        'poste' => $request->poste,
+    ]);
+
+    return redirect()
+        ->route('profile.recruteur.edit')
+        ->with('success', 'Profil recruteur mis à jour');
+}
 
     public function showEmployee()
     {
@@ -112,11 +118,11 @@ class ProfileController extends Controller
     $request->validate([
         'name' => 'required',
         'prenom' => 'required',
-        'email' => 'required',
+        'email' => 'required|email',
         'tel' => 'required',
-        'gender' => 'required',
-        'birth_date' => 'required',
-        'filiere' => 'required',
+        'gender' => 'required|in:femme,homme',
+        'birth_date' => 'required|date',
+        'filiere' => 'required|string',
         'niveau_etude' => 'required'
     ]);
 
