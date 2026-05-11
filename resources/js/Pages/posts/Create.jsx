@@ -12,6 +12,9 @@ const Create = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!data.titre){
+            alert('Veuillez remplir le champs par un contenu');
+        }
         post(route('publications.store'), {
             forceFormData: true,
             onSuccess: () => {
