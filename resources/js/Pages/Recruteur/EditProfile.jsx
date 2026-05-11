@@ -42,11 +42,11 @@ const EditProfile = ({ user }) => {
 
             <Menu />
 
-            {flash?.success && (
-                <div className="jl-flash jl-flash-success">
-                    {flash.success}
-                </div>
-            )}
+            {flash.success && (
+                    <div id="jl-offres-flash">
+                        {flash.success}
+                    </div>
+                )}
 
             <div id="jl-edit-rec-body">
 

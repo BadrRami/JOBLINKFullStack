@@ -161,6 +161,28 @@
 .jl-error::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #dc2626; flex-shrink: 0; }
 
 
+#jl-offres-flash {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #16a34a;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+#jl-offres-flash::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+
 /* =========================================
    INPUT
    ========================================= */
