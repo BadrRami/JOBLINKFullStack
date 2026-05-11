@@ -20,16 +20,17 @@ class RecruteurEditProfil extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
-        return [
-            'name' => 'required|string|regex:/^[A-Za-z\s]+$/',
-            'prenom' => 'required|string|regex:/^[A-Za-z\s]+$/',
-            'email' => 'required|email',
-            'tel' => 'required|digits_between:8,15',
-            'genre' => 'required|in:homme,femme',
-            'poste' => 'required|string',
-            'birth_date' => 'required|date'
-        ];
-    }
+   public function rules(): array
+{
+    return [
+        'name'       => 'required|string|regex:/^[A-Za-z\s]+$/',
+        'prenom'     => 'required|string|regex:/^[A-Za-z\s]+$/',
+        'email'      => 'required|email',
+        'tel'        => 'required|digits_between:8,15',
+        'gender'     => 'required|in:homme,femme',  // ← genre → gender
+        'poste'      => 'required|string',
+        'birth_date' => 'required|date',
+        'photo'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ];
+}
 }

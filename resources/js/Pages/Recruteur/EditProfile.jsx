@@ -34,9 +34,7 @@ const EditProfile = ({ user }) => {
             return;
         }
 
-        put(route('profile.recruteur.update'), {
-            forceFormData: true,
-        });
+        put(route('profile.recruteur.update', { forceFormData: true }));
     };
 
     return (

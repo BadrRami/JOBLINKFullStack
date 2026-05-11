@@ -57,7 +57,7 @@ const Profile = ({ user }) => {
                         <div className="jl-profile-rec-detail-item">
                             <span className="jl-profile-rec-detail-label">Téléphone</span>
                             <span className="jl-profile-rec-detail-value">
-                                {user.recruteur?.tel || '—'}
+                                {user.tel || '—'}
                             </span>
                         </div>
                         <div className="jl-profile-rec-detail-item">
