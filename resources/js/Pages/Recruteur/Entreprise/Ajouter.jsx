@@ -21,7 +21,13 @@ const Ajouter = ({ domaines }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
+        if (!data.nom || !data.description || !data.tel ||
+            !data.email || !data.domaine_id || !data.adresse || 
+            !data.annee_creation || !data.site_web 
+        ) {
+            alert('Veuillez remplir tous les champs');
+            
+        }
         post(route('entrepriseRecruteur.store'), {
             forceFormData: true,
             onSuccess: () => reset(),
@@ -70,6 +76,11 @@ const Ajouter = ({ domaines }) => {
                                     value={data.nom}
                                     onChange={(e) => setData('nom', e.target.value)}
                                 />
+                                {errors.nom && (
+                                    <span className="jl-error">
+                                        {errors.nom}
+                                    </span>
+                                )}
                             </div>
                             <div className="jl-field">
                                 <label className="jl-label">Téléphone</label>
@@ -81,6 +92,11 @@ const Ajouter = ({ domaines }) => {
                                     value={data.tel}
                                     onChange={(e) => setData('tel', e.target.value)}
                                 />
+                                {errors.tel && (
+                                    <span className="jl-error">
+                                        {errors.tel}
+                                    </span>
+                                )}
                             </div>
                         </div>
 
@@ -96,6 +112,11 @@ const Ajouter = ({ domaines }) => {
                                     value={data.email}
                                     onChange={(e) => setData('email', e.target.value)}
                                 />
+                                {errors.email && (
+                                    <span className="jl-error">
+                                        {errors.email}
+                                    </span>
+                                )}
                             </div>
                             <div className="jl-field">
                                 <label className="jl-label">Domaine</label>
@@ -113,6 +134,11 @@ const Ajouter = ({ domaines }) => {
                                     ))}
                                 </select>
                             </div>
+                            {errors.domaine_id && (
+                                    <span className="jl-error">
+                                        {errors.domaine_id}
+                                    </span>
+                                )}
                         </div>
 
                         {/* Adresse + Année de création */}
@@ -127,6 +153,11 @@ const Ajouter = ({ domaines }) => {
                                     value={data.adresse}
                                     onChange={(e) => setData('adresse', e.target.value)}
                                 />
+                                {errors.adresse && (
+                                    <span className="jl-error">
+                                        {errors.adresse}
+                                    </span>
+                                )}
                             </div>
                             <div className="jl-field">
                                 <label className="jl-label">Année de création</label>
@@ -138,6 +169,11 @@ const Ajouter = ({ domaines }) => {
                                     value={data.annee_creation}
                                     onChange={(e) => setData('annee_creation', e.target.value)}
                                 />
+                                {errors.annee_creation && (
+                                    <span className="jl-error">
+                                        {errors.annee_creation}
+                                    </span>
+                                )}
                             </div>
                         </div>
 

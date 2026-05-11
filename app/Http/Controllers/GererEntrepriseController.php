@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Domaine;
 use App\Models\entreprises;
 use Inertia\Inertia;
+use App\Http\Requests\AssociationEntreprise;
 class GererEntrepriseController extends Controller
 {
     /**
@@ -30,32 +31,27 @@ class GererEntrepriseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AssociationEntreprise $request)
     {
-        $data = [
-            'nom' => $request->nom,
-            'tel' => $request->tel,
-            'email' => $request->email,
-            'domaine_id'=> $request->domaine_id,
-            'adresse' => $request->adresse,
+      $data = [
+            'nom'            => $request->nom,
+            'tel'            => $request->tel,
+            'email'          => $request->email,
+            'domaine_id'     => $request->domaine_id,
+            'adresse'        => $request->adresse,
             'annee_creation' => $request->annee_creation,
-            'site_web' => $request->site_web,
-            'description' => $request->description,
-            'logo'=> $request->logo
+            'site_web'       => $request->site_web,
+            'description'    => $request->description,
+            'logo'           => null,  // ← valeur par défaut
+            'user_id'        => auth()->id(),
         ];
 
-        // user connecté
-        $data['user_id'] = auth()->id();
-
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             $filename = time() . '.' . $request->logo->getClientOriginalExtension();
-            $request->logo->storeAs('logo',$filename,'public');
+            $request->logo->storeAs('logo', $filename, 'public');
             $data['logo'] = $filename;
         }
 
-        
-
-        // ✅ Création
         entreprises::create($data);
 
         return redirect()->route('profile.recruteur')
