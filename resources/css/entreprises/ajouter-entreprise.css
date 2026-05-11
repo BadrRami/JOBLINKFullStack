@@ -378,6 +378,16 @@
   cursor: not-allowed;
 }
 
+.jl-error {
+  font-size: 0.78rem;
+  color: #dc2626;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.jl-error::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #dc2626; flex-shrink: 0; }
+
 /* =========================================
    RESPONSIVE
    ========================================= */

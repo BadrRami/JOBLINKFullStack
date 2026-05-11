@@ -220,6 +220,11 @@ const Ajouter = ({ domaines }) => {
                                 value={data.description}
                                 onChange={(e) => setData('description', e.target.value)}
                             />
+                             {errors.description && (
+                                    <span className="jl-error">
+                                        {errors.description}
+                                    </span>
+                                )}
                         </div>
 
                         {/* Actions */}
