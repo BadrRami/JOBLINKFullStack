@@ -18,11 +18,16 @@ const CreateOffre = ({ domaines, villes }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!data.titre || !data.description || !data.type ||
+            !data.domaine_id || !data.ville_id || !data.localisation ||
+            !data.salaire || !data.etat
+        ){
+            alert('Veuillez remplire tous les champs')
+            
+        }
         post(route('offres.store'), {
             onSuccess: () => reset(),
         });
-        console.log(data);
-        console.log(errors);
     };
 
     return (
@@ -97,6 +102,7 @@ const CreateOffre = ({ domaines, villes }) => {
                                     <option value="mission">Mission</option>
                                     <option value="freelance">Freelance</option>
                                 </select>
+                                 {errors.type && <span className="jl-error">{errors.type}</span>}
                             </div>
 
                             <div className="jl-field">
@@ -112,6 +118,7 @@ const CreateOffre = ({ domaines, villes }) => {
                                         <option key={d.id} value={d.id}>{d.nom}</option>
                                     ))}
                                 </select>
+                                 {errors.domaine_id && <span className="jl-error">{errors.domaine_id}</span>}
                             </div>
                         </div>
 
@@ -130,6 +137,7 @@ const CreateOffre = ({ domaines, villes }) => {
                                         <option key={v.id} value={v.id}>{v.nom}</option>
                                     ))}
                                 </select>
+                                {errors.ville_id && <span className="jl-error">{errors.ville_id}</span>}
                             </div>
 
                             <div className="jl-field">
@@ -142,6 +150,7 @@ const CreateOffre = ({ domaines, villes }) => {
                                     onChange={(e) => setData('localisation', e.target.value)}
                                     placeholder="Ex: Quartier Maarif"
                                 />
+                                {errors.localisation && <span className="jl-error">{errors.localisation}</span>}
                             </div>
                         </div>
 
@@ -157,6 +166,7 @@ const CreateOffre = ({ domaines, villes }) => {
                                     onChange={(e) => setData('salaire', e.target.value)}
                                     placeholder="Ex: 8000"
                                 />
+                                {errors.salaire && <span className="jl-error">{errors.salaire}</span>}
                             </div>
 
                             <div className="jl-field">
@@ -170,6 +180,7 @@ const CreateOffre = ({ domaines, villes }) => {
                                     <option value="active">Active</option>
                                     <option value="inactive">Inactive</option>
                                 </select>
+                                {errors.etat && <span className="jl-error">{errors.etat}</span>}
                             </div>
                         </div>
 
