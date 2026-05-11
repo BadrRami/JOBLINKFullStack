@@ -21,54 +21,58 @@ class CandidatureController extends Controller
      * Show the form for creating a new resource.
      */
     public function create($offre_id)
-{
-    // Vérifier si déjà postulé à CETTE offre
-    $exists = Candidature::where('user_id', auth()->id())
-        ->where('offre_id', $offre_id)
-        ->exists();
+    {
+        // Vérifier si déjà postulé à CETTE offre
+        $exists = Candidature::where('user_id', auth()->id())
+            ->where('offre_id', $offre_id)
+            ->exists();
 
-    if ($exists) {
-        return redirect()->route('offres.index')
-            ->with('warning', 'Vous avez déjà postulé à cette offre');
+        if ($exists) {
+            return redirect()->route('offres.index')
+                ->with('warning', 'Vous avez déjà postulé à cette offre');
+        }
+
+        $offre = Offre::findOrFail($offre_id);
+
+        return Inertia('Candidature', [
+            'offre' => $offre
+        ]);
     }
-
-    $offre = Offre::findOrFail($offre_id);
-
-    return Inertia('Candidature', [
-        'offre' => $offre
-    ]);
-}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    // Vérifier si l'utilisateur a déjà postulé
-    $exists = Candidature::where('user_id', auth()->id())
-        ->where('offre_id', $request->offre_id)
-        ->exists();
+    {
+        $request->validate([
+            'cv' => 'required|file|mimes:pdf,doc,docx',
+            'lettre_motivation' => 'required|string'
+        ]);
+        // Vérifier si l'utilisateur a déjà postulé
+        $exists = Candidature::where('user_id', auth()->id())
+            ->where('offre_id', $request->offre_id)
+            ->exists();
 
-    if ($exists) {
+        if ($exists) {
+            return redirect()->route('offres.index')
+                ->with('warning', 'Vous avez déjà postulé à cette offre');
+        }
+
+        // Upload CV
+        $path = $request->file('cv')->store('cvs', 'public');
+
+        // Création candidature
+        Candidature::create([
+            'user_id' => auth()->id(),
+            'offre_id' => $request->offre_id,
+            'cv' => $path,
+            'lettre_motivation' => $request->lettre_motivation,
+            'etat' => 'en_attente',
+        ]);
+
         return redirect()->route('offres.index')
-            ->with('warning', 'Vous avez déjà postulé à cette offre');
+            ->with('success', 'Candidature envoyée');
     }
-
-    // Upload CV
-    $path = $request->file('cv')->store('cvs', 'public');
-
-    // Création candidature
-    Candidature::create([
-        'user_id' => auth()->id(),
-        'offre_id' => $request->offre_id,
-        'cv' => $path,
-        'lettre_motivation' => $request->lettre_motivation,
-        'etat' => 'en_attente',
-    ]);
-
-    return redirect()->route('offres.index')
-        ->with('success', 'Candidature envoyée');
-}
 
     /**
      * Display the specified resource.

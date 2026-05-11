@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Menu from './Menu';
-import { router } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import '../../css/Candidature.css';
 
 const Candidature = ({ offre }) => {
-    const [cv, setCv] = useState(null);
-    const [lettre, setLettre] = useState('');
+
+    const { data, setData, post, processing, errors } = useForm({
+        offre_id: offre.id,
+        cv: null,
+        lettre_motivation: '',
+    });
 
     const postuler = (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('offre_id', offre.id);
-        formData.append('cv', cv);
-        formData.append('lettre_motivation', lettre);
-        router.post('/candidatures', formData);
+
+        post('/candidatures', {
+            forceFormData: true,
+        });
     };
 
     return (
@@ -23,59 +26,102 @@ const Candidature = ({ offre }) => {
             <div id="jl-cand-form-body">
                 <div id="jl-cand-form-card">
 
-                    {/* Header sombre */}
                     <div id="jl-cand-form-header">
                         <div id="jl-cand-form-header-icon">
                             <i className="bi bi-briefcase-fill"></i>
                         </div>
+
                         <div>
-                            <h2 id="jl-cand-form-title">Postuler à l'offre</h2>
+                            <h2 id="jl-cand-form-title">
+                                Postuler à l'offre
+                            </h2>
+
                             {offre?.titre && (
-                                <p id="jl-cand-form-offre">{offre.titre}</p>
+                                <p id="jl-cand-form-offre">
+                                    {offre.titre}
+                                </p>
                             )}
                         </div>
                     </div>
 
-                    <form id="jl-cand-form" onSubmit={postuler}>
+                    <form id="jl-cand-form" onSubmit={postuler} >
 
                         {/* CV */}
                         <div className="jl-field">
+
                             <label className="jl-label">
                                 CV <span>*</span>
                             </label>
+
                             <div className="jl-file-wrap">
+
                                 <input
                                     type="file"
                                     className="jl-file-input"
-                                    onChange={(e) => setCv(e.target.files[0])}
+                                    accept=".pdf,.doc,.docx"
+                                    onChange={(e) =>
+                                        setData('cv', e.target.files[0])
+                                    }
                                 />
+
                                 <span className="jl-file-btn">
                                     <i className="bi bi-upload"></i>
                                     Choisir un fichier
                                 </span>
+
                                 <span className="jl-file-name">
-                                    {cv ? cv.name : 'Aucun fichier sélectionné'}
+                                    {data.cv
+                                        ? data.cv.name
+                                        : 'Aucun fichier sélectionné'}
                                 </span>
+
                             </div>
+
+                            {errors.cv && (
+                                <span className="jl-error">
+                                    {errors.cv}
+                                </span>
+                            )}
+
                         </div>
 
-                        {/* Lettre de motivation */}
+                        {/* Lettre */}
                         <div className="jl-field">
+
                             <label className="jl-label">
                                 Lettre de motivation <span>*</span>
                             </label>
+
                             <textarea
                                 className="jl-textarea"
-                                value={lettre}
-                                onChange={(e) => setLettre(e.target.value)}
+                                value={data.lettre_motivation}
+                                onChange={(e) =>
+                                    setData(
+                                        'lettre_motivation',
+                                        e.target.value
+                                    )
+                                }
                                 placeholder="Présentez-vous et expliquez pourquoi vous êtes le candidat idéal..."
                             />
+
+                            {errors.lettre_motivation && (
+                                <span className="jl-error">
+                                    {errors.lettre_motivation}
+                                </span>
+                            )}
+
                         </div>
 
-                        {/* Submit */}
-                        <button id="jl-cand-form-submit" type="submit">
+                        <button
+                            id="jl-cand-form-submit"
+                            type="submit"
+                            disabled={processing}
+                        >
                             <i className="bi bi-send-fill"></i>
-                            Envoyer ma candidature
+
+                            {processing
+                                ? 'Envoi...'
+                                : 'Envoyer ma candidature'}
                         </button>
 
                     </form>
@@ -83,6 +129,6 @@ const Candidature = ({ offre }) => {
             </div>
         </div>
     );
-}
+};
 
 export default Candidature;

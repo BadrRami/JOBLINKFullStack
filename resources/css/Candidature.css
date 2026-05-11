@@ -235,6 +235,15 @@
   color: #94a3b8;
 }
 
+.jl-error {
+  font-size: 0.78rem;
+  color: #dc2626;
+  font-weight: 500;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 /* =========================================
    SUBMIT BUTTON
    ========================================= */
