@@ -46,25 +46,25 @@ Route::middleware('auth')->group(function () {
     Route::get('/Offres', function () {
         return Inertia::render('Offres');
     })->name('offres');
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // Profile Recruteur routes
     Route::get('/profile/recruteur', [ProfileController::class, 'showRecruteur'])
         ->name('profile.recruteur')->middleware('checkRecruteur');
-
     Route::get('/profile/recruteur/edit', [ProfileController::class, 'editRecruteur'])
         ->name('profile.recruteur.edit')->middleware('checkRecruteur');
-    
     Route::put('/profile/recruteur', [ProfileController::class, 'updateRecruteur'])
         ->name('profile.recruteur.update')->middleware('checkRecruteur');
 
+    // CRUD Entreprises routes for Recruteur
     Route::get('/ajouterEntreprise', [GererEntrepriseController::class, 'create'])
         ->name('entrepriseRecruteur.create')->middleware('checkRecruteur');
     Route::post('/ajouterEntreprise', [GererEntrepriseController::class, 'store'])
-    ->name('entrepriseRecruteur.store')->middleware('checkRecruteur');
+        ->name('entrepriseRecruteur.store')->middleware('checkRecruteur');
 
     // Candidatures Reçus par recruteur
     Route::get('/candidaturesreçus',[CandidaturesController::class, 'index'])
-    ->name('candidaturesreçus.index')->middleware('checkRecruteur');
+        ->name('candidaturesreçus.index')->middleware('checkRecruteur');
 
     // CRUD Offres routes
     Route::get('/recruteur/offres', [OffreController::class, 'index'])
@@ -103,50 +103,59 @@ Route::middleware('auth')->group(function () {
     Route::post('/candidatures',[CandidatureController::class,'store'])
     ->name('candidature.store')->middleware('checkEmployee');
 
+    // CRUD Sauvegardes routes
+    Route::get('/sauvegardes', [sauvegarde::class , 'index'])
+        ->name('sauvegarde.index')->middleware('checkEmployee');
+    Route::post('/sauvegardes', [sauvegarde::class , 'add'])
+        ->name('sauvegarde.store')->middleware('checkEmployee');
+    Route::delete('/sauvegardes/{id}', [sauvegarde::class , 'delete'])
+        ->name('sauvegarde.delete')->middleware('checkEmployee');
+
 
     
     
-    Route::get('/candidature',[CandidatureController::class,'store'])->name('candidature.store');
+    //Route::get('/candidature',[CandidatureController::class,'store'])->name('candidature.store');
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Routes Admin
     // Profile Admin routes
     Route::get('/profile/admin', [ProfileController::class, 'showAdmin'])
-        ->name('profile.admin');
+        ->name('profile.admin')->middleware('checkAdminMember');
     Route::get('/profile/admin/edit', [ProfileController::class, 'editAdmin'])
-        ->name('profile.admin.edit');
+        ->name('profile.admin.edit')->middleware('checkAdminMember');
     Route::put('/profile/admin', [ProfileController::class, 'updateAdmin'])
-        ->name('profile.admin.update');
-
-
-
-
+        ->name('profile.admin.update')->middleware('checkAdminMember');
 
     // Dashboard Admin routes
-    Route::get('/Dashboard' , [DashboardController::class, 'index'])->name('dashboard');
-
-    Route::get('/admin/users/stats', [UserAnalyticsController::class, 'index'])->name('usersStatistique.index');
-    Route::get('/admin/publication/stats', [PublicationsAnalyticsController::class, 'index'])->name('publicationsStatistique.index');
-
-
-
-
-
-
+    Route::get('/Dashboard' , [DashboardController::class, 'index'])
+        ->name('dashboard')->middleware('checkAdminMember');
+    Route::get('/admin/users/stats', [UserAnalyticsController::class, 'index'])
+        ->name('usersStatistique.index')->middleware('checkAdminMember');
+    Route::get('/admin/publication/stats', [PublicationsAnalyticsController::class, 'index'])
+        ->name('publicationsStatistique.index')->middleware('checkAdminMember');
 
     // CRUD Users routes
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{id}', [UserController::class , 'update'])->name('users.update'); 
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy'); 
+    Route::get('/users', [UserController::class, 'index'])
+        ->name('users.index')->middleware('checkAdminMember');
+    Route::get('/users/{id}', [UserController::class, 'show'])
+        ->name('users.show')->middleware('checkAdminMember');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])
+        ->name('users.edit')->middleware('checkAdminMember');
+    Route::put('/users/{id}', [UserController::class , 'update'])
+        ->name('users.update')->middleware('checkAdminMember'); 
+    Route::delete('/users/{user}', [UserController::class, 'destroy'])
+        ->name('users.destroy')->middleware('checkAdminMember'); 
     
     // CRUD OFFRES ADMIN
-    Route::resource('offresAdmin', OffresController::class)->except(['show']);
-
+    Route::resource('offresAdmin', OffresController::class)
+        ->except(['show'])->middleware('checkAdminMember');
+    
     // CRUD ENTREPRISES ADMIN
     Route::resource('entrepriseAdmin', AdminEntreprisesController::class)->except(['show','create','store','edit','update'])
-    ->names([
-        'index' => 'entrepriseAdmin.index',
-        'destroy' => 'entreprise.destroy',
-    ]);
+        ->names([
+            'index' => 'entrepriseAdmin.index',
+            'destroy' => 'entreprise.destroy',
+        ])
+        ->middleware('checkAdminMember');
 
     // CRUD PUBLICATIONS ADMIN
     Route::resource('postsAdmin', PostsController::class)->except(['show']);
@@ -165,10 +174,7 @@ Route::middleware('auth')->group(function () {
     
 
 
-    // CRUD Sauvegardes routes
-    Route::get('/sauvegardes', [sauvegarde::class , 'index'])->name('sauvegarde.index');
-    Route::post('/sauvegardes', [sauvegarde::class , 'add'])->name('sauvegarde.store');
-    Route::delete('/sauvegardes/{id}', [sauvegarde::class , 'delete'])->name('sauvegarde.delete');
+    
 
 
     // Likes routes

@@ -15,6 +15,9 @@ class checkEmployee
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (auth()->check() && auth()->user()->role !== 'employee') {
+            return redirect()->route('/login')->with('error', 'Vous devez être un employé pour accéder à cette page.');
+        }
         return $next($request);
     }
 }
