@@ -46,37 +46,65 @@ Route::middleware('auth')->group(function () {
     Route::get('/Offres', function () {
         return Inertia::render('Offres');
     })->name('offres');
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     // Profile Recruteur routes
     Route::get('/profile/recruteur', [ProfileController::class, 'showRecruteur'])
-        ->name('profile.recruteur');
+        ->name('profile.recruteur')->middleware('checkRecruteur');
 
     Route::get('/profile/recruteur/edit', [ProfileController::class, 'editRecruteur'])
-        ->name('profile.recruteur.edit');
+        ->name('profile.recruteur.edit')->middleware('checkRecruteur');
     
     Route::put('/profile/recruteur', [ProfileController::class, 'updateRecruteur'])
-        ->name('profile.recruteur.update');
+        ->name('profile.recruteur.update')->middleware('checkRecruteur');
 
-    Route::get('/ajouterEntreprise', [GererEntrepriseController::class, 'create'])->name('entrepriseRecruteur.create');
-    Route::post('/ajouterEntreprise', [GererEntrepriseController::class, 'store'])->name('entrepriseRecruteur.store');
-    
+    Route::get('/ajouterEntreprise', [GererEntrepriseController::class, 'create'])
+        ->name('entrepriseRecruteur.create')->middleware('checkRecruteur');
+    Route::post('/ajouterEntreprise', [GererEntrepriseController::class, 'store'])
+    ->name('entrepriseRecruteur.store')->middleware('checkRecruteur');
+
     // Candidatures Reçus par recruteur
-    Route::get('/candidaturesreçus',[CandidaturesController::class, 'index'])->name('candidaturesreçus.index');
+    Route::get('/candidaturesreçus',[CandidaturesController::class, 'index'])
+    ->name('candidaturesreçus.index')->middleware('checkRecruteur');
 
+    // CRUD Offres routes
+    Route::get('/recruteur/offres', [OffreController::class, 'index'])
+        ->name('offresrecruteur.index')->middleware('checkRecruteur');
+    Route::get('/offres/create', [OffreController::class, 'create'])
+        ->name('offres.create')->middleware('checkRecruteur');
+    Route::post('/offres', [OffreController::class, 'store'])
+        ->name('offres.store')->middleware('checkRecruteur');
+    Route::get('/offres/{offre}/edit', [OffreController::class, 'edit'])
+        ->name('offres.edit')->middleware('checkRecruteur');
+    Route::put('/offres/{offre}', [OffreController::class, 'update'])
+        ->name('offres.update')->middleware('checkRecruteur');
+    Route::delete('/offres/{offre}', [OffreController::class, 'destroy'])
+        ->name('offres.destroy')->middleware('checkRecruteur');
+
+    // ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    
 
     // Profile Employee routes
     Route::get('/profile/employee', [ProfileController::class, 'showEmployee'])
-        ->name('profile.employee');
+        ->name('profile.employee')->middleware('checkEmployee');
 
     Route::get('/profile/employee/edit', [ProfileController::class, 'editEmployee'])
-        ->name('profile.employee.edit');
-    
+        ->name('profile.employee.edit')->middleware('checkEmployee');
+
     Route::put('/profile/employee', [ProfileController::class, 'updateEmployee'])
-        ->name('profile.employee.update');
+        ->name('profile.employee.update')->middleware('checkEmployee');
 
     // Candidatures Routes
-    Route::get('/candidatures',[CandidatureController::class,'index'])->name('candidature.index');
-    Route::get('/candidatures/create/{offre}',[CandidatureController::class,'create'])->name('candidature.create');
-    Route::post('/candidatures',[CandidatureController::class,'store'])->name('candidature.store');
+    Route::get('/candidatures',[CandidatureController::class,'index'])
+    ->name('candidature.index')->middleware('checkEmployee');
+    Route::get('/candidatures/create/{offre}',[CandidatureController::class,'create'])
+    ->name('candidature.create')->middleware('checkEmployee');
+    Route::post('/candidatures',[CandidatureController::class,'store'])
+    ->name('candidature.store')->middleware('checkEmployee');
+
+
+    
     
     Route::get('/candidature',[CandidatureController::class,'store'])->name('candidature.store');
     // Profile Admin routes
@@ -134,13 +162,7 @@ Route::middleware('auth')->group(function () {
     // Logout route
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    // CRUD Offres routes
-    Route::get('/recruteur/offres', [OffreController::class, 'index'])->name('offresrecruteur.index');
-    Route::get('/offres/create', [OffreController::class, 'create'])->name('offres.create');
-    Route::post('/offres', [OffreController::class, 'store'])->name('offres.store');
-    Route::get('/offres/{offre}/edit', [OffreController::class, 'edit'])->name('offres.edit');
-    Route::put('/offres/{offre}', [OffreController::class, 'update'])->name('offres.update');
-    Route::delete('/offres/{offre}', [OffreController::class, 'destroy'])->name('offres.destroy');
+    
 
 
     // CRUD Sauvegardes routes
