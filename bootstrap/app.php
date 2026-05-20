@@ -11,13 +11,22 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->web(append: [
-            \App\Http\Middleware\HandleInertiaRequests::class,
-            \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
-        ]);
+    // Middlewares globaux (pour toutes les requêtes web)
+    $middleware->web(append: [
+        \App\Http\Middleware\HandleInertiaRequests::class,
+        \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+    ]);
+
+    // Aliases (pour utiliser sur des routes spécifiques)
+    $middleware->alias([
+        'checkAdminMember' => \App\Http\Middleware\CheckAdminMember::class,
+        'checkRecruteur'   => \App\Http\Middleware\CheckRecruteur::class,
+        'checkEmployee'    => \App\Http\Middleware\CheckEmployee::class,
+    ]);
+})
 
         //
-    })
+    
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
