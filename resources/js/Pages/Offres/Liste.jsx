@@ -10,6 +10,7 @@ const Liste = ({ offres }) => {
     return (
         <div id="jl-offres-page">
             <Menu />
+
             <div id="jl-offres-feed">
 
                 <h1 id="jl-offres-heading">Liste des Offres</h1>
@@ -20,13 +21,21 @@ const Liste = ({ offres }) => {
                     </div>
                 )}
 
-                {offres.map((offre) => (
+                {offres.data.map((offre) => (
                     <Offre key={offre.id} offre={offre} />
                 ))}
 
             </div>
+            {offres.links?.map((link, index) => (
+            <button
+                    key={index}
+                    disabled={!link.url}
+                    dangerouslySetInnerHTML={{ __html: link.label }}
+                    onClick={() => Inertia.visit(link.url)}
+                    className={`jl-pagination-btn ${link.active ? 'active' : ''}`}
+                />
+            ))}
         </div>
     );
-}
-
+};
 export default Liste;

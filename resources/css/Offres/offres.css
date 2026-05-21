@@ -261,6 +261,67 @@
 }
 
 /* =========================================
+   Pagination — JobLink.ma
+   ========================================= */
+
+.jl-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 24px 0 8px;
+  flex-wrap: wrap;
+}
+
+.jl-pagination-btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease,
+              color 0.18s ease,
+              border-color 0.18s ease,
+              box-shadow 0.18s ease;
+  user-select: none;
+}
+
+/* Hover */
+.jl-pagination-btn:hover:not(:disabled):not(.active) {
+  background: hsl(220, 89.87%, 96%);
+  color: hsl(220, 89.87%, 40%);
+  border-color: hsla(220, 89.87%, 46.25%, 0.30);
+}
+
+/* Page active */
+.jl-pagination-btn.active {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-color: hsl(220, 89.87%, 46.25%);
+  font-weight: 700;
+  box-shadow: 0 3px 10px hsla(220, 89.87%, 46.25%, 0.28);
+  cursor: default;
+}
+
+/* Désactivé (flèches précédent/suivant aux extrémités) */
+.jl-pagination-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #f8fafc;
+  color: #94a3b8;
+  border-color: #e2e8f0;
+}
+
+/* =========================================
    RESPONSIVE
    ========================================= */
 @media (max-width: 520px) {

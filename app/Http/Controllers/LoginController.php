@@ -34,20 +34,20 @@ class LoginController extends Controller
             if (Auth::user()->role === 'Recruteur') {
                 $user = Auth::user();
 
-        Mail::to($user->email)->send(new WelcomeMail($user));
-        Log::info("Email envoyé à ".$user->email);
+        // Mail::to($user->email)->send(new WelcomeMail($user));
+        // Log::info("Email envoyé à ".$user->email);
                 return redirect()->route('profile.recruteur');
             }else if(Auth::user()->role === 'Admin'){
                 $user = Auth::user();
 
-        Mail::to($user->email)->send(new WelcomeMail($user));
-        Log::info("Email envoyé à ".$user->email);
+        // Mail::to($user->email)->send(new WelcomeMail($user));
+        // Log::info("Email envoyé à ".$user->email);
                 return redirect()->route('profile.admin');
             } else {
                 $user = Auth::user();
 
-        Mail::to($user->email)->send(new WelcomeMail($user));
-        Log::info("Email envoyé à ".$user->email);
+        // Mail::to($user->email)->send(new WelcomeMail($user));
+        // Log::info("Email envoyé à ".$user->email);
                 return redirect()->route('profile.employee');
             }
         }

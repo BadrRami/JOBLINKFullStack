@@ -9,7 +9,7 @@ class OffreControlleur extends Controller
 {
     public function index()
     {
-        $offres = Offre::all();
+        $offres = Offre::paginate(10); 
         return Inertia::render('Offres/Liste', compact('offres'));
     }
 }
