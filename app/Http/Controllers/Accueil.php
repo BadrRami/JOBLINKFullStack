@@ -12,7 +12,7 @@ class Accueil extends Controller
 {
     public function index(){
         $offres = Offre::all()->shuffle();
-        $posts = Post::with(['comments.user', 'likes'])->get()->shuffle();
+        $posts = Post::with(['user', 'comments.user', 'likes'])->get()->shuffle();
 
         $feed = collect();
 
