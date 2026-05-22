@@ -13,7 +13,7 @@ class CheckEmployee
             return redirect()->route('login');
         }
 
-        if (auth()->user()->role !== 'employee') {
+        if (auth()->user()->role !== 'Employee') {
             abort(403);
         }
 

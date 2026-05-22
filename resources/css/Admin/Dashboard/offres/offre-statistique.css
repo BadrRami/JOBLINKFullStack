@@ -1,0 +1,234 @@
+/* =========================================
+   offre-statistique.css — JobLink.ma
+   Style : Dark Corporate + Blue Accent
+   Couvre : OffreStatistique layout +
+            Liste + Offre (tableau admin)
+   ========================================= */
+
+/* =========================================
+   PAGE LAYOUT (sidebar + content)
+   ========================================= */
+#jl-stats-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+#jl-stats-content {
+  flex: 1;
+  padding: 32px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   TABLE SECTION HEADING
+   ========================================= */
+#jl-offre-table-heading {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 14px;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#jl-offre-table-heading::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 17px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, hsl(220, 89.87%, 46.25%), hsl(197, 100%, 50%));
+  flex-shrink: 0;
+}
+
+/* =========================================
+   TABLE CARD
+   ========================================= */
+#jl-offre-table-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.07);
+  overflow: hidden;
+}
+
+#jl-offre-table-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+/* =========================================
+   TABLE
+   ========================================= */
+#jl-offre-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.855rem;
+}
+
+/* THEAD */
+#jl-offre-table thead tr {
+  background: #0f172a;
+}
+
+#jl-offre-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  border: none;
+}
+
+#jl-offre-table thead th:first-child { padding-left: 20px; }
+#jl-offre-table thead th:last-child  { padding-right: 20px; text-align: right; }
+
+/* TBODY */
+#jl-offre-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s ease;
+}
+
+#jl-offre-table tbody tr:last-child { border-bottom: none; }
+#jl-offre-table tbody tr:hover { background: #f8fafc; }
+
+#jl-offre-table tbody td {
+  padding: 12px 16px;
+  vertical-align: middle;
+  color: #374151;
+}
+
+#jl-offre-table tbody td:first-child { padding-left: 20px; }
+#jl-offre-table tbody td:last-child  { padding-right: 20px; text-align: right; }
+
+/* =========================================
+   CELLULE TITRE
+   ========================================= */
+.jl-offre-row-titre {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 0.875rem;
+}
+
+/* =========================================
+   BADGE TYPE CONTRAT
+   ========================================= */
+.jl-offre-row-type {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  background: hsla(220, 89.87%, 46.25%, 0.10);
+  color: hsl(220, 89.87%, 40%);
+  border: 1px solid hsla(220, 89.87%, 46.25%, 0.20);
+  white-space: nowrap;
+}
+
+/* =========================================
+   CELLULE DATE
+   ========================================= */
+.jl-offre-row-date {
+  font-size: 0.8rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* =========================================
+   CELLULE CANDIDATURES
+   ========================================= */
+.jl-offre-row-cands {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.jl-offre-row-cands i {
+  color: hsl(220, 89.87%, 46.25%);
+  font-size: 0.82rem;
+}
+
+/* =========================================
+   BOUTON VOIR DÉTAIL
+   ========================================= */
+.jl-offre-row-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  border: 1px solid hsla(220, 89.87%, 46.25%, 0.22);
+  background: hsl(220, 89.87%, 96%);
+  color: hsl(220, 89.87%, 40%);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.jl-offre-row-btn:hover {
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border-color: hsl(220, 89.87%, 46.25%);
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+#jl-offre-table-empty {
+  text-align: center;
+  padding: 52px 24px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+#jl-offre-table-empty i {
+  display: block;
+  font-size: 2.2rem;
+  color: #e2e8f0;
+  margin-bottom: 10px;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  #jl-stats-content {
+    padding: 20px 14px 40px;
+  }
+
+  #jl-offre-table-card {
+    overflow-x: auto;
+  }
+
+  #jl-offre-table thead th,
+  #jl-offre-table tbody td {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+}

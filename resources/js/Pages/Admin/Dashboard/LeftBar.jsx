@@ -29,7 +29,7 @@ const LeftBar = () => {
                     </a>
                 </li>
                 <li className="jl-leftbar-item">
-                    <a href="" className="jl-leftbar-link">
+                    <a href={route('offresStatistique.index')} className="jl-leftbar-link">
                         <i className="bi bi-briefcase-fill"></i>
                         <span>Offres</span>
                     </a>

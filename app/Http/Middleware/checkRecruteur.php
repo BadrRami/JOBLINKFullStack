@@ -13,7 +13,7 @@ class CheckRecruteur
             return redirect()->route('login');
         }
 
-        if (auth()->user()->role !== 'recruteur') {
+        if (auth()->user()->role !== 'Recruteur') {
             abort(403);
         }
 

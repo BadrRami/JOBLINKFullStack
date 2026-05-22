@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\AdminEntreprisesController;
 use App\Http\Controllers\Admin\dashboard\UserAnalyticsController;
 use App\Http\Controllers\Admin\dashboard\PublicationsAnalyticsController;
+use App\Http\Controllers\Admin\OffresStatistiqueController;
+
 // Employee Controllers
 use App\Http\Controllers\sauvegarde;
 use App\Http\Controllers\CandidatureController;
@@ -132,7 +134,9 @@ Route::middleware('auth')->group(function () {
         ->name('usersStatistique.index')->middleware('checkAdminMember');
     Route::get('/admin/publication/stats', [PublicationsAnalyticsController::class, 'index'])
         ->name('publicationsStatistique.index')->middleware('checkAdminMember');
-
+    Route::get('/admin/offres/stats', [OffresStatistiqueController::class, 'index'])
+    ->name('offresStatistique.index')
+    ->middleware('checkAdminMember');
     // CRUD Users routes
     Route::get('/users', [UserController::class, 'index'])
         ->name('users.index')->middleware('checkAdminMember');
