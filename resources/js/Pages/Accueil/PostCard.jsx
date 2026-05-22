@@ -60,7 +60,7 @@ const PostCard = ({ post }) => {
                     <i className="bi bi-hand-thumbs-up-fill"></i> {post.likes?.length ?? 0}
                 </span>
                 <span className="jl-post-stat">
-                    <i className="bi bi-chat-right-dots"></i> {post.NBComments ?? 0} commentaires
+                    <i className="bi bi-chat-right-dots"></i> {post.comments?.length ?? 0} commentaires
                 </span>
             </div>
 
