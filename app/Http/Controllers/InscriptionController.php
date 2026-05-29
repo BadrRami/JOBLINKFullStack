@@ -46,7 +46,7 @@ class InscriptionController extends Controller
                 'entreprise_id' => null,
             ]);
             // envoyer email
-            Mail::to($user->email)->send(new WelcomeMail($user));
+            //Mail::to($user->email)->send(new WelcomeMail($user));
     
         } else { 
             Employee::create([
@@ -55,7 +55,7 @@ class InscriptionController extends Controller
                 'niveau_etude' => null,
             ]);
             // envoyer email
-            Mail::to($user->email)->send(new WelcomeMail($user));
+           // Mail::to($user->email)->send(new WelcomeMail($user));
     
         }
 

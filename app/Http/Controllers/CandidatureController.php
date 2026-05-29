@@ -13,7 +13,7 @@ class CandidatureController extends Controller
      */
     public function index()
     {
-        $candidatures = Candidature::with('offre')->get();
+        $candidatures = Candidature::with('offre')->where('user_id', auth()->id())->get();
         return Inertia::render('Etudiant/Candidatures/Liste',compact('candidatures'));
     }
 

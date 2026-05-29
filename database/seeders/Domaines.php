@@ -23,6 +23,25 @@ class Domaines extends Seeder
             ['nom' => 'Ingénierie'],
             ['nom' => 'Droit'],
             ['nom' => 'Art et design'],
+            ['nom' => 'Sciences sociales'],
+            ['nom' => 'Environnement'],
+            ['nom' => 'Agriculture'],
+            ['nom' => 'Tourisme'],
+            ['nom' => 'Transport'],
+            ['nom' => 'Construction'],
+            ['nom' => 'Énergie'],
+            ['nom' => 'Télécommunications'],
+            ['nom' => 'Médias et communication'],
+            ['nom' => 'Sport et loisirs'],
+            ['nom' => 'Alimentation et restauration'],
+            ['nom' => 'Mode et beauté'],
+            ['nom' => 'Automobile'],
+            ['nom' => 'Aéronautique'],
+            ['nom' => 'Maritime'],
+            ['nom' => 'Pharmaceutique'],
+            ['nom' => 'Biotechnologie'],
+            ['nom' => 'Recherche et développement'],
+            ['nom' => 'Autre']
         ];
 
         foreach ($domaines as $domaine) {

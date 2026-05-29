@@ -46,7 +46,7 @@ const Register = () => {
                                     className="jl-input"
                                     value={data.nom}
                                     onChange={(e) => setData('nom', e.target.value)}
-                                    placeholder="Dupont"
+                                    placeholder="Alaoui"
                                 />
                                 {errors.nom && <span className="jl-error">{errors.nom}</span>}
                             </div>
@@ -60,7 +60,7 @@ const Register = () => {
                                     className="jl-input"
                                     value={data.prenom}
                                     onChange={(e) => setData('prenom', e.target.value)}
-                                    placeholder="Jean"
+                                    placeholder="Mohammed"
                                 />
                                 {errors.prenom && <span className="jl-error">{errors.prenom}</span>}
                             </div>

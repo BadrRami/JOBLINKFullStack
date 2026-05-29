@@ -55,7 +55,8 @@ const Menu = () => {
                     </ul>
 
                     <div className="jl-nav-actions">
-
+{user ? (
+     <>
                         {/* Bouton chat + badge */}
                         <div className="jl-chat-wrap">
                             <button className="jl-btn-chat" onClick={handleConversation}>
@@ -68,8 +69,8 @@ const Menu = () => {
                             )}
                         </div>
 
-                        {user ? (
-                            <>
+                        
+                           
                                 {user.role === 'admin' && (
                                     <Link className="jl-btn jl-btn-admin" href="/admin">
                                         Admin

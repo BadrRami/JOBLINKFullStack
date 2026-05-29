@@ -11,7 +11,7 @@ const Liste = ({ entreprises }) => {
                 <h1 id="jl-entreprises-heading">Entreprises</h1>
                 <div id="jl-entreprises-grid">
                     {entreprises.length > 0 ? (
-                        entreprises.data.map((entreprise) => (
+                        entreprises.map((entreprise) => (
                             <Entreprise key={entreprise.id} entreprise={entreprise} />
                         ))
                     ) : (

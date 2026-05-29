@@ -8,7 +8,7 @@ use Inertia\Inertia;
 class EntreprisesController extends Controller
 {
     public function index(){
-        $entreprises = entreprises::paginate(10);
+        $entreprises = entreprises::all();
         return Inertia('Entreprises/Liste', compact('entreprises'));
     }
 }

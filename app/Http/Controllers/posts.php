@@ -8,7 +8,7 @@ class posts extends Controller
 {
     public function index()
 {
-    $posts = Post::with(['comments.user', 'likes'])->get();
+    $posts = Post::with(['user', 'comments.user', 'likes'])->get();
 
     return Inertia('Publications/Index', [
         'posts' => $posts
