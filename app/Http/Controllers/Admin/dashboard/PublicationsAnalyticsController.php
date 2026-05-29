@@ -38,4 +38,5 @@ class PublicationsAnalyticsController extends Controller
             ->take(5)
             ->get();
     }
+    
 }

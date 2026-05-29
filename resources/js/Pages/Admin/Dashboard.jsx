@@ -1,14 +1,10 @@
 import React from 'react';
-import Menu from '../Menu';
 import LeftBar from './Dashboard/LeftBar';
 
-const Dashboard = ({ users, recruteurs, employees, offres, posts, entreprises }) => {
+const Dashboard = () => {
     return (
         <div>
-          
-
-
-<LeftBar/>
+            <LeftBar/>
         </div>
     );
 }

@@ -7,7 +7,7 @@ const Liste = ({ data }) => {
 
     const handleDelete = (id) => {
         if (confirm("Supprimer cette publication ?")) {
-            router.delete(`/admin/publications/${id}`);
+            router.delete(`/postsAdmin/${id}`);
         }
     };
 
