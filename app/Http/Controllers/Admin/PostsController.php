@@ -9,7 +9,7 @@ use Inertia\Inertia;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::all();
+        $posts = Post::withCount(['likes', 'comments'])->get();
         return Inertia::render('Admin/Publications/Liste', [
             'posts' => $posts
         ]);

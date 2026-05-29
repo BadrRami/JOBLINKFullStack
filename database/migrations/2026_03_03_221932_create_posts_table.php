@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('titre');
-            $table->integer('NBComments')->default(0);
             $table->string('media')->nullable();
             $table->timestamps();
         });

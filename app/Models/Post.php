@@ -12,8 +12,6 @@ class Post extends Model
     use HasFactory;
     protected $fillable=[
         'titre',
-        'description',
-        'NBComments',
         'media',
         'user_id'
     ];

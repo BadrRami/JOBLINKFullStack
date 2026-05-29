@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Publication = ({ publication, onDelete }) => {
+    console.log(publication);
     return (
         <tr>
             {/* Média */}
@@ -32,11 +33,12 @@ const Publication = ({ publication, onDelete }) => {
                 <div className="jl-pub-stats-cell">
                     <span className="jl-pub-stat-item">
                         <i className="bi bi-hand-thumbs-up-fill"></i>
-                        {publication.NBLikes ?? publication.likes?.length ?? 0}
+                        {publication.likes_count}
                     </span>
+
                     <span className="jl-pub-stat-item">
                         <i className="bi bi-chat-right-dots"></i>
-                        {publication.NBComments ?? publication.comments?.length ?? 0}
+                        {publication.comments_count}
                     </span>
                 </div>
             </td>
