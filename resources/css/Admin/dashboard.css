@@ -1,0 +1,222 @@
+/* =========================================
+   dashboard.css — JobLink.ma Admin
+   Style : Dark Corporate + Blue Accent
+   ========================================= */
+
+/* =========================================
+   PAGE LAYOUT
+   ========================================= */
+#jl-dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+#jl-dashboard-content {
+  flex: 1;
+  padding: 36px 32px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+#jl-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+#jl-dashboard-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px;
+  letter-spacing: -0.4px;
+}
+
+#jl-dashboard-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* =========================================
+   GRID
+   ========================================= */
+#jl-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* =========================================
+   CARD BASE
+   ========================================= */
+.jl-dashboard-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  padding: 22px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease,
+              transform 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.jl-dashboard-card:hover {
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Ligne colorée en haut */
+.jl-dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 14px 14px 0 0;
+  transition: opacity 0.2s ease;
+}
+
+/* =========================================
+   ICÔNE
+   ========================================= */
+.jl-dashboard-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.jl-dashboard-card:hover .jl-dashboard-card-icon {
+  transform: scale(1.08);
+}
+
+/* =========================================
+   BODY
+   ========================================= */
+.jl-dashboard-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.jl-dashboard-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 5px;
+  letter-spacing: -0.2px;
+}
+
+.jl-dashboard-card-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =========================================
+   FLÈCHE
+   ========================================= */
+.jl-dashboard-card-arrow {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.jl-dashboard-card:hover .jl-dashboard-card-arrow {
+  transform: translateX(3px);
+}
+
+/* =========================================
+   VARIANTES COULEUR
+   ========================================= */
+
+/* Bleu */
+.jl-card-blue::before { background: hsl(220, 89.87%, 46.25%); }
+.jl-card-blue .jl-dashboard-card-icon {
+  background: hsla(220, 89.87%, 46.25%, 0.12);
+  color: hsl(220, 89.87%, 46.25%);
+}
+.jl-card-blue:hover { border-color: hsla(220, 89.87%, 46.25%, 0.30); }
+.jl-card-blue:hover .jl-dashboard-card-arrow { color: hsl(220, 89.87%, 46.25%); }
+
+/* Vert */
+.jl-card-green::before { background: #22c55e; }
+.jl-card-green .jl-dashboard-card-icon {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+}
+.jl-card-green:hover { border-color: rgba(34, 197, 94, 0.30); }
+.jl-card-green:hover .jl-dashboard-card-arrow { color: #22c55e; }
+
+/* Amber */
+.jl-card-amber::before { background: #eab308; }
+.jl-card-amber .jl-dashboard-card-icon {
+  background: rgba(234, 179, 8, 0.12);
+  color: #a16207;
+}
+.jl-card-amber:hover { border-color: rgba(234, 179, 8, 0.30); }
+.jl-card-amber:hover .jl-dashboard-card-arrow { color: #eab308; }
+
+/* Violet */
+.jl-card-purple::before { background: #8b5cf6; }
+.jl-card-purple .jl-dashboard-card-icon {
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+}
+.jl-card-purple:hover { border-color: rgba(139, 92, 246, 0.30); }
+.jl-card-purple:hover .jl-dashboard-card-arrow { color: #8b5cf6; }
+
+/* Cyan */
+.jl-card-cyan::before { background: hsl(197, 100%, 42%); }
+.jl-card-cyan .jl-dashboard-card-icon {
+  background: hsla(197, 100%, 42%, 0.12);
+  color: hsl(197, 100%, 32%);
+}
+.jl-card-cyan:hover { border-color: hsla(197, 100%, 42%, 0.30); }
+.jl-card-cyan:hover .jl-dashboard-card-arrow { color: hsl(197, 100%, 42%); }
+
+/* Rouge */
+.jl-card-red::before { background: #ef4444; }
+.jl-card-red .jl-dashboard-card-icon {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+}
+.jl-card-red:hover { border-color: rgba(239, 68, 68, 0.30); }
+.jl-card-red:hover .jl-dashboard-card-arrow { color: #ef4444; }
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 960px) {
+  #jl-dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  #jl-dashboard-content { padding: 24px 14px 40px; }
+  #jl-dashboard-grid { grid-template-columns: 1fr; }
+}
