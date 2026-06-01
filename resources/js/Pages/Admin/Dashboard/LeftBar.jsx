@@ -35,7 +35,7 @@ const LeftBar = () => {
                     </a>
                 </li>
                 <li className="jl-leftbar-item">
-                    <a href="" className="jl-leftbar-link">
+                    <a href={route('entreprisesStatistique.index')} className="jl-leftbar-link">
                         <i className="bi bi-buildings-fill"></i>
                         <span>Entreprises</span>
                     </a>

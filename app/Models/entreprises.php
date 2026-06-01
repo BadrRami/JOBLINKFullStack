@@ -18,4 +18,9 @@ class entreprises extends Model
         'logo',
         'user_id'
     ];
+
+    public function domaine()
+{
+    return $this->belongsTo(Domaine::class);
+}
 }
