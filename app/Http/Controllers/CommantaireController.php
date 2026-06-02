@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Commantaire;
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 class CommantaireController extends Controller
@@ -12,7 +12,7 @@ class CommantaireController extends Controller
      */
     public function index(Request $request)
     {
-        $commentaires = Commantaire::where('post_id', $request->post_id)
+        $commentaires = Commentaire::where('post_id', $request->post_id)
             ->with('user')
             ->get();
 
@@ -34,7 +34,7 @@ class CommantaireController extends Controller
      */
     public function store(Request $request)
     {
-        Commantaire::create([
+        Commentaire::create([
             'content' => $request->content,
             'user_id' => auth()->id(),
             'post_id' => $request->post_id
@@ -46,7 +46,7 @@ class CommantaireController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Commantaire $commantaire)
+    public function show(Commentaire $commentaire)
     {
         //
     }
@@ -54,7 +54,7 @@ class CommantaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Commantaire $commantaire)
+    public function edit(Commentaire $commentaire)
     {
         //
     }
@@ -62,7 +62,7 @@ class CommantaireController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Commantaire $commantaire)
+    public function update(Request $request, Commentaire $commentaire)
     {
         //
     }
@@ -70,7 +70,7 @@ class CommantaireController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Commantaire $commantaire)
+    public function destroy(Commentaire $commentaire)
     {
         //
     }

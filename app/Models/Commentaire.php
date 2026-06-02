@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Commantaire extends Model
+class Commentaire extends Model
 {
     protected $fillable = [
         'content',

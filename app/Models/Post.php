@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
 use App\Models\Likes;
-use App\Models\Commantaire;
+use App\Models\Commentaire;
 class Post extends Model
 {
     use HasFactory;
@@ -25,6 +25,6 @@ class Post extends Model
     }
 public function comments()
 {
-    return $this->hasMany(Commantaire::class);
+    return $this->hasMany(Commentaire::class);
 }
 }

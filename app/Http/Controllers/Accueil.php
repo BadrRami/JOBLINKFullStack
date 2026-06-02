@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Offre;
 use App\Models\Post;
-use App\Models\Commantaire;
+use App\Models\Commentaire;
 use Illuminate\Support\Facades\Auth;
 class Accueil extends Controller
 {

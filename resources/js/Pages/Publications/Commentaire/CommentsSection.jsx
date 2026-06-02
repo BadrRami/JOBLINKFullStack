@@ -1,6 +1,6 @@
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
-
+import '../../../../css/publications/publications.css'
 const CommentsSection = ({ post }) => {
     if (!post) return null;
     return (
