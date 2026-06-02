@@ -18,7 +18,7 @@ class EntreprisesAnalyticsController extends Controller
         ]);
     }
     public function getEntreprises(){
-        return entreprises::all();
+        return entreprises::with('domaine')->get();
     }
 
     public function entreprisesPerDay()
