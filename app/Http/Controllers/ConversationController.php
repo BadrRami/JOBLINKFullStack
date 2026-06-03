@@ -34,6 +34,7 @@ class ConversationController extends Controller
         return inertia('Messagerie/Conversation', [
             'contacts'     => $contacts,
             'conversation' => null, // aucune conversation sélectionnée par défaut
+            'authUser'     => Auth::user()->only('id', 'name'),
         ]);
     }
 

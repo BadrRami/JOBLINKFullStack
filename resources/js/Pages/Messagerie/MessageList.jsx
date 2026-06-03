@@ -15,10 +15,12 @@ const MessageList = ({ messages = [] }) => {
                 const isMine = msg.sender_id === auth.user.id;
                 return (
                     <div key={msg.id} className={`jl-msg-row ${isMine ? 'is-mine' : 'is-other'}`}>
-                         <span>{new Date(msg.created_at).toLocaleString()}</span>
+                         
                         <div className="jl-msg-bubble">
+                            
                             {msg.message}
                         </div>
+                        {/* <span>{new Date(msg.created_at).toLocaleString()}</span> */}
                         
                     </div>
                 );

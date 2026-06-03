@@ -14,6 +14,11 @@ const PostCard = ({ post }) => {
         
         
     };
+    const handleMessage = (userId) => {
+            router.post('/conversation', {
+                user_id: userId
+            });
+    };
     return (
         <div className="jl-post-card">
 
@@ -37,6 +42,12 @@ const PostCard = ({ post }) => {
                     <p className="jl-post-date">
                         {new Date(post.created_at).toLocaleString()}
                     </p>
+                    <button
+                        className="jl-pub-msg-btn"
+                        onClick={() => handleMessage(post.user_id)}
+                    >
+                        <i className="bi bi-wechat"></i>
+                    </button>
                 </div>
             </div>
 

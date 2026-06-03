@@ -5,7 +5,7 @@ import Contacts from './Contacts';
 import ChatWindow from './ChatWindow';
 import '../../../css/chat.css';
 
-const Conversation = ({ conversation, contacts }) => {
+const Conversation = ({ conversation, contacts, authUser }) => {
     return (
         <div id="jl-chat-page">
             <Menu />
@@ -20,7 +20,7 @@ const Conversation = ({ conversation, contacts }) => {
 
                 <div id="jl-chat-window">
                     {conversation
-                        ? <ChatWindow conversation={conversation} />
+                        ? <ChatWindow conversation={conversation} user={authUser} />
                         : <p id="jl-chat-empty">Sélectionne une conversation</p>
                     }
                 </div>
