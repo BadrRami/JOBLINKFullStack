@@ -1,0 +1,176 @@
+/* =========================================
+   filter.css — JobLink.ma
+   Style : Dark Corporate + Blue Accent
+   Composant filtre des offres
+   ========================================= */
+
+/* =========================================
+   FORM WRAPPER
+   ========================================= */
+#jl-offres-filter {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ligne dégradée en haut */
+#jl-offres-filter::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    hsl(220, 89.87%, 46.25%),
+    hsl(197, 100%, 50%),
+    hsl(220, 89.87%, 46.25%)
+  );
+}
+
+/* =========================================
+   FILTER GROUP
+   ========================================= */
+.jl-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.jl-filter-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.2px;
+}
+
+/* =========================================
+   INPUT RECHERCHE
+   ========================================= */
+.jl-filter-group input[type="text"] {
+  height: 40px;
+  padding: 0 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #0f172a;
+  background: #f8fafc;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.jl-filter-group input[type="text"]::placeholder {
+  color: #94a3b8;
+}
+
+.jl-filter-group input[type="text"]:focus {
+  border-color: hsl(220, 89.87%, 46.25%);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px hsla(220, 89.87%, 46.25%, 0.12);
+}
+
+.jl-filter-group input[type="text"]:hover:not(:focus) {
+  border-color: #94a3b8;
+}
+
+/* =========================================
+   SELECT
+   ========================================= */
+.jl-filter-group select {
+  height: 40px;
+  padding: 0 34px 0 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #0f172a;
+  background: #f8fafc;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jl-filter-group select:focus {
+  border-color: hsl(220, 89.87%, 46.25%);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px hsla(220, 89.87%, 46.25%, 0.12);
+}
+
+.jl-filter-group select:hover:not(:focus) {
+  border-color: #94a3b8;
+}
+
+/* =========================================
+   BOUTON FILTRER
+   ========================================= */
+#jl-filter-btn {
+  height: 40px;
+  padding: 0 22px;
+  background: hsl(220, 89.87%, 46.25%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-end;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#jl-filter-btn:hover {
+  background: hsl(220, 89.87%, 36%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px hsla(220, 89.87%, 46.25%, 0.32);
+}
+
+#jl-filter-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 640px) {
+  #jl-offres-filter {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 16px;
+  }
+
+  .jl-filter-group {
+    min-width: unset;
+    width: 100%;
+  }
+
+  #jl-filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

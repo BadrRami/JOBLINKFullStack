@@ -3,8 +3,9 @@ import Menu from '../Menu';
 import Offre from './Offre';
 import { usePage } from '@inertiajs/react';
 import '../../../css/Offres/offres.css';
+import Filter from './Filter';
 
-const Liste = ({ offres }) => {
+const Liste = ({ offres, villes, domaines }) => {
     const { flash } = usePage().props;
 
     return (
@@ -12,6 +13,8 @@ const Liste = ({ offres }) => {
             <Menu />
 
             <div id="jl-offres-feed">
+
+                <Filter villes={villes} domaines={domaines} />
 
                 <h1 id="jl-offres-heading">Liste des Offres</h1>
 
