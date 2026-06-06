@@ -1,57 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { router } from '@inertiajs/react';
 import '../../../css/Offres/filter.css';
 
 const Filter = ({ villes, domaines }) => {
-    const [search, setSearch] = React.useState('');
-    const [selectedVille, setSelectedVille] = React.useState('');
-    const [selectedDomaine, setSelectedDomaine] = React.useState('');
+
+    const [filters, setFilters] = useState({
+        titre: '',
+        ville: '',
+        domaine: ''
+    });
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-    }
-    return (
-        <form id="jl-offres-filter" method="GET" action="" onSubmit={handleSubmit}>
 
-            {/* Recherche */}
+        router.get('/offres', filters);
+    };
+
+    return (
+        <form id="jl-offres-filter" onSubmit={handleSubmit}>
+
             <div className="jl-filter-group">
                 <input
                     type="text"
-                    name="search"
-                    id="search"
-                    placeholder="Rechercher par nom..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Rechercher par titre..."
+                    value={filters.titre}
+                    onChange={(e) =>
+                        setFilters({
+                            ...filters,
+                            titre: e.target.value
+                        })
+                    }
                 />
             </div>
 
-            {/* Ville */}
             <div className="jl-filter-group">
-                <select name="ville" id="ville" value={selectedVille} onChange={(e) => setSelectedVille(e.target.value)}>
+                <select
+                    value={filters.ville}
+                    onChange={(e) =>
+                        setFilters({
+                            ...filters,
+                            ville: e.target.value
+                        })
+                    }
+                >
                     <option value="">Toutes les villes</option>
                     {villes.map((ville) => (
-                        <option key={ville.id} value={ville.id}>{ville.nom}</option>
+                        <option key={ville.id} value={ville.id}>
+                            {ville.nom}
+                        </option>
                     ))}
                 </select>
             </div>
 
-            {/* Domaine */}
             <div className="jl-filter-group">
-                <select name="domaine" id="domaine" value={selectedDomaine} onChange={(e) => setSelectedDomaine(e.target.value)}>
+                <select
+                    value={filters.domaine}
+                    onChange={(e) =>
+                        setFilters({
+                            ...filters,
+                            domaine: e.target.value
+                        })
+                    }
+                >
                     <option value="">Tous les domaines</option>
                     {domaines.map((domaine) => (
-                        <option key={domaine.id} value={domaine.id}>{domaine.nom}</option>
+                        <option key={domaine.id} value={domaine.id}>
+                            {domaine.nom}
+                        </option>
                     ))}
                 </select>
             </div>
 
-            {/* Bouton */}
-            <button type="submit" id="jl-filter-btn">
-                <i className="bi bi-funnel-fill"></i>
-                Filtrer
-            </button>
+            <button type="submit" id="jl-filter-btn"> <i className="bi bi-funnel-fill"></i> Filtrer </button>
 
         </form>
     );
-}
+};
 
 export default Filter;
