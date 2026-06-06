@@ -7,6 +7,7 @@ use App\Models\Domaine;
 use App\Models\Villes;
 use App\Http\Requests\StoreOffreRequest;
 use App\Http\Requests\UpdateOffreRequest;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -37,28 +38,53 @@ class OffreController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-       $data = $request->validate([
-            'titre' => 'required|string|max:80',
-            'description' => 'nullable|string',
-            'type' => 'required|in:full-time,part-time,stage,mission,freelance',
-            'etat' => 'required|in:active,inactive',
-            'localisation' => 'required|string|max:255',
-            'domaine_id' => 'required|exists:domaines,id',
-            'ville_id' => 'required|exists:villes,id',
-            'salaire' => 'required|numeric|min:0.01'
-        ]);
+{
+    // 1. validation
+    $data = $request->validate([
+        'titre' => 'required|string|max:80',
+        'description' => 'nullable|string',
+        'type' => 'required|in:full-time,part-time,stage,mission,freelance',
+        'etat' => 'required|in:active,inactive',
+        'localisation' => 'required|string|max:255',
+        'domaine_id' => 'required|exists:domaines,id',
+        'ville_id' => 'required|exists:villes,id',
+        'salaire' => 'required|numeric|min:0.01'
+    ]);
 
-        // On fixe le recruteur côté serveur
-        $data['users_id'] = auth()->id();
+    // 2. récupérer nom ville
+    $ville = \App\Models\Villes::find($request->ville_id);
 
-        // Création avec données validées uniquement
-        Offre::create($data);
+    // 3. construire adresse
+    $address = $ville->name . ' ' . $request->localisation . ' Maroc';
 
-        return redirect()
-            ->route('offres.create')
-            ->with('success', 'Offre ajoutée avec succès');
-    }
+    // 4. appel API GPS
+    $response = Http::withoutVerifying()->get(
+        'https://nominatim.openstreetmap.org/search',
+        [
+            'q' => $address,
+            'format' => 'json',
+            'limit' => 1
+        ]
+    );
+
+    $geo = $response->json();
+
+    // 5. lat/lng
+    $latitude = $geo[0]['lat'] ?? null;
+    $longitude = $geo[0]['lon'] ?? null;
+
+    // 6. compléter data
+    $data['users_id'] = auth()->id();
+    $data['latitude'] = $latitude;
+    $data['longitude'] = $longitude;
+
+    // 7. création
+    Offre::create($data);
+
+    return redirect()
+        ->route('offres.create')
+        ->with('success', 'Offre ajoutée avec succès');
+}
 
     /**
      * Display the specified resource.
