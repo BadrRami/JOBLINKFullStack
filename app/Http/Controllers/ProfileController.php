@@ -170,10 +170,9 @@ public function updateLocation(Request $request)
 
     $user = auth()->user();
 
-    // sécurité : vérifier que c'est bien un employee
     if (!$user->employee) {
         return response()->json([
-            'message' => 'Non autorisé'
+            'message' => 'Utilisateur employee introuvable'
         ], 403);
     }
 

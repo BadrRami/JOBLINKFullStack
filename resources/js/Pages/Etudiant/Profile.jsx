@@ -7,51 +7,48 @@ import '../../../css/profile/profile-emplyee.css';
 const Profile = ({ user }) => {
 
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
+const [message, setMessage] = useState("");
 
-    const activateLocation = () => {
-        setLoading(true);
-        setMessage("");
+const activateLocation = () => {
+    setLoading(true);
+    setMessage("");
 
-        if (!navigator.geolocation) {
-            setMessage("Géolocalisation non supportée");
-            setLoading(false);
-            return;
-        }
+    if (!navigator.geolocation) {
+        setMessage("Géolocalisation non supportée");
+        setLoading(false);
+        return;
+    }
 
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
 
-                // envoyer vers Laravel
-                fetch("/save-location", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document.querySelector('meta[name=\"csrf-token\"]').content
-                    },
-                    body: JSON.stringify({
-                        latitude,
-                        longitude
-                    })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    setMessage(data.message);
-                    setLoading(false);
-                })
-                .catch(() => {
-                    setMessage("Erreur lors de l'enregistrement");
-                    setLoading(false);
-                });
-            },
-            (error) => {
-                setMessage(error.message);
+            const formData = new FormData();
+            formData.append("latitude", position.coords.latitude);
+            formData.append("longitude", position.coords.longitude);
+
+            fetch("/employee/location", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                setMessage(data.message);
                 setLoading(false);
-            }
-        );
-    };
+            })
+            .catch(() => {
+                setMessage("Erreur lors de l'envoi");
+                setLoading(false);
+            });
+        },
+        (error) => {
+            setMessage(error.message);
+            setLoading(false);
+        }
+    );
+};
 
     const handleDelete = () => {
         if (confirm("Voulez-vous vraiment supprimer votre compte ?")) {

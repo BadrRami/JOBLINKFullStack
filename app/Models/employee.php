@@ -10,6 +10,7 @@ class employee extends Model
         'user_id',
         'filiere',
         'niveau_etude',
-        
+        'latitude',
+        'longitude',
     ];
 }

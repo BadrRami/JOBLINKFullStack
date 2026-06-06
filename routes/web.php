@@ -36,7 +36,7 @@ use App\Http\Controllers\AIController;
 use App\Http\Controllers\Accueil;
 use Inertia\Inertia;
 
-Route::post('/save-location', [ProfileController::class, 'updateLocation']);
+Route::post('/employee/location', [ProfileController::class, 'updateLocation']);
 Route::middleware('guest')->group(function (){
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'traiter'])->name('login.traiter');
