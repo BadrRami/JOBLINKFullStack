@@ -37,6 +37,15 @@ use App\Http\Controllers\Accueil;
 use Inertia\Inertia;
 
 Route::post('/employee/location', [ProfileController::class, 'updateLocation']);
+
+Route::get('/offres-proches', [OffreController::class, 'offresProches'])
+    ->middleware('auth')
+    ->name('offres.proches');
+
+
+
+
+
 Route::middleware('guest')->group(function (){
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'traiter'])->name('login.traiter');

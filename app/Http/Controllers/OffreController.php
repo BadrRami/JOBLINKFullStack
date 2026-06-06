@@ -125,4 +125,33 @@ class OffreController extends Controller
         $offre->delete();
         return redirect()->route("offres.index")->with("success", "Suppression réussie!");
     }
+
+public function offresProches()
+{
+    $employee = auth()->user()->employee;
+
+$offres = Offre::selectRaw("
+    offres.*,
+    (
+        6371 * acos(
+            cos(radians(?))
+            * cos(radians(latitude))
+            * cos(radians(longitude) - radians(?))
+            + sin(radians(?))
+            * sin(radians(latitude))
+        )
+    ) AS distance
+", [
+    $employee->latitude,
+    $employee->longitude,
+    $employee->latitude
+])
+->whereNotNull('latitude')
+->whereNotNull('longitude')
+->orderBy('distance')
+->limit(3)
+->get();
+Mail::to(auth()->user()->email)
+        ->send(new TopOffresMail($offres));
+}
 }
