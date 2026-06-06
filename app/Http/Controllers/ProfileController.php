@@ -158,4 +158,32 @@ class ProfileController extends Controller
     return redirect()->route('profile.employee')
                      ->with('success', 'Profil employee mis à jour');
 }
+
+
+
+public function updateLocation(Request $request)
+{
+    $request->validate([
+        'latitude' => 'required',
+        'longitude' => 'required',
+    ]);
+
+    $user = auth()->user();
+
+    // sécurité : vérifier que c'est bien un employee
+    if (!$user->employee) {
+        return response()->json([
+            'message' => 'Non autorisé'
+        ], 403);
+    }
+
+    $user->employee->update([
+        'latitude' => $request->latitude,
+        'longitude' => $request->longitude,
+    ]);
+
+    return response()->json([
+        'message' => 'Localisation mise à jour avec succès'
+    ]);
+}
 }

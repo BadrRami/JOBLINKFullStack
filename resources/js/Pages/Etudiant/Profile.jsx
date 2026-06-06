@@ -1,10 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from '../Menu';
 import { Link, router } from '@inertiajs/react';
 import { route } from 'ziggy-js';
 import '../../../css/profile/profile-emplyee.css';
 
 const Profile = ({ user }) => {
+
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
+    const activateLocation = () => {
+        setLoading(true);
+        setMessage("");
+
+        if (!navigator.geolocation) {
+            setMessage("Géolocalisation non supportée");
+            setLoading(false);
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                // envoyer vers Laravel
+                fetch("/save-location", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name=\"csrf-token\"]').content
+                    },
+                    body: JSON.stringify({
+                        latitude,
+                        longitude
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    setMessage(data.message);
+                    setLoading(false);
+                })
+                .catch(() => {
+                    setMessage("Erreur lors de l'enregistrement");
+                    setLoading(false);
+                });
+            },
+            (error) => {
+                setMessage(error.message);
+                setLoading(false);
+            }
+        );
+    };
 
     const handleDelete = () => {
         if (confirm("Voulez-vous vraiment supprimer votre compte ?")) {
@@ -108,6 +155,12 @@ const Profile = ({ user }) => {
                             <i className="bi bi-bookmark-fill"></i>
                             Sauvegardes
                         </Link>
+
+                        <button onClick={activateLocation} disabled={loading}>
+                {loading ? "Activation..." : "Activer ma localisation"}
+            </button>
+
+            {message && <p>{message}</p>}
 
                         <button
                             className="jl-rec-btn jl-rec-btn-delete"
