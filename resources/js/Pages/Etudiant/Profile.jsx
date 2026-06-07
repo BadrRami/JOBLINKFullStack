@@ -153,7 +153,7 @@ const activateLocation = () => {
                             Sauvegardes
                         </Link>
 
-                        <button onClick={activateLocation} disabled={loading}>
+                        <button className='jl-rec-btn' onClick={activateLocation} disabled={loading}>
                 {loading ? "Activation..." : "Activer ma localisation"}
             </button>
 
