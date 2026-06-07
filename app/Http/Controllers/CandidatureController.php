@@ -95,7 +95,14 @@ class CandidatureController extends Controller
      */
     public function update(Request $request, Candidature $candidature)
     {
-        //
+        // changer l'etat de la candidature
+        $request->validate([
+            'etat' => 'required|in:en_attente,accepte,refuse'
+        ]);
+        $candidature->update([
+            'etat' => $request->etat
+        ]);
+        return redirect()->back()->with('success', 'Candidature mise à jour');
     }
 
     /**
@@ -103,6 +110,7 @@ class CandidatureController extends Controller
      */
     public function destroy(Candidature $candidature)
     {
-        
+        $candidature->delete();
+        return redirect()->back()->with('success', 'Candidature supprimée');
     }
 }
