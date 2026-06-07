@@ -13,6 +13,7 @@ const CreateOffre = ({ domaines, villes }) => {
         ville_id: '',
         localisation: '',
         salaire: '',
+        type_salaire:'',
         etat: 'active',
     });
 
@@ -20,7 +21,7 @@ const CreateOffre = ({ domaines, villes }) => {
         e.preventDefault();
         if(!data.titre || !data.description || !data.type ||
             !data.domaine_id || !data.ville_id || !data.localisation ||
-            !data.salaire || !data.etat
+            !data.salaire || !data.etat || !data.type_salaire
         ){
             alert('Veuillez remplire tous les champs')
             
@@ -153,6 +154,23 @@ const CreateOffre = ({ domaines, villes }) => {
                                 {errors.localisation && <span className="jl-error">{errors.localisation}</span>}
                             </div>
                         </div>
+
+                        {/*Type de salaire  */}
+                            <div className="jl-field">
+                                <label className="jl-label" htmlFor="jl-offre-type-salaire">Type de salaire</label>
+                                <select
+                                    id="jl-offre-type-salaire"
+                                    className="jl-select"
+                                    value={data.type_salaire}
+                                    onChange={(e) => setData('type_salaire', e.target.value)}
+                                >
+                                    <option value="">-- Choisir --</option>
+                                    <option value="mensuel">Mensuel</option>
+                                    <option value="comission">Comission</option>
+                                    <option value="horaire">Horaire</option>
+                                </select>
+                                {errors.type_salaire && <span className="jl-error">{errors.type_salaire}</span>}
+                            </div>
 
                         {/* Salaire + Etat sur la même ligne */}
                         <div className="jl-field-row">

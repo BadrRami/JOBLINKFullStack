@@ -48,7 +48,8 @@ class OffreController extends Controller
         'localisation' => 'required|string|max:255',
         'domaine_id' => 'required|exists:domaines,id',
         'ville_id' => 'required|exists:villes,id',
-        'salaire' => 'required|numeric|min:0.01'
+        'salaire' => 'required|numeric|min:0.01',
+        'type_salaire' => 'required|in:mensuel,comission,horaire'
     ]);
 
     // 2. récupérer nom ville

@@ -18,7 +18,8 @@ class Offre extends Model
         'users_id',
         'salaire',
         'latitude',
-        'longitude'
+        'longitude',
+        'type_salaire'
     ];
 
     public function domaine()
