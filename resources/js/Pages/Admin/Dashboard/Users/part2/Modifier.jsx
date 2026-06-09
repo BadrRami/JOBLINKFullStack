@@ -44,13 +44,13 @@ const Modifier = ({ user }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (
-            !data.name || !data.prenom || !data.email || !data.tel ||
-            !data.etat || !data.filiere || !data.niveau_etude ||
-            !data.gender || !data.birth_date
-        ) {
-            alert('Veuillez remplir tous les champs');
-        }
+        // if (
+        //     !data.name || !data.prenom || !data.email || !data.tel ||
+        //     !data.etat || !data.filiere || !data.niveau_etude ||
+        //     !data.gender || !data.birth_date
+        // ) {
+        //     alert('Veuillez remplir tous les champs');
+        // }
         post(route('users.update', user.id), { forceFormData: true });
     };
 

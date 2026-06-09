@@ -13,9 +13,12 @@ class CandidatureController extends Controller
      */
     public function index()
     {
-        $candidatures = Candidature::with('offre')->where('user_id', auth()->id())->get();
-        return Inertia::render('Etudiant/Candidatures/Liste',compact('candidatures'));
+         $candidatures = Candidature::with('offre')->where('user_id', auth()->id())->get();
+         return Inertia::render('Etudiant/Candidatures/Liste',compact('candidatures'));
+        
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -93,17 +96,16 @@ class CandidatureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Candidature $candidature)
-    {
-        // changer l'etat de la candidature
-        $request->validate([
-            'etat' => 'required|in:en_attente,accepte,refuse'
-        ]);
-        $candidature->update([
-            'etat' => $request->etat
-        ]);
-        return redirect()->back()->with('success', 'Candidature mise à jour');
-    }
+    public function update(Request $request)
+{
+    $candidature = Candidature::findOrFail($request->candidature_id);
+
+    $candidature->update([
+        'etat' => $request->etat
+    ]);
+
+    return back();
+}
 
     /**
      * Remove the specified resource from storage.

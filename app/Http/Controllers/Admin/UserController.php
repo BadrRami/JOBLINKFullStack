@@ -67,10 +67,10 @@ class UserController extends Controller
         'name' => 'required|string|max:255',
         'prenom' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email,' . $id,
-        'tel' => 'required|string|max:20',
+        //'tel' => 'required|string|max:20',
         'etat' => 'required',
-        'gender' => 'required',
-        'birth_date' => 'required|date',
+        //'gender' => 'required',
+        //'birth_date' => 'required|date',
         'photo' => 'nullable|image'
     ]);
 

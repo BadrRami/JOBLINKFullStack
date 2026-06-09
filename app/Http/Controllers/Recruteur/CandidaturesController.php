@@ -21,4 +21,14 @@ class CandidaturesController extends Controller
     ]);
     
 }
+public function update(Request $request)
+{
+    $candidature = Candidature::findOrFail($request->candidature_id);
+
+    $candidature->update([
+        'etat' => $request->etat
+    ]);
+
+    return back();
+}
 }

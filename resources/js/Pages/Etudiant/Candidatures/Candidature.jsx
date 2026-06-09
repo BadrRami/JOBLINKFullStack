@@ -6,13 +6,13 @@ const Candidature = ({ candidature }) => {
 
     // Classe CSS selon le statut
     const statusClass = () => {
-        const s = candidature.statut?.toLowerCase();
+        const s = candidature.etat?.toLowerCase();
         if (s === 'accepté' || s === 'accepte') return 'jl-status-accepted';
         if (s === 'refusé' || s === 'refuse')  return 'jl-status-refused';
         return 'jl-status-pending';
     };
 
-    const statusLabel = candidature.statut ?? 'En attente';
+    const statusLabel = candidature.etat ?? 'En attente';
 
     return (
         <a href={`/candidatures/${candidature.id}`} className="jl-candidature-card">

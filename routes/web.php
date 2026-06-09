@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
     // Candidatures Reçus par recruteur
     Route::get('/candidaturesreçus',[CandidaturesController::class, 'index'])
         ->name('candidaturesreçus.index')->middleware('checkRecruteur');
+    Route::put('/changerEtat', [CandidaturesController::class , 'update'])
+        ->name('changerEtat.update');
 
     // CRUD Offres routes
     Route::get('/recruteur/offres', [OffreController::class, 'index'])

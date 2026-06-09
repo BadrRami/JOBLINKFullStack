@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { router } from '@inertiajs/react';
 const Candidature = ({ candidature }) => {
 
     // Classe statut
@@ -17,7 +17,10 @@ const Candidature = ({ candidature }) => {
         .filter(Boolean)
         .map(n => n[0].toUpperCase())
         .join('');
-
+    
+    const changerEtat = (etat) => {
+        router.put('/changerEtat', { etat, candidature_id: candidature.id })
+    }
     return (
         <div className="jl-cand-card">
 
@@ -53,10 +56,10 @@ const Candidature = ({ candidature }) => {
 
             {/* FOOTER : actions */}
             <div className="jl-cand-card-footer">
-                <button className="jl-cand-btn jl-cand-btn-accept">
+                <button className="jl-cand-btn jl-cand-btn-accept" onClick={() => changerEtat('accepté')}>
                     <i className="bi bi-check-lg"></i> Accepter
                 </button>
-                <button className="jl-cand-btn jl-cand-btn-refuse">
+                <button className="jl-cand-btn jl-cand-btn-refuse" onClick={() => changerEtat('refusé')}>
                     <i className="bi bi-x-lg"></i> Refuser
                 </button>
                 <a

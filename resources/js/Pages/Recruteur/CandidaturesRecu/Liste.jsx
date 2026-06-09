@@ -4,7 +4,7 @@ import '../../../../css/candidatures/candidatures-recruteur.css';
 import Candidature from './Candidature';
 
 const Liste = ({ candidatures }) => {
-    console.log(candidatures)
+    
     return (
         <div id="jl-cand-rec-page">
             <Menu />
